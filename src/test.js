@@ -48,58 +48,65 @@ var App = React.createClass({
     render: function () {
         return <div>
             <h1>Nya JAK</h1>
+
             <p>Låneberäkning med säkerhet</p>
+
             <div>
-                <p>Belopp jag vill låna:</p>
+                <p><b>Belopp jag vill låna:</b></p>
                 <input id="belopp"
-                    type="range"
-                    value={this.state.amount}
-                    min={this.state.minAmount}
-                    max={this.state.maxAmount}
-                    step={1000}
-                    onChange ={this.changeAmount} />
+                       type="range"
+                       value={this.state.amount}
+                       min={this.state.minAmount}
+                       max={this.state.maxAmount}
+                       step={1000}
+                       onChange={this.changeAmount}/>
 
                 <input type="text"
-                    value={this.state.amount + " kr"} />
+                       value={this.state.amount + " kr"}/>
             </div>
 
             <div>
-                <p>På hur lång tid:</p>
+                <p><b>På hur lång tid:</b></p>
                 <input id="tid"
-                    type="range"
-                    value={this.state.time}
-                    min={this.state.minTime}
-                    max={this.state.maxTime}
-                    onChange ={this.changeTime} />
+                       type="range"
+                       value={this.state.time}
+                       min={this.state.minTime}
+                       max={this.state.maxTime}
+                       onChange={this.changeTime}/>
                 <input type="text"
-                    value={this.state.time + " år"} />
+                       value={this.state.time + " år"}/>
             </div>
 
             <div>
-                <p>Tillför sparpoäng</p>
+                <p><b>Tillför sparpoäng</b></p>
                 <input id="försparpoäng" type="number"
-                    min={0}
-                    defaultValue={this.state.förspar}
-                    onChange={this.changeFörspar} />
+                       min={0}
+                       defaultValue={this.state.förspar}
+                       onChange={this.changeFörspar}/>
             </div>
             <br />
+
             <p><i>Mest fördelaktiga amorteringstid: {this.state.amorteringstid} år</i></p>
 
             <hr />
 
             <div>
                 <p>Månadsbetalning (snitt): {this.state.månadbetalning} kr</p>
-                <p>Amortering: {this.state.amortering} kr</p>
-                <p>Sparande: {this.state.savings} kr</p>
-                <p>Lånekostnad - skatteavdrag (snitt): {this.state.fee} kr</p>
+
+                <p>Varav amortering: {this.state.amortering} kr</p>
+
+                <p>Varav sparande: {this.state.savings} kr</p>
+
+                <p>Varav lånekostnad - skatteavdrag (snitt): {this.state.fee} kr</p>
             </div>
 
             <hr />
 
             <div>
+                <p>Aktuell U-Kvot:</p>
                 <input type="number" min="0" max="1"
-                    defaultValue={this.state.u_kvot}
-                    onChange={this.changeUKvot}/>
+                       defaultValue={this.state.u_kvot}
+                       onChange={this.changeUKvot}/>
             </div>
         </div>;
     }
