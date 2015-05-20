@@ -55,7 +55,7 @@ var App = React.createClass({
             <p>Låneberäkning med säkerhet</p>
 
             <div>
-                <p><b>Belopp jag vill låna:</b></p>
+                <p><b>Belopp jag vill låna (kr):</b></p>
                 <input id="belopp"
                        type="range"
                        value={this.state.amount}
@@ -65,11 +65,12 @@ var App = React.createClass({
                        onChange={this.changeAmount}/>
 
                 <input type="text"
-                       value={this.state.amount + " kr"}/>
+                       value={this.state.amount}
+                       onChange={this.changeAmount}/>
             </div>
 
             <div>
-                <p><b>På hur lång tid:</b></p>
+                <p><b>På hur lång tid (år):</b></p>
                 <input id="tid"
                        type="range"
                        value={this.state.time}
@@ -77,7 +78,8 @@ var App = React.createClass({
                        max={this.state.maxTime}
                        onChange={this.changeTime}/>
                 <input type="text"
-                       value={this.state.time + " år"}/>
+                       value={this.state.time}
+                       onChange={this.changeTime}/>
             </div>
 
             <div>
