@@ -17,7 +17,9 @@ var App = React.createClass({
             amortering: 0,
             savings: 0,
             fee: 0,
-            bestAmortering: 0
+            bestAmortering: 0,
+            efterAmortering: 0,
+            sparpoängKvar: 0
         };
     },
     componentWillMount: function () {
@@ -29,6 +31,8 @@ var App = React.createClass({
         this.månadsbetalning = this.state.månadsbetalning;
         this.savings = this.state.savings;
         this.fee = this.state.fee;
+        this.efterAmortering = this.state.efterAmortering;
+        this.sparpoängKvar = this.state.sparpoängKvar;
 
         this.calculate();
     },
@@ -53,6 +57,10 @@ var App = React.createClass({
         this.fee = (0.000875 * this.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
+
+        this.efterAmortering = this.savings * this.time * 12;
+
+        this.sparpoängKvar = (M44 > 0) ? 0 : -M44;
 
         this.updateState();
     },
@@ -84,7 +92,9 @@ var App = React.createClass({
             månadsbetalning: this.månadsbetalning,
             amortering: this.amortering,
             savings: this.savings,
-            fee: this.fee
+            fee: this.fee,
+            efterAmortering: this.efterAmortering,
+            sparpoängKvar: this.sparpoängKvar
         });
     },
 
@@ -146,9 +156,15 @@ var App = React.createClass({
                 <p>Varav sparande: {this.state.savings.toFixed(0)} kr</p>
 
                 <p>Varav lånekostnad - skatteavdrag (snitt): {this.state.fee.toFixed(0)} kr</p>
+                <br />
+
+                <p><b>Sparbelopp efter amortering: {this.state.efterAmortering.toFixed(0)}</b></p>
+
+                <p><b>Sparpoäng kvar: {this.state.sparpoängKvar.toFixed(0)}</b></p>
             </div>
 
             <hr />
+            <br />
 
             <div>
                 <p>Aktuell U-Kvot:</p>
