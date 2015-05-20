@@ -5,15 +5,15 @@
 var App = React.createClass({
     getInitialState: function () {
         return {
-            amount: 200000,
-            minAmount: 200000,
+            amount: 1000000,
+            minAmount: 20000,
             maxAmount: 6000000,
-            time: 2,
+            time: 20,
             minTime: 2,
             maxTime: 40,
-            förspar: 0,
+            förspar: 50039000,
             månadsbetalning: 0,
-            u_kvot: 0.9,
+            u_kvot: 0.63,
             amortering: 0,
             savings: 0,
             fee: 0,
@@ -21,31 +21,70 @@ var App = React.createClass({
         };
     },
     componentWillMount: function () {
+        this.amount = this.state.amount;
+        this.time = this.state.time;
+        this.förspar = this.state.förspar;
+        this.u_kvot = this.state.u_kvot;
+        this.bestAmortering = this.state.bestAmortering;
+        this.månadsbetalning = this.state.månadsbetalning;
+        this.savings = this.state.savings;
+        this.fee = this.state.fee;
+
         this.calculate();
     },
 
     calculate: function () {
-        var amortering = (this.state.amount / (this.state.time * 12));
-        this.setState({
-            amortering: amortering
-        });
+        var optimal_u_kvot = 0.9;
+
+        this.bestAmortering = 0;
+
+        this.amortering = (this.amount / (this.time * 12));
+
+        var M26 = 100 / (optimal_u_kvot / this.u_kvot);
+        var M43 = 100 / (optimal_u_kvot / ((optimal_u_kvot / (this.state.maxTime - this.state.minTime)) * (this.time - this.state.minTime)));
+        M43 = (M26 > M43 ) ? M26 : M43;
+        var N38 = this.förspar * (1 / (this.u_kvot / optimal_u_kvot));
+        var M44 = ((M43 / 100) * ((this.amount / (this.time * 12)) / 2 * ((this.time * 12) + 1) * (this.time * 12)) - (N38));
+        var O44 = ((this.amortering / 2 * ((this.time * 12) + 1)) * (this.time * 12));
+        this.savings = ((M44 / O44) * this.amortering);
+        this.savings = (this.savings < 0) ? 0 : this.savings;
+
+        this.fee = (0.000875 * this.amount);
+
+        this.månadsbetalning = this.amortering + this.savings + this.fee;
+
+        this.updateState();
     },
 
     changeTime: function (event) {
-        this.setState({time: +event.target.value});
+        this.time = +event.target.value;
         this.calculate();
     },
     changeAmount: function (event) {
-        this.setState({amount: +event.target.value});
+        this.amount = +event.target.value;
         this.calculate();
     },
     changeFörspar: function (event) {
-        this.setState({förspar: +event.target.value});
+        this.förspar = +event.target.value;
         this.calculate();
     },
     changeUKvot: function (event) {
-        this.setState({u_kvot: +event.target.value});
+        this.u_kvot = +event.target.value;
         this.calculate();
+    },
+
+    updateState: function () {
+        this.setState({
+            amount: this.amount,
+            time: this.time,
+            förspar: this.förspar,
+            u_kvot: this.u_kvot,
+            bestAmortering: this.bestAmortering,
+            månadsbetalning: this.månadsbetalning,
+            amortering: this.amortering,
+            savings: this.savings,
+            fee: this.fee
+        });
     },
 
     render: function () {
@@ -58,26 +97,32 @@ var App = React.createClass({
                 <p><b>Belopp jag vill låna (kr):</b></p>
                 <input id="belopp"
                        type="range"
-                       value={this.state.amount}
+                       value={this.amount}
                        min={this.state.minAmount}
                        max={this.state.maxAmount}
                        step={1000}
                        onChange={this.changeAmount}/>
 
-                <input type="text"
+                <input type="number"
+                       min={this.state.minAmount}
+                       max={this.state.maxAmount}
                        value={this.state.amount}
                        onChange={this.changeAmount}/>
             </div>
 
             <div>
                 <p><b>På hur lång tid (år):</b></p>
+
+                <p><i>Mest fördelaktiga amorteringstid: Upp till {this.state.bestAmortering} år</i></p>
                 <input id="tid"
                        type="range"
                        value={this.state.time}
                        min={this.state.minTime}
                        max={this.state.maxTime}
                        onChange={this.changeTime}/>
-                <input type="text"
+                <input type="number"
+                       min={this.state.minTime}
+                       max={this.state.maxTime}
                        value={this.state.time}
                        onChange={this.changeTime}/>
             </div>
@@ -89,20 +134,17 @@ var App = React.createClass({
                        defaultValue={this.state.förspar}
                        onChange={this.changeFörspar}/>
             </div>
-            <br />
-
-            <p><i>Mest fördelaktiga amorteringstid: {this.state.bestAmortering} år</i></p>
 
             <hr />
 
             <div>
-                <p><b>Månadsbetalning (snitt): {this.state.månadsbetalning} kr</b></p>
+                <p><b>Månadsbetalning (snitt): {this.state.månadsbetalning.toFixed(0)} kr</b></p>
 
                 <p>Varav amortering: {this.state.amortering.toFixed(0)} kr</p>
 
-                <p>Varav sparande: {this.state.savings} kr</p>
+                <p>Varav sparande: {this.state.savings.toFixed(0)} kr</p>
 
-                <p>Varav lånekostnad - skatteavdrag (snitt): {this.state.fee} kr</p>
+                <p>Varav lånekostnad - skatteavdrag (snitt): {this.state.fee.toFixed(0)} kr</p>
             </div>
 
             <hr />
