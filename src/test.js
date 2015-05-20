@@ -82,15 +82,20 @@ var App = React.createClass({
                     defaultValue={this.state.förspar}
                     onChange={this.changeFörspar} />
             </div>
+            <br />
+            <p><i>Mest fördelaktiga amorteringstid: {this.state.amorteringstid} år</i></p>
+
             <hr />
+
             <div>
                 <p>Månadsbetalning (snitt): {this.state.månadbetalning} kr</p>
                 <p>Amortering: {this.state.amortering} kr</p>
                 <p>Sparande: {this.state.savings} kr</p>
                 <p>Lånekostnad - skatteavdrag (snitt): {this.state.fee} kr</p>
-                <p>Mest fördelaktiga amorteringstid: {this.state.amorteringstid} år</p>
             </div>
+
             <hr />
+
             <div>
                 <input type="number" min="0" max="1"
                     defaultValue={this.state.u_kvot}
