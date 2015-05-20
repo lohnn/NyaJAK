@@ -12,12 +12,12 @@ var App = React.createClass({
             minTime: 2,
             maxTime: 40,
             förspar: 0,
-            månadbetalning: 0,
+            månadsbetalning: 0,
             u_kvot: 0.9,
             amortering: 0,
             savings: 0,
             fee: 0,
-            amorteringstid: 0
+            bestAmortering: 0
         };
     },
     componentWillMount: function () {
@@ -25,7 +25,10 @@ var App = React.createClass({
     },
 
     calculate: function () {
-        this.setState({månadsbetalning: this.state.månadbetalning});
+        var amortering = (this.state.amount / (this.state.time * 12));
+        this.setState({
+            amortering: amortering
+        });
     },
 
     changeTime: function (event) {
@@ -86,14 +89,14 @@ var App = React.createClass({
             </div>
             <br />
 
-            <p><i>Mest fördelaktiga amorteringstid: {this.state.amorteringstid} år</i></p>
+            <p><i>Mest fördelaktiga amorteringstid: {this.state.bestAmortering} år</i></p>
 
             <hr />
 
             <div>
-                <p>Månadsbetalning (snitt): {this.state.månadbetalning} kr</p>
+                <p><b>Månadsbetalning (snitt): {this.state.månadsbetalning} kr</b></p>
 
-                <p>Varav amortering: {this.state.amortering} kr</p>
+                <p>Varav amortering: {this.state.amortering.toFixed(0)} kr</p>
 
                 <p>Varav sparande: {this.state.savings} kr</p>
 
