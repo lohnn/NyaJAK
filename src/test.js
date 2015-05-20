@@ -36,7 +36,8 @@ var App = React.createClass({
     calculate: function () {
         var optimal_u_kvot = 0.9;
 
-        this.bestAmortering = 0;
+        this.bestAmortering = ((this.state.maxTime - this.state.minTime) / optimal_u_kvot) * this.u_kvot + this.state.minTime;
+        this.bestAmortering = (this.state.maxTime < this.bestAmortering) ? this.state.maxTime : this.bestAmortering;
 
         this.amortering = (this.amount / (this.time * 12));
 
@@ -113,7 +114,7 @@ var App = React.createClass({
             <div>
                 <p><b>På hur lång tid (år):</b></p>
 
-                <p><i>Mest fördelaktiga amorteringstid: Upp till {this.state.bestAmortering} år</i></p>
+                <p><i>Mest fördelaktiga amorteringstid: Upp till {this.state.bestAmortering.toFixed(1)} år</i></p>
                 <input id="tid"
                        type="range"
                        value={this.state.time}
