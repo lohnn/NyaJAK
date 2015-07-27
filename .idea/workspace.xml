@@ -32,11 +32,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oldJAK.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="oldJAK.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/oldJAK.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20338982">
-              <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="90" selection-start-line="31" selection-start-column="90" selection-end-line="31" selection-end-column="90" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newJAK.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/newJAK.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JAKMixin.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/JAKMixin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7559322">
+              <caret line="49" column="78" selection-start-line="49" selection-start-column="63" selection-end-line="49" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -57,6 +77,7 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/test.js" />
         <option value="$PROJECT_DIR$/src/oldJAK.js" />
+        <option value="$PROJECT_DIR$/src/newJAK.js" />
       </list>
     </option>
   </component>
@@ -507,12 +528,12 @@
       <workItem from="1432146856271" duration="581000" />
       <workItem from="1432147479598" duration="4012000" />
       <workItem from="1432155154744" duration="5880000" />
-      <workItem from="1438029286890" duration="388000" />
+      <workItem from="1438029286890" duration="1555000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10861000" />
+    <option name="totallyTimeSpent" value="12028000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="27" width="1680" height="1023" extended-state="1" />
@@ -602,8 +623,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oldJAK.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20338982">
-          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="90" selection-start-line="31" selection-start-column="90" selection-end-line="31" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/newJAK.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JAKMixin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7559322">
+          <caret line="49" column="78" selection-start-line="49" selection-start-column="63" selection-end-line="49" selection-end-column="78" />
           <folding />
         </state>
       </provider>
