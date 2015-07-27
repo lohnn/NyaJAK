@@ -131,7 +131,8 @@ var Wrapper = React.createClass({
 
             <NewJAK values={this.state} ref="newjak" />
             <OldJAK values={this.state} ref="oldjak" />
-
+            <div className="clear" />
+            <hr />
             <br />
         </div>
         </div>;
