@@ -35,21 +35,24 @@ var JAKMixin = {
     },
 
     render: function () {
-        return <div className={"fiftypc floatL " + this.state.divClass} >
-            <h2>{this.state.headerText}</h2>
+        return <div className="fiftypc floatL " >
             <div>
-                <p><b>Månadsbetalning (snitt): {this.state.månadsbetalning.toFixed(0)} kr</b></p>
+                <h2>{this.state.headerText}</h2>
+                <div className={this.state.divClass}>
+                    <p><b>Månadsbetalning (snitt): {this.state.månadsbetalning.toFixed(0)} kr</b></p>
 
-                <p>Varav amortering: {this.state.amortering.toFixed(0)} kr</p>
+                    <p>Varav amortering: {this.state.amortering.toFixed(0)} kr</p>
 
-                <p>Varav sparande: {this.state.savings.toFixed(0)} kr</p>
+                    <p>Varav sparande: {this.state.savings.toFixed(0)} kr</p>
 
-                <p>Varav lånekostnad - skatteavdrag (snitt): {this.state.fee.toFixed(0)} kr</p>
-                <br />
+                    <p>Varav lånekostnad - skatteavdrag (snitt): {this.state.fee.toFixed(0)} kr</p>
+                    <br />
 
-                <p><b>Sparbelopp efter amortering: {this.state.efterAmortering.toFixed(0)}</b></p>
+                    <p><b>Sparbelopp efter amortering: {this.state.efterAmortering.toFixed(0)}</b></p>
 
-                <p><b>Sparpoäng kvar: {this.state.sparpoängKvar.toFixed(0)}</b></p>
+                    <p><b>Sparpoäng kvar: {this.state.sparpoängKvar.toFixed(0)}</b></p>
+                </div>
+                <hr />
             </div>
         </div>;
     }

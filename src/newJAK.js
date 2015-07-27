@@ -40,5 +40,5 @@ var NewJAK = React.createClass({
         //calculatePayment({amount:});
 
         this.updateState();
-    },
+    }
 });

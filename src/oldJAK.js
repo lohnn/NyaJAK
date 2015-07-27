@@ -16,7 +16,10 @@ var OldJAK = React.createClass({
         var optimal_u_kvot = 0.9;
 
         this.amortering = (values.amount / (values.time * 12));
-        this.savings = this.amortering;
+
+        var poängförbrukning = (((values.amount/(values.time*12))/2*((values.time*12)+1))*(values.time*12));
+        //this.savings = this.amortering - (values.förspar / (values.time * 12));
+        this.savings =((poängförbrukning-values.förspar)/poängförbrukning)*this.amortering;
 
         this.fee = (0.000875 * values.amount);
 
