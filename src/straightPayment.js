@@ -13,7 +13,7 @@ var PaymentMixin = {
         };
     },
 
-    calculatePayment: function (params) {
+    calculateStraightPayment: function (params) {
         this.setState({
             payState: {
                 monthlyPay : {start: 0, end: 20},
