@@ -30,14 +30,16 @@ var JAKMixin = {
             savings: this.savings,
             fee: this.fee,
             efterAmortering: this.efterAmortering,
-            sparpoängKvar: this.sparpoängKvar,
+            sparpoängKvar: this.sparpoängKvar
         });
     },
 
     render: function () {
-        return <div className="fiftypc floatL " >
+        console.log(this.state.payState.loanCost);
+        return <div className="fiftypc floatL ">
             <div>
                 <h2>{this.state.headerText}</h2>
+
                 <div className={this.state.divClass}>
                     <p><b>Månadsbetalning (snitt): {this.state.månadsbetalning.toFixed(0)} kr</b></p>
 
@@ -45,7 +47,8 @@ var JAKMixin = {
 
                     <p>Varav sparande: {this.state.savings.toFixed(0)} kr</p>
 
-                    <p>Varav lånekostnad (max): {this.state.fee.toFixed(0)} kr</p>
+                    <p>Varav lånekostnad: första månaden (max) {this.state.payState.loanCost.start.toFixed(0)} kr sista månaden
+                        (min) {this.state.payState.loanCost.end.toFixed(0)}</p>
                     <br />
 
                     <p><b>Sparbelopp efter amortering: {this.state.efterAmortering.toFixed(0)}</b></p>
