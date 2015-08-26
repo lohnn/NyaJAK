@@ -5,7 +5,7 @@
 var JAKMixin = {
     getInitialState: function () {
         return {
-            månadsbetalning: 0,
+            //månadsbetalning: 0,
             amortering: 0,
             //savings: 0,
             //fee: 0,
@@ -15,7 +15,7 @@ var JAKMixin = {
     },
 
     componentWillMount: function () {
-        månadsbetalning = this.state.månadsbetalning;
+        //månadsbetalning = this.state.månadsbetalning;
         amortering = this.state.amortering;
         //savings = this.state.savings;
         //fee = this.state.fee;
@@ -25,7 +25,7 @@ var JAKMixin = {
 
     updateState: function () {
         this.setState({
-            månadsbetalning: this.månadsbetalning,
+            //månadsbetalning: this.månadsbetalning,
             amortering: this.amortering,
             //savings: this.savings,
             //fee: this.fee,
@@ -41,7 +41,8 @@ var JAKMixin = {
                 <h2>{this.state.headerText}</h2>
 
                 <div className={this.state.divClass}>
-                    <p><b>Månadsbetalning (snitt): {this.state.månadsbetalning.toFixed(0)} kr</b></p>
+                    <p><b>Månadsbetalning: första månaden {this.state.payState.monthlyPay.start.toFixed(0)} kr sista
+                        månaden {this.state.payState.monthlyPay.end.toFixed(0)} kr</b></p>
 
                     <p>Varav amortering: {this.state.amortering.toFixed(0)} kr</p>
 

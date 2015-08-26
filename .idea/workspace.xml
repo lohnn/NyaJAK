@@ -35,8 +35,8 @@
       <file leaf-file-name="JAKMixin.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/JAKMixin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6119235">
-              <caret line="48" column="94" selection-start-line="48" selection-start-column="94" selection-end-line="48" selection-end-column="94" />
+            <state vertical-scroll-proportion="0.5736783">
+              <caret line="46" column="82" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -66,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/src/straightPayment.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
+              <caret line="44" column="68" selection-start-line="44" selection-start-column="68" selection-end-line="44" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -99,9 +99,9 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/oldJAK.js" />
         <option value="$PROJECT_DIR$/src/newJAK2.js" />
-        <option value="$PROJECT_DIR$/src/JAKMixin.js" />
         <option value="$PROJECT_DIR$/src/newJAK.js" />
         <option value="$PROJECT_DIR$/src/straightPayment.js" />
+        <option value="$PROJECT_DIR$/src/JAKMixin.js" />
       </list>
     </option>
   </component>
@@ -510,12 +510,12 @@
       <workItem from="1432147479598" duration="4012000" />
       <workItem from="1432155154744" duration="5880000" />
       <workItem from="1438029286890" duration="5540000" />
-      <workItem from="1440579925580" duration="10797000" />
+      <workItem from="1440579925580" duration="11096000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26810000" />
+    <option name="totallyTimeSpent" value="27109000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -646,15 +646,15 @@
     <entry file="file://$PROJECT_DIR$/src/straightPayment.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
+          <caret line="44" column="68" selection-start-line="44" selection-start-column="68" selection-end-line="44" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JAKMixin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6119235">
-          <caret line="48" column="94" selection-start-line="48" selection-start-column="94" selection-end-line="48" selection-end-column="94" />
+        <state vertical-scroll-proportion="0.5736783">
+          <caret line="46" column="82" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
           <folding />
         </state>
       </provider>

@@ -40,7 +40,10 @@ var PaymentMixin = {
 
         this.setState({
             payState: {
-                monthlyPay: {start: 0, end: 20},
+                monthlyPay: {
+                    start: postSavings.start + amortering + loanCost.start,
+                    end: postSavings.end + amortering + loanCost.end
+                },
                 loanCost: loanCost,
                 postSavings: postSavings
             }
