@@ -14,10 +14,9 @@ var PaymentMixin = {
     },
 
     calculateStraightPayment: function (values, amortering) {
-        var loanCost = {start: 0.00245 * (values.amount)};
+        var loanCost = {start: 0.0025 * (values.amount)};
         var tempAmount = values.amount - amortering * (values.time * 12 - 1);
-        loanCost.end = 0.00245 * (tempAmount);
-        console.log(loanCost);
+        loanCost.end = 0.0025 * (tempAmount);
 
         //TODO: Eftersmarande och INTE ammortering?
         var postSavings = {
