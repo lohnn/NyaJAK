@@ -13,7 +13,7 @@ var PaymentMixin = {
         };
     },
 
-    calculateStraightPayment: function (values, amortering) {
+    calculateStraightPayment: function (values, amortering, eftersparkrav) {
         var loanCost = {start: 0.0025 * (values.amount)};
         var tempAmount = values.amount - amortering * (values.time * 12 - 1);
         loanCost.end = 0.0025 * (tempAmount);
@@ -26,10 +26,9 @@ var PaymentMixin = {
             ackumuleradePoang += sumPostSavings;
         }
 
-        var poangforbrukning = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12)) - values.förspar;
-        console.log(poangforbrukning);
-        var postSavingsStart = (amortering / 2) + (loanCost.start - loanCost.start) + ((2 * (poangforbrukning - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
-        var postSavingsEnd = (amortering / 2) + (loanCost.start - loanCost.end) + ((2 * (poangforbrukning - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
+
+        var postSavingsStart = (amortering / 2) + (loanCost.start - loanCost.start) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
+        var postSavingsEnd = (amortering / 2) + (loanCost.start - loanCost.end) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
 
         //TODO: Eftersparande och INTE ammortering?
         var postSavings = {

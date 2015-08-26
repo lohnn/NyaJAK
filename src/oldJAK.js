@@ -17,9 +17,9 @@ var OldJAK = React.createClass({
 
         this.amortering = (values.amount / (values.time * 12));
 
-        var poängförbrukning = (((values.amount/(values.time*12))/2*((values.time*12)+1))*(values.time*12));
+        var poängförbrukning = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12));
         //this.savings = this.amortering - (values.förspar / (values.time * 12));
-        this.savings =((poängförbrukning-values.förspar)/poängförbrukning)*this.amortering;
+        this.savings = ((poängförbrukning - values.förspar) / poängförbrukning) * this.amortering;
 
         this.fee = (0.0025 * values.amount);
 
@@ -36,7 +36,9 @@ var OldJAK = React.createClass({
 
         this.sparpoängKvar = (M44 > 0) ? 0 : -M44;
 
-        this.calculateStraightPayment(values, this.amortering);
+
+        var eftersparkrav = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12)) - values.förspar;
+        this.calculateStraightPayment(values, this.amortering, eftersparkrav);
 
         this.updateState();
     }
