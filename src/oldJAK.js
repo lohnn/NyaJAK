@@ -21,7 +21,7 @@ var OldJAK = React.createClass({
         //this.savings = this.amortering - (values.förspar / (values.time * 12));
         this.savings =((poängförbrukning-values.förspar)/poängförbrukning)*this.amortering;
 
-        this.fee = (0.000875 * values.amount);
+        this.fee = (0.0025 * values.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
 

@@ -26,7 +26,7 @@ var NewJAK = React.createClass({
         this.savings = ((M44 / O44) * this.amortering);
         this.savings = (this.savings < 0) ? 0 : this.savings;
 
-        this.fee = (0.000875 * values.amount);
+        this.fee = (0.0025 * values.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
 
