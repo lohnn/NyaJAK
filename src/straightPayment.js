@@ -22,12 +22,12 @@ var PaymentMixin = {
         var ackumuleradePoang = 0, sumPostSavings = 0;
         for (var i = 0; i < values.time * 12; i++) {
             tempAmount = values.amount - amortering * i;
-            var currentPostSavings = (amortering / 2) + (loanCost.start - 0.0025 * (tempAmount));
-            sumPostSavings += currentPostSavings;
+            sumPostSavings += (amortering / 2) + (loanCost.start - 0.0025 * (tempAmount));
             ackumuleradePoang += sumPostSavings;
         }
 
-        var poangforbrukning = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12));
+        var poangforbrukning = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12)) - values.förspar;
+        console.log(poangforbrukning);
         var postSavingsStart = (amortering / 2) + (loanCost.start - loanCost.start) + ((2 * (poangforbrukning - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
         var postSavingsEnd = (amortering / 2) + (loanCost.start - loanCost.end) + ((2 * (poangforbrukning - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
 
@@ -36,7 +36,6 @@ var PaymentMixin = {
             start: postSavingsStart,
             end: postSavingsEnd
         };
-        console.log(postSavings);
 
         this.setState({
             payState: {

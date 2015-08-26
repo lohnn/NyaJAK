@@ -35,7 +35,6 @@ var JAKMixin = {
     },
 
     render: function () {
-        console.log(this.state.payState.loanCost);
         return <div className="fiftypc floatL ">
             <div>
                 <h2>{this.state.headerText}</h2>
