@@ -53,7 +53,7 @@ var NewJAK = React.createClass({
             månadsbetalning: this.månadsbetalning,
             amortering: this.amortering,
             savings: this.savings,
-            fee: this.fee,
+            //fee: this.fee,
             efterAmortering: this.efterAmortering,
             sparpoängKvar: this.sparpoängKvar,
         });
