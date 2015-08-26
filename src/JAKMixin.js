@@ -45,8 +45,8 @@ var JAKMixin = {
 
                     <p>Varav amortering: {this.state.amortering.toFixed(0)} kr</p>
 
-                    <p>Varav sparande: första månaden (max) {this.state.payState.postSavings.start.toFixed(0)} kr sista
-                        månaden (min) {this.state.payState.postSavings.end.toFixed(0)} kr </p>
+                    <p>Varav sparande: första månaden (min) {this.state.payState.postSavings.start.toFixed(0)} kr sista
+                        månaden (max) {this.state.payState.postSavings.end.toFixed(0)} kr </p>
 
                     <p>Varav lånekostnad: första månaden (max) {this.state.payState.loanCost.start.toFixed(0)} kr sista
                         månaden
