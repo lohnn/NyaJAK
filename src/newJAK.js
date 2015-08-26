@@ -37,7 +37,7 @@ var NewJAK = React.createClass({
         this.sparpoängKvar = (values.förspar > poängförbrukning) ? values.förspar - poängförbrukning : 0;
 
         //Beräkna raka månadsbetalningen
-        //calculatePayment({amount:});
+        this.calculateStraightPayment(values, this.amortering);
 
         this.updateState();
     }
