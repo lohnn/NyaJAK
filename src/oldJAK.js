@@ -36,6 +36,8 @@ var OldJAK = React.createClass({
 
         this.sparpoängKvar = (M44 > 0) ? 0 : -M44;
 
+        this.calculateStraightPayment(values, this.amortering);
+
         this.updateState();
     }
 });
