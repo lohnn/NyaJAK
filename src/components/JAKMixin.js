@@ -62,3 +62,5 @@ var JAKMixin = {
         </div>;
     }
 };
+
+module.exports = JAKMixin;

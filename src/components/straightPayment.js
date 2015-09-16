@@ -46,5 +46,7 @@ var PaymentMixin = {
                 postSavings: postSavings
             }
         });
-    },
+    }
 };
+
+module.exports = PaymentMixin;
