@@ -2,12 +2,14 @@
  * Created by lohnn
  */
 
+var React = require("react");
+
 var Rapper = React.createClass({
     render: function () {
         return <div>
-            Hallojsan
+            <p>Hallojsan</p>
         </div>;
     }
 });
 
-module.export = Rapper;
+module.exports = Rapper;

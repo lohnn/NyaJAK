@@ -4,6 +4,7 @@
 
 var JAKMixin = require("./JAKMixin");
 var PaymentMixin = require("./straightPayment");
+var React = require("react");
 
 var OldJAK = React.createClass({
     mixins: [JAKMixin, PaymentMixin], // Use the mixin

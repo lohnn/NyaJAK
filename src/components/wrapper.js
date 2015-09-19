@@ -4,6 +4,7 @@
 
 var NewJAK = require("./newJAK");
 var OldJAK = require("./oldJAK");
+var React = require("react");
 
 var Wrapper = React.createClass({
     getInitialState: function () {
@@ -140,4 +141,4 @@ var Wrapper = React.createClass({
     }
 });
 
-module.export = Wrapper;
+module.exports = Wrapper;

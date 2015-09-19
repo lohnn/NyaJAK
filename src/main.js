@@ -1,7 +1,7 @@
-var Rapper = require("./components/rapper");
-var React = require("react");
+var Wrapper = require("./components/wrapper");
+var React = require('react');
 
 React.render(
-    <Rapper />,
-    document.body
+    <Wrapper />,
+    document.getElementById("main")
 );

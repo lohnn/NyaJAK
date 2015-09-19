@@ -2,7 +2,9 @@
  * Created by lohnn
  */
 
-var NewJAK = React.createClass({
+var React = require("react");
+
+var NewJAK2 = React.createClass({
     getInitialState: function () {
         return {
             månadsbetalning: 0,
@@ -15,12 +17,12 @@ var NewJAK = React.createClass({
     },
 
     componentWillMount: function () {
-        månadsbetalning = this.state.månadsbetalning;
-        amortering = this.state.amortering;
-        savings = this.state.savings;
-        fee = this.state.fee;
-        efterAmortering = this.state.efterAmortering;
-        sparpoängKvar = this.state.sparpoängKvar;
+        this.månadsbetalning = this.state.månadsbetalning;
+        this.amortering = this.state.amortering;
+        this.savings = this.state.savings;
+        this.fee = this.state.fee;
+        this.efterAmortering = this.state.efterAmortering;
+        this.sparpoängKvar = this.state.sparpoängKvar;
     },
 
     calculate: function (values) {
@@ -60,8 +62,9 @@ var NewJAK = React.createClass({
     },
 
     render: function () {
-        return <div className="fiftypc floatL newJAK" >
+        return <div className="fiftypc floatL newJAK">
             <h2>Nya JAK-banken</h2>
+
             <div>
                 <p><b>Månadsbetalning (snitt): {this.state.månadsbetalning.toFixed(0)} kr</b></p>
 
@@ -79,3 +82,5 @@ var NewJAK = React.createClass({
         </div>;
     }
 });
+
+module.exports = NewJAK2;
