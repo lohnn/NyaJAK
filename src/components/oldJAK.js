@@ -2,6 +2,10 @@
  * Created by lohnn
  */
 
+var JAKMixin = require("./JAKMixin");
+var PaymentMixin = require("./straightPayment");
+var React = require("react");
+
 var OldJAK = React.createClass({
     mixins: [JAKMixin, PaymentMixin], // Use the mixin
 
@@ -43,9 +47,11 @@ var OldJAK = React.createClass({
         this.sparpoängKvar = (values.förspar > poängförbrukning) ? values.förspar - poängförbrukning : 0;
 
 
-        var eftersparkrav = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12)) - values.förspar;
+        eftersparkrav = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12)) - values.förspar;
         this.calculateStraightPayment(values, this.amortering, eftersparkrav);
 
         this.updateState();
     }
 });
+
+module.exports = OldJAK;

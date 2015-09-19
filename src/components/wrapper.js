@@ -2,6 +2,10 @@
  * Created by lohnn
  */
 
+var NewJAK = require("./newJAK");
+var OldJAK = require("./oldJAK");
+var React = require("react");
+
 var Wrapper = React.createClass({
     getInitialState: function () {
         return {
@@ -137,7 +141,4 @@ var Wrapper = React.createClass({
     }
 });
 
-React.render(
-    <Wrapper />,
-    document.getElementById("main")
-);
+module.exports = Wrapper;

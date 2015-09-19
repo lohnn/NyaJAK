@@ -2,6 +2,8 @@
  * Created by lohnn
  */
 
+var React = require("react");
+
 var JAKMixin = {
     getInitialState: function () {
         return {
@@ -16,11 +18,11 @@ var JAKMixin = {
 
     componentWillMount: function () {
         //månadsbetalning = this.state.månadsbetalning;
-        amortering = this.state.amortering;
-        savings = this.state.savings;
+        this.amortering = this.state.amortering;
+        this.savings = this.state.savings;
         //fee = this.state.fee;
-        efterAmortering = this.state.efterAmortering;
-        sparpoängKvar = this.state.sparpoängKvar;
+        this.efterAmortering = this.state.efterAmortering;
+        this.sparpoängKvar = this.state.sparpoängKvar;
     },
 
     updateState: function () {
@@ -62,3 +64,5 @@ var JAKMixin = {
         </div>;
     }
 };
+
+module.exports = JAKMixin;

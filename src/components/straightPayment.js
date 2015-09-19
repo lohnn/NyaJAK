@@ -20,7 +20,7 @@ var PaymentMixin = {
 
 
         var ackumuleradePoang = 0, sumPostSavings = 0;
-        for (var i = 0; i < values.time * 12; i++) {
+        for (var i = 0; i < values.time * 12; i += 1) {
             tempAmount = values.amount - amortering * i;
             sumPostSavings += (amortering / 2) + (loanCost.start - 0.0025 * (tempAmount));
             ackumuleradePoang += sumPostSavings;
@@ -46,5 +46,7 @@ var PaymentMixin = {
                 postSavings: postSavings
             }
         });
-    },
+    }
 };
+
+module.exports = PaymentMixin;

@@ -2,6 +2,10 @@
  * Created by lohnn
  */
 
+var JAKMixin = require("./JAKMixin");
+var PaymentMixin = require("./straightPayment");
+var React = require("react");
+
 var NewJAK = React.createClass({
     mixins: [JAKMixin, PaymentMixin], // Use the mixin
 
@@ -48,3 +52,5 @@ var NewJAK = React.createClass({
         this.updateState();
     }
 });
+
+module.exports = NewJAK;
