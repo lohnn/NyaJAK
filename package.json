@@ -1,0 +1,33 @@
+{
+  "name": "nyajak",
+  "version": "0.1.0",
+  "description": "Ekvationer för att förbättra JAK medlemsbanks lånesystem",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lohnn/NyaJAK.git"
+  },
+  "author": "Johannes Löhnn & Jonas Löhnn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lohnn/NyaJAK/issues"
+  },
+  "homepage": "https://github.com/lohnn/NyaJAK#readme",
+  "dependencies": {
+    "browser-sync": "^2.9.3",
+    "gulp": "^3.9.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-less": "^3.0.3",
+    "gulp-plumber": "^1.0.1",
+    "gulp-react": "^3.0.1",
+    "gulp-uglify": "^1.4.1",
+    "jshint-stylish": "^2.0.1",
+    "react": "^0.13.3",
+    "reactify": "^1.1.1"
+  }
+}
