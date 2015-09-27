@@ -20042,11 +20042,11 @@ var NewJAK = React.createClass({displayName: "NewJAK",
         var eftersparkrav = ((sparkravsändring / 100) * ((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1) * (values.time * 12)) - (sparpoängOmräknad));
         //O44
         var poängförbrukning = ((this.amortering / 2 * ((values.time * 12) + 1)) * (values.time * 12));
-        console.log(eftersparkrav);
+        //console.log(eftersparkrav);
         this.savings = ((eftersparkrav / poängförbrukning) * this.amortering);
         this.savings = (this.savings < 0) ? 0 : this.savings;
 
-        this.fee = (0.0025 * values.amount);
+        this.fee = (values.state.fee * values.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
 
@@ -20093,7 +20093,7 @@ var OldJAK = React.createClass({displayName: "OldJAK",
         //this.savings = this.amortering - (values.förspar / (values.time * 12));
         this.savings = ((poängförbrukning - values.förspar) / poängförbrukning) * this.amortering;
 
-        this.fee = (0.0025 * values.amount);
+        this.fee = (values.state.fee * values.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
 
@@ -20141,23 +20141,30 @@ var PaymentMixin = {
     },
 
     calculateStraightPayment: function (values, amortering, eftersparkrav) {
-        var loanCost = {start: 0.0025 * (values.amount)};
+        var loanCost = {start: values.state.fee * (values.amount)};
         var tempAmount = values.amount - amortering * (values.time * 12 - 1);
-        loanCost.end = 0.0025 * (tempAmount);
-
+        loanCost.end = values.state.fee * (tempAmount);
 
         var ackumuleradePoang = 0, sumPostSavings = 0;
         for (var i = 0; i < values.time * 12; i += 1) {
             tempAmount = values.amount - amortering * i;
-            sumPostSavings += (amortering / 2) + (loanCost.start - 0.0025 * (tempAmount));
+            sumPostSavings += (amortering / 2) + (loanCost.start - values.state.fee * (tempAmount));
             ackumuleradePoang += sumPostSavings;
         }
-
 
         var postSavingsStart = (amortering / 2) + (loanCost.start - loanCost.start) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
         var postSavingsEnd = (amortering / 2) + (loanCost.start - loanCost.end) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
 
-        //TODO: Eftersparande och INTE ammortering?
+        if (postSavingsStart < 0) {
+            postSavingsStart = 0;
+
+            tempAmount = postSavingsStart;
+            for (i = 0; i < values.time * 12 - 1; i += 1) {
+                tempAmount = loanCost.start / (values.time * 12) + tempAmount;
+            }
+            postSavingsEnd = tempAmount;
+        }
+
         var postSavings = {
             start: postSavingsStart,
             end: postSavingsEnd
@@ -20199,6 +20206,7 @@ var Wrapper = React.createClass({displayName: "Wrapper",
             förspar: 50039000,
             u_kvot: 0.63,
             bestAmortering: 0,
+            fee: 0.0025
         };
     },
     componentWillMount: function () {

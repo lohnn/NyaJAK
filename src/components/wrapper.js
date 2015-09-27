@@ -18,6 +18,7 @@ var Wrapper = React.createClass({
             förspar: 50039000,
             u_kvot: 0.63,
             bestAmortering: 0,
+            fee: 0.0025
         };
     },
     componentWillMount: function () {

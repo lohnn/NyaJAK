@@ -32,11 +32,11 @@ var NewJAK = React.createClass({
         var eftersparkrav = ((sparkravsändring / 100) * ((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1) * (values.time * 12)) - (sparpoängOmräknad));
         //O44
         var poängförbrukning = ((this.amortering / 2 * ((values.time * 12) + 1)) * (values.time * 12));
-        console.log(eftersparkrav);
+        //console.log(eftersparkrav);
         this.savings = ((eftersparkrav / poängförbrukning) * this.amortering);
         this.savings = (this.savings < 0) ? 0 : this.savings;
 
-        this.fee = (0.0025 * values.amount);
+        this.fee = (values.state.fee * values.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
 
