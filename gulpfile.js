@@ -51,7 +51,7 @@ gulp.task('watch', function () {
     gulp.watch('src/images/*', ['images', browserSync.reload]);
     gulp.watch('src/less/*.less', ['less', browserSync.reload]);
     gulp.watch('src/index.html', ['copyindex', browserSync.reload]);
-    gulp.watch(['src/*/*.js', 'src/*.js'], ['lint', 'browserify', browserSync.reload]);
+    gulp.watch(['src/*/*.js', 'src/*/*/*.js', 'src/*.js'], ['lint', 'browserify', browserSync.reload]);
 });
 
 // start sync server

@@ -19945,59 +19945,41 @@ module.exports = require('./lib/React');
 var React = require("react");
 
 var JAKMixin = {
-    getInitialState: function () {
-        return {
-            //månadsbetalning: 0,
-            amortering: 0,
-            savings: 0,
-            //fee: 0,
-            efterAmortering: 0,
-            sparpoängKvar: 0
-        };
-    },
+    divClass : "",
+    header : "JAK-banken",
 
     componentWillMount: function () {
         //månadsbetalning = this.state.månadsbetalning;
-        this.amortering = this.state.amortering;
-        this.savings = this.state.savings;
+        this.amortering = 0;
+        this.savings = 0;
         //fee = this.state.fee;
-        this.efterAmortering = this.state.efterAmortering;
-        this.sparpoängKvar = this.state.sparpoängKvar;
-    },
-
-    updateState: function () {
-        this.setState({
-            //månadsbetalning: this.månadsbetalning,
-            amortering: this.amortering,
-            savings: this.savings,
-            //fee: this.fee,
-            efterAmortering: this.efterAmortering,
-            sparpoängKvar: this.sparpoängKvar
-        });
+        this.efterAmortering = 0;
+        this.sparpoängKvar = 0;
     },
 
     render: function () {
+        this.calculate(this.props.values);
         return React.createElement("div", {className: "fiftypc floatL "}, 
             React.createElement("div", null, 
-                React.createElement("h2", null, this.state.headerText), 
+                React.createElement("div", {className: this.divClass}, 
+                    React.createElement("h2", null, this.headerText), 
 
-                React.createElement("div", {className: this.state.divClass}, 
-                    React.createElement("p", null, React.createElement("b", null, "Månadsbetalning: första månaden ", this.state.payState.monthlyPay.start.toFixed(0), " kr sista" + ' ' +
-                        "månaden ", this.state.payState.monthlyPay.end.toFixed(0), " kr")), 
+                    React.createElement("p", null, React.createElement("b", null, "Månadsbetalning: första månaden ", this.payState.monthlyPay.start.toFixed(0), " kr sista" + ' ' +
+                        "månaden ", this.payState.monthlyPay.end.toFixed(0), " kr")), 
 
-                    React.createElement("p", null, "Varav amortering (rak): ", this.state.amortering.toFixed(0), " kr"), 
+                    React.createElement("p", null, "Varav amortering (rak): ", this.amortering.toFixed(0), " kr"), 
 
-                    React.createElement("p", null, "Varav sparande: första månaden (min) ", this.state.payState.postSavings.start.toFixed(0), " kr sista" + ' ' +
-                        "månaden (max) ", this.state.payState.postSavings.end.toFixed(0), " kr "), 
+                    React.createElement("p", null, "Varav sparande: första månaden (min) ", this.payState.postSavings.start.toFixed(0), " kr sista" + ' ' +
+                        "månaden (max) ", this.payState.postSavings.end.toFixed(0), " kr "), 
 
-                    React.createElement("p", null, "Varav lånekostnad: första månaden (max) ", this.state.payState.loanCost.start.toFixed(0), " kr sista" + ' ' +
+                    React.createElement("p", null, "Varav lånekostnad: första månaden (max) ", this.payState.loanCost.start.toFixed(0), " kr sista" + ' ' +
                         "månaden" + ' ' +
-                        "(min) ", this.state.payState.loanCost.end.toFixed(0), " kr"), 
+                        "(min) ", this.payState.loanCost.end.toFixed(0), " kr"), 
                     React.createElement("br", null), 
 
-                    React.createElement("p", null, React.createElement("b", null, "Sparbelopp efter amortering: ", this.state.efterAmortering.toFixed(0))), 
+                    React.createElement("p", null, React.createElement("b", null, "Sparbelopp efter amortering: ", this.efterAmortering.toFixed(0))), 
 
-                    React.createElement("p", null, React.createElement("b", null, "Sparpoäng kvar: ", this.state.sparpoängKvar.toFixed(0)))
+                    React.createElement("p", null, React.createElement("b", null, "Sparpoäng kvar: ", this.sparpoängKvar.toFixed(0)))
                 ), 
                 React.createElement("hr", null)
             )
@@ -20013,31 +19995,27 @@ module.exports = JAKMixin;
  */
 
 var JAKMixin = require("./JAKMixin");
-var PaymentMixin = require("./straightPayment");
+var PaymentMixin = require("./paymentCalculator");
 var React = require("react");
 
 var NewJAK = React.createClass({displayName: "NewJAK",
     mixins: [JAKMixin, PaymentMixin], // Use the mixin
 
-    getInitialState: function () {
-        return {
-            divClass: "newJAK",
-            headerText: "Nya JAK-banken"
-        };
+    componentWillMount: function(){
+        this.divClass = "newJAK";
+        this.headerText = "Nya JAK-banken";
     },
 
     calculate: function (values) {
-        var optimal_u_kvot = 0.9;
-
         this.amortering = (values.amount / (values.time * 12));
 
         //M26
-        var minstaSparkrav = 100 / (optimal_u_kvot / values.u_kvot);
+        var minstaSparkrav = 100 / (values.optimal_u_kvot / values.u_kvot);
         //M43
-        var sparkravsändring = 100 / (optimal_u_kvot / ((optimal_u_kvot / (values.state.maxTime - values.state.minTime)) * (values.time - values.state.minTime)));
+        var sparkravsändring = 100 / (values.optimal_u_kvot / ((values.optimal_u_kvot / (values.maxTime - values.minTime)) * (values.time - values.minTime)));
         sparkravsändring = (minstaSparkrav > sparkravsändring ) ? minstaSparkrav : sparkravsändring;
         //N38
-        var sparpoängOmräknad = values.förspar * (1 / (values.u_kvot / optimal_u_kvot));
+        var sparpoängOmräknad = values.förspar * (1 / (values.u_kvot / values.optimal_u_kvot));
         //M44
         var eftersparkrav = ((sparkravsändring / 100) * ((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1) * (values.time * 12)) - (sparpoängOmräknad));
         //O44
@@ -20046,7 +20024,7 @@ var NewJAK = React.createClass({displayName: "NewJAK",
         this.savings = ((eftersparkrav / poängförbrukning) * this.amortering);
         this.savings = (this.savings < 0) ? 0 : this.savings;
 
-        this.fee = (values.state.fee * values.amount);
+        this.fee = (values.fee * values.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
 
@@ -20057,35 +20035,33 @@ var NewJAK = React.createClass({displayName: "NewJAK",
         this.sparpoängKvar = (values.förspar > poängförbrukning) ? values.förspar - poängförbrukning : 0;
 
         //Beräkna raka månadsbetalningen
-        this.calculateStraightPayment(values, this.amortering, eftersparkrav);
+        this.payState = PaymentMixin.calculateStraightPayment(values, this.amortering, eftersparkrav);
+        //this.calculateStraightPayment(values, this.amortering, eftersparkrav);
 
-        this.updateState();
+        //this.updateState();
     }
 });
 
 module.exports = NewJAK;
 
-},{"./JAKMixin":157,"./straightPayment":160,"react":156}],159:[function(require,module,exports){
+},{"./JAKMixin":157,"./paymentCalculator":161,"react":156}],159:[function(require,module,exports){
 /**
  * Created by lohnn
  */
 
 var JAKMixin = require("./JAKMixin");
-var PaymentMixin = require("./straightPayment");
+var PaymentMixin = require("./paymentCalculator");
 var React = require("react");
 
 var OldJAK = React.createClass({displayName: "OldJAK",
     mixins: [JAKMixin, PaymentMixin], // Use the mixin
 
-    getInitialState: function () {
-        return {
-            divClass: "oldJAK",
-            headerText: "Gamla JAK-banken"
-        };
+    componentWillMount: function () {
+        this.divClass = "oldJAK";
+        this.headerText = "Gamla JAK-banken";
     },
 
     calculate: function (values) {
-        var optimal_u_kvot = 0.9;
 
         this.amortering = (values.amount / (values.time * 12));
 
@@ -20093,19 +20069,19 @@ var OldJAK = React.createClass({displayName: "OldJAK",
         //this.savings = this.amortering - (values.förspar / (values.time * 12));
         this.savings = ((poängförbrukning - values.förspar) / poängförbrukning) * this.amortering;
 
-        this.fee = (values.state.fee * values.amount);
+        this.fee = (values.fee * values.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
 
         this.efterAmortering = this.savings * values.time * 12;
 
         //M26
-        var minstaSparkrav = 100 / (optimal_u_kvot / values.u_kvot);
+        var minstaSparkrav = 100 / (values.optimal_u_kvot / values.u_kvot);
         //M44
-        var sparkravsändring = 100 / (optimal_u_kvot / ((optimal_u_kvot / (values.state.maxTime - values.state.minTime)) * (values.time - values.state.minTime)));
+        var sparkravsändring = 100 / (values.optimal_u_kvot / ((values.optimal_u_kvot / (values.maxTime - values.minTime)) * (values.time - values.minTime)));
         sparkravsändring = (minstaSparkrav > sparkravsändring ) ? minstaSparkrav : sparkravsändring;
         //N38
-        var sparpoängOmräknad = values.förspar * (1 / (values.u_kvot / optimal_u_kvot));
+        var sparpoängOmräknad = values.förspar * (1 / (values.u_kvot / values.optimal_u_kvot));
         //M44
         var eftersparkrav = ((sparkravsändring / 100) * ((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1) * (values.time * 12)) - (sparpoängOmräknad));
         //O44
@@ -20116,39 +20092,108 @@ var OldJAK = React.createClass({displayName: "OldJAK",
 
 
         eftersparkrav = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12)) - values.förspar;
-        this.calculateStraightPayment(values, this.amortering, eftersparkrav);
 
-        this.updateState();
+        this.payState = PaymentMixin.calculateStraightPayment(values, this.amortering, eftersparkrav);
+        //this.calculateStraightPayment(values, this.amortering, eftersparkrav);
+
+        //this.updateState();
     }
 });
 
 module.exports = OldJAK;
 
-},{"./JAKMixin":157,"./straightPayment":160,"react":156}],160:[function(require,module,exports){
+},{"./JAKMixin":157,"./paymentCalculator":161,"react":156}],160:[function(require,module,exports){
+var React = require("react");
+
+var LoanSettings = React.createClass({displayName: "LoanSettings",
+    optimal_u_kvot: 0.9,
+
+    changeTime: function (event) {
+        this.props.pass.setState({time: +event.target.value});
+    },
+    changeAmount: function (event) {
+        this.props.pass.setState({amount: +event.target.value});
+    },
+    changeFörspar: function (event) {
+        this.props.pass.setState({förspar: +event.target.value});
+    },
+
+    render: function(){
+    return React.createElement("div", {className: "header"}, 
+        React.createElement("h1", {className: "clear"}, "JAK-lån"), 
+
+        React.createElement("p", null, "Låneberäkning med säkerhet"), 
+
+        React.createElement("div", {className: "floatL"}, 
+            React.createElement("p", null, React.createElement("b", null, "Belopp jag vill låna (kr):")), 
+            React.createElement("p", null), 
+            React.createElement("input", {id: "belopp", 
+                   type: "range", 
+                   value: this.props.pass.state.amount, 
+                   min: this.props.pass.state.minAmount, 
+                   max: this.props.pass.state.maxAmount, 
+                   step: 1000, 
+                   onChange: this.changeAmount}), 
+
+            React.createElement("input", {type: "number", 
+                   min: this.props.pass.state.minAmount, 
+                   max: this.props.pass.state.maxAmount, 
+                   value: this.props.pass.state.amount, 
+                   onChange: this.changeAmount})
+        ), 
+
+        React.createElement("div", {className: "floatL"}, 
+            React.createElement("p", null, React.createElement("b", null, "På hur lång tid (år):")), 
+            React.createElement("input", {id: "tid", 
+                   type: "range", 
+                   value: this.props.pass.state.time, 
+                   min: this.props.pass.state.minTime, 
+                   max: this.props.pass.state.maxTime, 
+                   onChange: this.changeTime}), 
+            React.createElement("input", {type: "number", 
+                   min: this.props.pass.state.minTime, 
+                   max: this.props.pass.state.maxTime, 
+                   value: this.props.pass.state.time, 
+                   onChange: this.changeTime}), 
+
+            React.createElement("p", {className: "noMargins"}, React.createElement("i", null, "Idag mest fördelaktiga amorteringstid i nya JAK-banken: Upp till ", this.props.bestAmortering.toFixed(1), " år"))
+        ), 
+
+        React.createElement("div", {className: "hundredpc clear"}, 
+            React.createElement("p", {className: "noMargins"}, React.createElement("b", null, "Tillför sparpoäng")), 
+            React.createElement("input", {id: "försparpoäng", type: "number", 
+                   min: 0, 
+                   defaultValue: this.props.pass.state.förspar, 
+                   onChange: this.changeFörspar})
+        )
+    );
+    }
+}); //onChange={this.changeAmount}
+
+module.exports = LoanSettings;
+
+},{"react":156}],161:[function(require,module,exports){
 /**
  * Created by lohnn
  */
 
 var PaymentMixin = {
-    getInitialState: function () {
-        return {
-            payState: {
-                monthlyPay: {start: 0, end: 20},
-                loanCost: {start: 20, end: 0},
-                postSavings: {start: 0, end: 20}
-            }
-        };
+    payState: {
+        monthlyPay: {start: 0, end: 20},
+        loanCost: {start: 20, end: 0},
+        postSavings: {start: 0, end: 20}
     },
 
+
     calculateStraightPayment: function (values, amortering, eftersparkrav) {
-        var loanCost = {start: values.state.fee * (values.amount)};
+        var loanCost = {start: values.fee * (values.amount)};
         var tempAmount = values.amount - amortering * (values.time * 12 - 1);
-        loanCost.end = values.state.fee * (tempAmount);
+        loanCost.end = values.fee * (tempAmount);
 
         var ackumuleradePoang = 0, sumPostSavings = 0;
         for (var i = 0; i < values.time * 12; i += 1) {
             tempAmount = values.amount - amortering * i;
-            sumPostSavings += (amortering / 2) + (loanCost.start - values.state.fee * (tempAmount));
+            sumPostSavings += (amortering / 2) + (loanCost.start - values.fee * (tempAmount));
             ackumuleradePoang += sumPostSavings;
         }
 
@@ -20170,22 +20215,20 @@ var PaymentMixin = {
             end: postSavingsEnd
         };
 
-        this.setState({
-            payState: {
-                monthlyPay: {
-                    start: postSavings.start + amortering + loanCost.start,
-                    end: postSavings.end + amortering + loanCost.end
-                },
-                loanCost: loanCost,
-                postSavings: postSavings
-            }
-        });
+        return {
+            monthlyPay: {
+                start: postSavings.start + amortering + loanCost.start,
+                end: postSavings.end + amortering + loanCost.end
+            },
+            loanCost: loanCost,
+            postSavings: postSavings
+        };
     }
 };
 
 module.exports = PaymentMixin;
 
-},{}],161:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 /**
  * Created by lohnn
  */
@@ -20193,8 +20236,13 @@ module.exports = PaymentMixin;
 var NewJAK = require("./newJAK");
 var OldJAK = require("./oldJAK");
 var React = require("react");
+var LoanSettings = require("./page_parts/loanSettings");
 
 var Wrapper = React.createClass({displayName: "Wrapper",
+    //mixins: [LoanSettings], // Use the mixin
+
+    newJAK: React.createElement(NewJAK, {values: this.state}),
+
     getInitialState: function () {
         return {
             amount: 1000000,
@@ -20205,8 +20253,8 @@ var Wrapper = React.createClass({displayName: "Wrapper",
             maxTime: 40,
             förspar: 50039000,
             u_kvot: 0.63,
-            bestAmortering: 0,
-            fee: 0.0025
+            fee: 0.0025,
+            optimal_u_kvot: 0.9
         };
     },
     componentWillMount: function () {
@@ -20214,36 +20262,12 @@ var Wrapper = React.createClass({displayName: "Wrapper",
         this.time = this.state.time;
         this.förspar = this.state.förspar;
         this.u_kvot = this.state.u_kvot;
-        this.bestAmortering = this.state.bestAmortering;
     },
 
     componentDidMount: function(){
         this.calculate();
     },
 
-    calculate: function () {
-        var optimal_u_kvot = 0.9;
-
-        this.bestAmortering = ((this.state.maxTime - this.state.minTime) / optimal_u_kvot) * this.state.u_kvot + this.state.minTime;
-        this.bestAmortering = (this.state.maxTime < this.state.bestAmortering) ? this.state.maxTime : this.bestAmortering;
-
-        this.updateState();
-        this.refs.newjak.calculate(this);
-        this.refs.oldjak.calculate(this);
-    },
-
-    changeTime: function (event) {
-        this.time = +event.target.value;
-        this.calculate();
-    },
-    changeAmount: function (event) {
-        this.amount = +event.target.value;
-        this.calculate();
-    },
-    changeFörspar: function (event) {
-        this.förspar = +event.target.value;
-        this.calculate();
-    },
     changeUKvot: function (event) {
         this.u_kvot = +event.target.value;
         this.calculate();
@@ -20254,12 +20278,14 @@ var Wrapper = React.createClass({displayName: "Wrapper",
             amount: this.amount,
             time: this.time,
             förspar: this.förspar,
-            u_kvot: this.u_kvot,
-            bestAmortering: this.bestAmortering,
+            u_kvot: this.u_kvot
         });
     },
 
     render: function () {
+        var bestAmortering = ((this.state.maxTime - this.state.minTime) / this.state.optimal_u_kvot) * this.state.u_kvot + this.state.minTime;
+        bestAmortering = (this.maxTime < bestAmortering) ? this.state.maxTime : bestAmortering;
+
         return React.createElement("div", null, 
         React.createElement("div", {className: "marginbottom"}, 
             React.createElement("p", {className: "floatL u-kvot"}, "Aktuell U-Kvot: "), 
@@ -20270,60 +20296,12 @@ var Wrapper = React.createClass({displayName: "Wrapper",
               React.createElement("i", null, "Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk U-kvot")
             )
         ), 
-        React.createElement("div", {className: "header"}, 
-            React.createElement("h1", {className: "clear"}, "JAK-lån"), 
-
-            React.createElement("p", null, "Låneberäkning med säkerhet"), 
-
-            React.createElement("div", {className: "floatL"}, 
-                React.createElement("p", null, React.createElement("b", null, "Belopp jag vill låna (kr):")), 
-                React.createElement("p", null), 
-                React.createElement("input", {id: "belopp", 
-                       type: "range", 
-                       value: this.amount, 
-                       min: this.state.minAmount, 
-                       max: this.state.maxAmount, 
-                       step: 1000, 
-                       onChange: this.changeAmount}), 
-
-                React.createElement("input", {type: "number", 
-                       min: this.state.minAmount, 
-                       max: this.state.maxAmount, 
-                       value: this.state.amount, 
-                       onChange: this.changeAmount})
-            ), 
-
-            React.createElement("div", {className: "floatL"}, 
-                React.createElement("p", null, React.createElement("b", null, "På hur lång tid (år):")), 
-                React.createElement("input", {id: "tid", 
-                       type: "range", 
-                       value: this.state.time, 
-                       min: this.state.minTime, 
-                       max: this.state.maxTime, 
-                       onChange: this.changeTime}), 
-                React.createElement("input", {type: "number", 
-                       min: this.state.minTime, 
-                       max: this.state.maxTime, 
-                       value: this.state.time, 
-                       onChange: this.changeTime}), 
-
-                React.createElement("p", {className: "noMargins"}, React.createElement("i", null, "Idag mest fördelaktiga amorteringstid i nya JAK-banken: Upp till ", this.state.bestAmortering.toFixed(1), " år"))
-            ), 
-
-            React.createElement("div", {className: "hundredpc clear"}, 
-                React.createElement("p", {className: "noMargins"}, React.createElement("b", null, "Tillför sparpoäng")), 
-                React.createElement("input", {id: "försparpoäng", type: "number", 
-                       min: 0, 
-                       defaultValue: this.state.förspar, 
-                       onChange: this.changeFörspar})
-            )
-
-        ), 
+            React.createElement(LoanSettings, {pass: this, bestAmortering: bestAmortering}), 
         React.createElement("div", null, 
             React.createElement("hr", null), 
 
-            React.createElement(NewJAK, {values: this.state, ref: "newjak"}), 
-            React.createElement(OldJAK, {values: this.state, ref: "oldjak"}), 
+            React.createElement(NewJAK, {values: this.state}), 
+            React.createElement(OldJAK, {values: this.state}), 
             React.createElement("br", null)
         )
         );
@@ -20332,7 +20310,7 @@ var Wrapper = React.createClass({displayName: "Wrapper",
 
 module.exports = Wrapper;
 
-},{"./newJAK":158,"./oldJAK":159,"react":156}],162:[function(require,module,exports){
+},{"./newJAK":158,"./oldJAK":159,"./page_parts/loanSettings":160,"react":156}],163:[function(require,module,exports){
 var Wrapper = require("./components/wrapper");
 var React = require('react');
 
@@ -20341,4 +20319,4 @@ React.render(
     document.getElementById("main")
 );
 
-},{"./components/wrapper":161,"react":156}]},{},[162])
+},{"./components/wrapper":162,"react":156}]},{},[163])
