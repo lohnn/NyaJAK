@@ -9,28 +9,27 @@ var PaymentMixin = {
         postSavings: {start: 0, end: 20}
     },
 
-
-    calculateStraightPayment: function (values, amortering, eftersparkrav) {
-        var loanCost = {start: values.fee * (values.amount)};
-        var tempAmount = values.amount - amortering * (values.time * 12 - 1);
-        loanCost.end = values.fee * (tempAmount);
+    calculateStraightPayment: function (loanSettings, bankSettings, amortering, eftersparkrav) {
+        var loanCost = {start: bankSettings.fee * (loanSettings.amount)};
+        var tempAmount = loanSettings.amount - amortering * (loanSettings.time * 12 - 1);
+        loanCost.end = bankSettings.fee * (tempAmount);
 
         var ackumuleradePoang = 0, sumPostSavings = 0;
-        for (var i = 0; i < values.time * 12; i += 1) {
-            tempAmount = values.amount - amortering * i;
-            sumPostSavings += (amortering / 2) + (loanCost.start - values.fee * (tempAmount));
+        for (var i = 0; i < loanSettings.time * 12; i += 1) {
+            tempAmount = loanSettings.amount - amortering * i;
+            sumPostSavings += (amortering / 2) + (loanCost.start - bankSettings.fee * (tempAmount));
             ackumuleradePoang += sumPostSavings;
         }
 
-        var postSavingsStart = (amortering / 2) + (loanCost.start - loanCost.start) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
-        var postSavingsEnd = (amortering / 2) + (loanCost.start - loanCost.end) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
+        var postSavingsStart = (amortering / 2) + (loanCost.start - loanCost.start) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12));
+        var postSavingsEnd = (amortering / 2) + (loanCost.start - loanCost.end) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12));
 
         if (postSavingsStart < 0) {
             postSavingsStart = 0;
 
             tempAmount = postSavingsStart;
-            for (i = 0; i < values.time * 12 - 1; i += 1) {
-                tempAmount = loanCost.start / (values.time * 12) + tempAmount;
+            for (i = 0; i < loanSettings.time * 12 - 1; i += 1) {
+                tempAmount = loanCost.start / (loanSettings.time * 12) + tempAmount;
             }
             postSavingsEnd = tempAmount;
         }

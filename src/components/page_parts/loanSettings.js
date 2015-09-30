@@ -1,16 +1,21 @@
 var React = require("react");
 
 var LoanSettings = React.createClass({
-    optimal_u_kvot: 0.9,
+    componentWillMount: function() {
+        this.loanSettings = this.props.values;
+    },
 
     changeTime: function (event) {
-        this.props.pass.setState({time: +event.target.value});
+        this.loanSettings.time = +event.target.value;
+        this.props.stateChange(this.loanSettings);
     },
     changeAmount: function (event) {
-        this.props.pass.setState({amount: +event.target.value});
+        this.loanSettings.amount = +event.target.value;
+        this.props.stateChange(this.loanSettings);
     },
     changeFörspar: function (event) {
-        this.props.pass.setState({förspar: +event.target.value});
+        this.loanSettings.förspar = +event.target.value;
+        this.props.stateChange(this.loanSettings);
     },
 
     render: function(){
@@ -24,16 +29,16 @@ var LoanSettings = React.createClass({
             <p></p>
             <input id="belopp"
                    type="range"
-                   value={this.props.pass.state.amount}
-                   min={this.props.pass.state.minAmount}
-                   max={this.props.pass.state.maxAmount}
+                   value={this.props.values.amount}
+                   min={this.props.bankSettings.minAmount}
+                   max={this.props.bankSettings.maxAmount}
                    step={1000}
                    onChange={this.changeAmount}/>
 
             <input type="number"
-                   min={this.props.pass.state.minAmount}
-                   max={this.props.pass.state.maxAmount}
-                   value={this.props.pass.state.amount}
+                   value={this.props.values.amount}
+                   min={this.props.bankSettings.minAmount}
+                   max={this.props.bankSettings.maxAmount}
                    onChange={this.changeAmount}/>
         </div>
 
@@ -41,14 +46,14 @@ var LoanSettings = React.createClass({
             <p><b>På hur lång tid (år):</b></p>
             <input id="tid"
                    type="range"
-                   value={this.props.pass.state.time}
-                   min={this.props.pass.state.minTime}
-                   max={this.props.pass.state.maxTime}
+                   value={this.props.values.time}
+                   min={this.props.bankSettings.minTime}
+                   max={this.props.bankSettings.maxTime}
                    onChange={this.changeTime}/>
             <input type="number"
-                   min={this.props.pass.state.minTime}
-                   max={this.props.pass.state.maxTime}
-                   value={this.props.pass.state.time}
+                   value={this.props.values.time}
+                   min={this.props.bankSettings.minTime}
+                   max={this.props.bankSettings.maxTime}
                    onChange={this.changeTime}/>
 
             <p className="noMargins"><i>Idag mest fördelaktiga amorteringstid i nya JAK-banken: Upp till {this.props.bestAmortering.toFixed(1)} år</i></p>
@@ -58,11 +63,11 @@ var LoanSettings = React.createClass({
             <p className="noMargins"><b>Tillför sparpoäng</b></p>
             <input id="försparpoäng" type="number"
                    min={0}
-                   defaultValue={this.props.pass.state.förspar}
+                   defaultValue={this.props.values.förspar}
                    onChange={this.changeFörspar}/>
         </div>
     </div>;
     }
-}); //onChange={this.changeAmount}
+});
 
 module.exports = LoanSettings;

@@ -9,16 +9,14 @@ var JAKMixin = {
     header : "JAK-banken",
 
     componentWillMount: function () {
-        //månadsbetalning = this.state.månadsbetalning;
         this.amortering = 0;
         this.savings = 0;
-        //fee = this.state.fee;
         this.efterAmortering = 0;
         this.sparpoängKvar = 0;
     },
 
     render: function () {
-        this.calculate(this.props.values);
+        this.calculate(this.props.values.loanSettings, this.props.values.bankSettings);
         return <div className="fiftypc floatL ">
             <div>
                 <div className={this.divClass}>

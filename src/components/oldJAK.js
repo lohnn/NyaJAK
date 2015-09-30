@@ -7,49 +7,46 @@ var PaymentMixin = require("./paymentCalculator");
 var React = require("react");
 
 var OldJAK = React.createClass({
-    mixins: [JAKMixin, PaymentMixin], // Use the mixin
+    mixins: [JAKMixin], // Use the mixin
 
     componentWillMount: function () {
         this.divClass = "oldJAK";
         this.headerText = "Gamla JAK-banken";
     },
 
-    calculate: function (values) {
+    calculate: function (loanSettings, bankSettings) {
 
-        this.amortering = (values.amount / (values.time * 12));
+        this.amortering = (loanSettings.amount / (loanSettings.time * 12));
 
-        var poängförbrukning = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12));
-        //this.savings = this.amortering - (values.förspar / (values.time * 12));
-        this.savings = ((poängförbrukning - values.förspar) / poängförbrukning) * this.amortering;
+        var poängförbrukning = (((loanSettings.amount / (loanSettings.time * 12)) /
+            2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));
 
-        this.fee = (values.fee * values.amount);
+        this.savings = ((poängförbrukning - loanSettings.förspar) / poängförbrukning) * this.amortering;
+
+        this.fee = (bankSettings.fee * loanSettings.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
 
-        this.efterAmortering = this.savings * values.time * 12;
+        this.efterAmortering = this.savings * loanSettings.time * 12;
 
         //M26
-        var minstaSparkrav = 100 / (values.optimal_u_kvot / values.u_kvot);
+        var minstaSparkrav = 100 / (bankSettings.optimal_u_kvot / bankSettings.u_kvot);
         //M44
-        var sparkravsändring = 100 / (values.optimal_u_kvot / ((values.optimal_u_kvot / (values.maxTime - values.minTime)) * (values.time - values.minTime)));
+        var sparkravsändring = 100 / (bankSettings.optimal_u_kvot / ((bankSettings.optimal_u_kvot /
+            (bankSettings.maxTime - bankSettings.minTime)) * (loanSettings.time - bankSettings.minTime)));
         sparkravsändring = (minstaSparkrav > sparkravsändring ) ? minstaSparkrav : sparkravsändring;
         //N38
-        var sparpoängOmräknad = values.förspar * (1 / (values.u_kvot / values.optimal_u_kvot));
+        var sparpoängOmräknad = loanSettings.förspar * (1 / (bankSettings.u_kvot / bankSettings.optimal_u_kvot));
         //M44
-        var eftersparkrav = ((sparkravsändring / 100) * ((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1) * (values.time * 12)) - (sparpoängOmräknad));
+        var eftersparkrav = ((sparkravsändring / 100) * ((loanSettings.amount / (loanSettings.time * 12)) /
+            2 * ((loanSettings.time * 12) + 1) * (loanSettings.time * 12)) - (sparpoängOmräknad));
         //O44
-        //var poängförbrukning = ((this.amortering / 2 * ((values.time * 12) + 1)) * (values.time * 12));
 
-        //this.sparpoängKvar = (eftersparkrav > 0) ? 0 : -eftersparkrav;
-        this.sparpoängKvar = (values.förspar > poängförbrukning) ? values.förspar - poängförbrukning : 0;
+        this.sparpoängKvar = (loanSettings.förspar > poängförbrukning) ? loanSettings.förspar - poängförbrukning : 0;
 
+        eftersparkrav = (((loanSettings.amount / (loanSettings.time * 12)) / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12)) - loanSettings.förspar;
 
-        eftersparkrav = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12)) - values.förspar;
-
-        this.payState = PaymentMixin.calculateStraightPayment(values, this.amortering, eftersparkrav);
-        //this.calculateStraightPayment(values, this.amortering, eftersparkrav);
-
-        //this.updateState();
+        this.payState = PaymentMixin.calculateStraightPayment(loanSettings, bankSettings, this.amortering, eftersparkrav);
     }
 });
 

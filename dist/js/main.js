@@ -19949,16 +19949,14 @@ var JAKMixin = {
     header : "JAK-banken",
 
     componentWillMount: function () {
-        //månadsbetalning = this.state.månadsbetalning;
         this.amortering = 0;
         this.savings = 0;
-        //fee = this.state.fee;
         this.efterAmortering = 0;
         this.sparpoängKvar = 0;
     },
 
     render: function () {
-        this.calculate(this.props.values);
+        this.calculate(this.props.values.loanSettings, this.props.values.bankSettings);
         return React.createElement("div", {className: "fiftypc floatL "}, 
             React.createElement("div", null, 
                 React.createElement("div", {className: this.divClass}, 
@@ -19999,46 +19997,43 @@ var PaymentMixin = require("./paymentCalculator");
 var React = require("react");
 
 var NewJAK = React.createClass({displayName: "NewJAK",
-    mixins: [JAKMixin, PaymentMixin], // Use the mixin
+    mixins: [JAKMixin], // Use the mixin
 
     componentWillMount: function(){
         this.divClass = "newJAK";
         this.headerText = "Nya JAK-banken";
     },
 
-    calculate: function (values) {
-        this.amortering = (values.amount / (values.time * 12));
+    calculate: function (loanSettings, bankSettings) {
+        this.amortering = (loanSettings.amount / (loanSettings.time * 12));
 
         //M26
-        var minstaSparkrav = 100 / (values.optimal_u_kvot / values.u_kvot);
+        var minstaSparkrav = 100 / (bankSettings.optimal_u_kvot / bankSettings.u_kvot);
         //M43
-        var sparkravsändring = 100 / (values.optimal_u_kvot / ((values.optimal_u_kvot / (values.maxTime - values.minTime)) * (values.time - values.minTime)));
+        var sparkravsändring = 100 / (bankSettings.optimal_u_kvot / ((bankSettings.optimal_u_kvot /
+            (bankSettings.maxTime - bankSettings.minTime)) * (loanSettings.time - bankSettings.minTime)));
         sparkravsändring = (minstaSparkrav > sparkravsändring ) ? minstaSparkrav : sparkravsändring;
         //N38
-        var sparpoängOmräknad = values.förspar * (1 / (values.u_kvot / values.optimal_u_kvot));
+        var sparpoängOmräknad = loanSettings.förspar * (1 / (bankSettings.u_kvot / bankSettings.optimal_u_kvot));
         //M44
-        var eftersparkrav = ((sparkravsändring / 100) * ((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1) * (values.time * 12)) - (sparpoängOmräknad));
+        var eftersparkrav = ((sparkravsändring / 100) * ((loanSettings.amount / (loanSettings.time * 12)) /
+            2 * ((loanSettings.time * 12) + 1) * (loanSettings.time * 12)) - (sparpoängOmräknad));
         //O44
-        var poängförbrukning = ((this.amortering / 2 * ((values.time * 12) + 1)) * (values.time * 12));
-        //console.log(eftersparkrav);
+        var poängförbrukning = ((this.amortering / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));
+
         this.savings = ((eftersparkrav / poängförbrukning) * this.amortering);
         this.savings = (this.savings < 0) ? 0 : this.savings;
 
-        this.fee = (values.fee * values.amount);
+        this.fee = (bankSettings.fee * loanSettings.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
 
-        this.efterAmortering = this.savings * values.time * 12;
+        this.efterAmortering = this.savings * loanSettings.time * 12;
 
-        //var poängförbrukning = (((values.amount/(values.time*12))/2*((values.time*12)+1))*(values.time*12));
-
-        this.sparpoängKvar = (values.förspar > poängförbrukning) ? values.förspar - poängförbrukning : 0;
+        this.sparpoängKvar = (loanSettings.förspar > poängförbrukning) ? loanSettings.förspar - poängförbrukning : 0;
 
         //Beräkna raka månadsbetalningen
-        this.payState = PaymentMixin.calculateStraightPayment(values, this.amortering, eftersparkrav);
-        //this.calculateStraightPayment(values, this.amortering, eftersparkrav);
-
-        //this.updateState();
+        this.payState = PaymentMixin.calculateStraightPayment(loanSettings, bankSettings, this.amortering, eftersparkrav);
     }
 });
 
@@ -20054,49 +20049,46 @@ var PaymentMixin = require("./paymentCalculator");
 var React = require("react");
 
 var OldJAK = React.createClass({displayName: "OldJAK",
-    mixins: [JAKMixin, PaymentMixin], // Use the mixin
+    mixins: [JAKMixin], // Use the mixin
 
     componentWillMount: function () {
         this.divClass = "oldJAK";
         this.headerText = "Gamla JAK-banken";
     },
 
-    calculate: function (values) {
+    calculate: function (loanSettings, bankSettings) {
 
-        this.amortering = (values.amount / (values.time * 12));
+        this.amortering = (loanSettings.amount / (loanSettings.time * 12));
 
-        var poängförbrukning = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12));
-        //this.savings = this.amortering - (values.förspar / (values.time * 12));
-        this.savings = ((poängförbrukning - values.förspar) / poängförbrukning) * this.amortering;
+        var poängförbrukning = (((loanSettings.amount / (loanSettings.time * 12)) /
+            2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));
 
-        this.fee = (values.fee * values.amount);
+        this.savings = ((poängförbrukning - loanSettings.förspar) / poängförbrukning) * this.amortering;
+
+        this.fee = (bankSettings.fee * loanSettings.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.fee;
 
-        this.efterAmortering = this.savings * values.time * 12;
+        this.efterAmortering = this.savings * loanSettings.time * 12;
 
         //M26
-        var minstaSparkrav = 100 / (values.optimal_u_kvot / values.u_kvot);
+        var minstaSparkrav = 100 / (bankSettings.optimal_u_kvot / bankSettings.u_kvot);
         //M44
-        var sparkravsändring = 100 / (values.optimal_u_kvot / ((values.optimal_u_kvot / (values.maxTime - values.minTime)) * (values.time - values.minTime)));
+        var sparkravsändring = 100 / (bankSettings.optimal_u_kvot / ((bankSettings.optimal_u_kvot /
+            (bankSettings.maxTime - bankSettings.minTime)) * (loanSettings.time - bankSettings.minTime)));
         sparkravsändring = (minstaSparkrav > sparkravsändring ) ? minstaSparkrav : sparkravsändring;
         //N38
-        var sparpoängOmräknad = values.förspar * (1 / (values.u_kvot / values.optimal_u_kvot));
+        var sparpoängOmräknad = loanSettings.förspar * (1 / (bankSettings.u_kvot / bankSettings.optimal_u_kvot));
         //M44
-        var eftersparkrav = ((sparkravsändring / 100) * ((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1) * (values.time * 12)) - (sparpoängOmräknad));
+        var eftersparkrav = ((sparkravsändring / 100) * ((loanSettings.amount / (loanSettings.time * 12)) /
+            2 * ((loanSettings.time * 12) + 1) * (loanSettings.time * 12)) - (sparpoängOmräknad));
         //O44
-        //var poängförbrukning = ((this.amortering / 2 * ((values.time * 12) + 1)) * (values.time * 12));
 
-        //this.sparpoängKvar = (eftersparkrav > 0) ? 0 : -eftersparkrav;
-        this.sparpoängKvar = (values.förspar > poängförbrukning) ? values.förspar - poängförbrukning : 0;
+        this.sparpoängKvar = (loanSettings.förspar > poängförbrukning) ? loanSettings.förspar - poängförbrukning : 0;
 
+        eftersparkrav = (((loanSettings.amount / (loanSettings.time * 12)) / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12)) - loanSettings.förspar;
 
-        eftersparkrav = (((values.amount / (values.time * 12)) / 2 * ((values.time * 12) + 1)) * (values.time * 12)) - values.förspar;
-
-        this.payState = PaymentMixin.calculateStraightPayment(values, this.amortering, eftersparkrav);
-        //this.calculateStraightPayment(values, this.amortering, eftersparkrav);
-
-        //this.updateState();
+        this.payState = PaymentMixin.calculateStraightPayment(loanSettings, bankSettings, this.amortering, eftersparkrav);
     }
 });
 
@@ -20106,16 +20098,21 @@ module.exports = OldJAK;
 var React = require("react");
 
 var LoanSettings = React.createClass({displayName: "LoanSettings",
-    optimal_u_kvot: 0.9,
+    componentWillMount: function() {
+        this.loanSettings = this.props.values;
+    },
 
     changeTime: function (event) {
-        this.props.pass.setState({time: +event.target.value});
+        this.loanSettings.time = +event.target.value;
+        this.props.stateChange(this.loanSettings);
     },
     changeAmount: function (event) {
-        this.props.pass.setState({amount: +event.target.value});
+        this.loanSettings.amount = +event.target.value;
+        this.props.stateChange(this.loanSettings);
     },
     changeFörspar: function (event) {
-        this.props.pass.setState({förspar: +event.target.value});
+        this.loanSettings.förspar = +event.target.value;
+        this.props.stateChange(this.loanSettings);
     },
 
     render: function(){
@@ -20129,16 +20126,16 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
             React.createElement("p", null), 
             React.createElement("input", {id: "belopp", 
                    type: "range", 
-                   value: this.props.pass.state.amount, 
-                   min: this.props.pass.state.minAmount, 
-                   max: this.props.pass.state.maxAmount, 
+                   value: this.props.values.amount, 
+                   min: this.props.bankSettings.minAmount, 
+                   max: this.props.bankSettings.maxAmount, 
                    step: 1000, 
                    onChange: this.changeAmount}), 
 
             React.createElement("input", {type: "number", 
-                   min: this.props.pass.state.minAmount, 
-                   max: this.props.pass.state.maxAmount, 
-                   value: this.props.pass.state.amount, 
+                   value: this.props.values.amount, 
+                   min: this.props.bankSettings.minAmount, 
+                   max: this.props.bankSettings.maxAmount, 
                    onChange: this.changeAmount})
         ), 
 
@@ -20146,14 +20143,14 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
             React.createElement("p", null, React.createElement("b", null, "På hur lång tid (år):")), 
             React.createElement("input", {id: "tid", 
                    type: "range", 
-                   value: this.props.pass.state.time, 
-                   min: this.props.pass.state.minTime, 
-                   max: this.props.pass.state.maxTime, 
+                   value: this.props.values.time, 
+                   min: this.props.bankSettings.minTime, 
+                   max: this.props.bankSettings.maxTime, 
                    onChange: this.changeTime}), 
             React.createElement("input", {type: "number", 
-                   min: this.props.pass.state.minTime, 
-                   max: this.props.pass.state.maxTime, 
-                   value: this.props.pass.state.time, 
+                   value: this.props.values.time, 
+                   min: this.props.bankSettings.minTime, 
+                   max: this.props.bankSettings.maxTime, 
                    onChange: this.changeTime}), 
 
             React.createElement("p", {className: "noMargins"}, React.createElement("i", null, "Idag mest fördelaktiga amorteringstid i nya JAK-banken: Upp till ", this.props.bestAmortering.toFixed(1), " år"))
@@ -20163,12 +20160,12 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
             React.createElement("p", {className: "noMargins"}, React.createElement("b", null, "Tillför sparpoäng")), 
             React.createElement("input", {id: "försparpoäng", type: "number", 
                    min: 0, 
-                   defaultValue: this.props.pass.state.förspar, 
+                   defaultValue: this.props.values.förspar, 
                    onChange: this.changeFörspar})
         )
     );
     }
-}); //onChange={this.changeAmount}
+});
 
 module.exports = LoanSettings;
 
@@ -20184,28 +20181,27 @@ var PaymentMixin = {
         postSavings: {start: 0, end: 20}
     },
 
-
-    calculateStraightPayment: function (values, amortering, eftersparkrav) {
-        var loanCost = {start: values.fee * (values.amount)};
-        var tempAmount = values.amount - amortering * (values.time * 12 - 1);
-        loanCost.end = values.fee * (tempAmount);
+    calculateStraightPayment: function (loanSettings, bankSettings, amortering, eftersparkrav) {
+        var loanCost = {start: bankSettings.fee * (loanSettings.amount)};
+        var tempAmount = loanSettings.amount - amortering * (loanSettings.time * 12 - 1);
+        loanCost.end = bankSettings.fee * (tempAmount);
 
         var ackumuleradePoang = 0, sumPostSavings = 0;
-        for (var i = 0; i < values.time * 12; i += 1) {
-            tempAmount = values.amount - amortering * i;
-            sumPostSavings += (amortering / 2) + (loanCost.start - values.fee * (tempAmount));
+        for (var i = 0; i < loanSettings.time * 12; i += 1) {
+            tempAmount = loanSettings.amount - amortering * i;
+            sumPostSavings += (amortering / 2) + (loanCost.start - bankSettings.fee * (tempAmount));
             ackumuleradePoang += sumPostSavings;
         }
 
-        var postSavingsStart = (amortering / 2) + (loanCost.start - loanCost.start) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
-        var postSavingsEnd = (amortering / 2) + (loanCost.start - loanCost.end) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((values.time * 12 + 1) * values.time * 12));
+        var postSavingsStart = (amortering / 2) + (loanCost.start - loanCost.start) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12));
+        var postSavingsEnd = (amortering / 2) + (loanCost.start - loanCost.end) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12));
 
         if (postSavingsStart < 0) {
             postSavingsStart = 0;
 
             tempAmount = postSavingsStart;
-            for (i = 0; i < values.time * 12 - 1; i += 1) {
-                tempAmount = loanCost.start / (values.time * 12) + tempAmount;
+            for (i = 0; i < loanSettings.time * 12 - 1; i += 1) {
+                tempAmount = loanCost.start / (loanSettings.time * 12) + tempAmount;
             }
             postSavingsEnd = tempAmount;
         }
@@ -20245,58 +20241,55 @@ var Wrapper = React.createClass({displayName: "Wrapper",
 
     getInitialState: function () {
         return {
-            amount: 1000000,
-            minAmount: 20000,
-            maxAmount: 6000000,
-            time: 20,
-            minTime: 2,
-            maxTime: 40,
-            förspar: 50039000,
-            u_kvot: 0.63,
-            fee: 0.0025,
-            optimal_u_kvot: 0.9
-        };
-    },
-    componentWillMount: function () {
-        this.amount = this.state.amount;
-        this.time = this.state.time;
-        this.förspar = this.state.förspar;
-        this.u_kvot = this.state.u_kvot;
-    },
+            loanSettings: {
+                amount: 1000000,
+                time: 20,
+                förspar: 50039000,
+                säkerhet: true,
+                rak_månadsbetalning: true,
+                skattejämkning: true
+            },
+            bankSettings: {
+                u_kvot: 0.63,
+                minAmount: 20000,
+                maxAmount: 6000000,
 
-    componentDidMount: function(){
-        this.calculate();
+                minTime: 2,
+                maxTime: 40,
+
+                fee: 0.0025,
+
+                låneinsats: 0.6,
+
+                optimal_u_kvot: 0.9
+            }
+        };
     },
 
     changeUKvot: function (event) {
-        this.u_kvot = +event.target.value;
-        this.calculate();
-    },
-
-    updateState: function () {
-        this.setState({
-            amount: this.amount,
-            time: this.time,
-            förspar: this.förspar,
-            u_kvot: this.u_kvot
-        });
+        this.setState({u_kvot: +event.target.value});
     },
 
     render: function () {
-        var bestAmortering = ((this.state.maxTime - this.state.minTime) / this.state.optimal_u_kvot) * this.state.u_kvot + this.state.minTime;
-        bestAmortering = (this.maxTime < bestAmortering) ? this.state.maxTime : bestAmortering;
+        var bestAmortering = ((this.state.bankSettings.maxTime - this.state.bankSettings.minTime) /
+            this.state.bankSettings.optimal_u_kvot) * this.state.bankSettings.u_kvot + this.state.bankSettings.minTime;
+        bestAmortering = (this.state.bankSettings.maxTime < bestAmortering) ? this.state.bankSettings.maxTime : bestAmortering;
 
         return React.createElement("div", null, 
         React.createElement("div", {className: "marginbottom"}, 
             React.createElement("p", {className: "floatL u-kvot"}, "Aktuell U-Kvot: "), 
             React.createElement("input", {type: "number", min: "0", max: "1", step: 0.01, 
-                   defaultValue: this.state.u_kvot, 
+                   defaultValue: this.state.bankSettings.u_kvot, 
                    onChange: this.changeUKvot}), 
             React.createElement("span", {className: "u-kvot2"}, 
               React.createElement("i", null, "Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk U-kvot")
             )
         ), 
-            React.createElement(LoanSettings, {pass: this, bestAmortering: bestAmortering}), 
+            React.createElement(LoanSettings, {values: this.state.loanSettings, bankSettings: this.state.bankSettings, 
+                          stateChange: function(loanSettings){
+                                    this.setState({loanSettings: loanSettings});
+                                }.bind(this), 
+                          bestAmortering: bestAmortering}), 
         React.createElement("div", null, 
             React.createElement("hr", null), 
 
