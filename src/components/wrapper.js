@@ -6,11 +6,10 @@ var NewJAK = require("./newJAK");
 var OldJAK = require("./oldJAK");
 var React = require("react");
 var LoanSettings = require("./page_parts/loanSettings");
+var BankSettings = require("./page_parts/bankSettings");
 
 var Wrapper = React.createClass({
-    //mixins: [LoanSettings], // Use the mixin
-
-    newJAK: <NewJAK values={this.state} />,
+    newJAK: <NewJAK values={this.state}/>,
 
     getInitialState: function () {
         return {
@@ -24,23 +23,23 @@ var Wrapper = React.createClass({
             },
             bankSettings: {
                 u_kvot: 0.63,
-                minAmount: 20000,
-                maxAmount: 6000000,
 
-                minTime: 2,
-                maxTime: 40,
-
-                fee: 0.0025,
-
-                låneinsats: 0.6,
+                med_säkerhet: {
+                    amount: {min: 2000, max: 6000000},
+                    time: {min: 2, max: 40},
+                    lånekostnad: 0.0025,
+                    låneinsats: 0.6
+                },
+                utan_säkerhet: {
+                    amount: {min: 2000, max: 6000000},
+                    time: {min: 2, max: 40},
+                    lånekostnad: 0.0025,
+                    låneinsats: 0.6
+                },
 
                 optimal_u_kvot: 0.9
             }
         };
-    },
-
-    changeUKvot: function (event) {
-        this.setState({u_kvot: +event.target.value});
     },
 
     render: function () {
@@ -49,27 +48,22 @@ var Wrapper = React.createClass({
         bestAmortering = (this.state.bankSettings.maxTime < bestAmortering) ? this.state.bankSettings.maxTime : bestAmortering;
 
         return <div>
-        <div className="marginbottom">
-            <p className="floatL u-kvot">Aktuell U-Kvot: </p>
-            <input type="number" min="0" max="1" step={0.01}
-                   defaultValue={this.state.bankSettings.u_kvot}
-                   onChange={this.changeUKvot}/>
-            <span className="u-kvot2">
-              <i>Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk U-kvot</i>
-            </span>
-        </div>
             <LoanSettings values={this.state.loanSettings} bankSettings={this.state.bankSettings}
                           stateChange={function(loanSettings){
-                                    this.setState({loanSettings: loanSettings});
-                                }.bind(this)}
+                              this.setState({loanSettings: loanSettings});
+                          }.bind(this)}
                           bestAmortering={bestAmortering}/>
-        <div>
-            <hr />
 
-            <NewJAK values={this.state} />
-            <OldJAK values={this.state} />
-            <br />
-        </div>
+            <div>
+                <hr />
+                <NewJAK values={this.state}/>
+                <OldJAK values={this.state}/>
+                <br />
+            </div>
+            <BankSettings values={this.state.bankSettings}
+                          stateChange={function(bankSettings){
+                              this.setState({bankSettings: bankSettings});
+                          }.bind(this)}/>
         </div>;
     }
 });

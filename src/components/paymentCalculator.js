@@ -10,14 +10,14 @@ var PaymentMixin = {
     },
 
     calculateStraightPayment: function (loanSettings, bankSettings, amortering, eftersparkrav) {
-        var loanCost = {start: bankSettings.fee * (loanSettings.amount)};
+        var loanCost = {start: bankSettings.lånekostnad * (loanSettings.amount)};
         var tempAmount = loanSettings.amount - amortering * (loanSettings.time * 12 - 1);
-        loanCost.end = bankSettings.fee * (tempAmount);
+        loanCost.end = bankSettings.lånekostnad * (tempAmount);
 
         var ackumuleradePoang = 0, sumPostSavings = 0;
         for (var i = 0; i < loanSettings.time * 12; i += 1) {
             tempAmount = loanSettings.amount - amortering * i;
-            sumPostSavings += (amortering / 2) + (loanCost.start - bankSettings.fee * (tempAmount));
+            sumPostSavings += (amortering / 2) + (loanCost.start - bankSettings.lånekostnad * (tempAmount));
             ackumuleradePoang += sumPostSavings;
         }
 

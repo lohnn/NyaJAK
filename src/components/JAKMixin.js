@@ -5,8 +5,8 @@
 var React = require("react");
 
 var JAKMixin = {
-    divClass : "",
-    header : "JAK-banken",
+    divClass: "",
+    header: "JAK-banken",
 
     componentWillMount: function () {
         this.amortering = 0;

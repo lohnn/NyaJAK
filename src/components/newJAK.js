@@ -7,13 +7,14 @@ var PaymentMixin = require("./paymentCalculator");
 var React = require("react");
 
 var NewJAK = React.createClass({
-    mixins: [JAKMixin], // Use the mixin
+    mixins: [JAKMixin],
 
     componentWillMount: function(){
         this.divClass = "newJAK";
         this.headerText = "Nya JAK-banken";
     },
 
+    //TODO: See if I can modulize this even more, making sure I provide all "this"-settings
     calculate: function (loanSettings, bankSettings) {
         this.amortering = (loanSettings.amount / (loanSettings.time * 12));
 
@@ -34,9 +35,9 @@ var NewJAK = React.createClass({
         this.savings = ((eftersparkrav / poängförbrukning) * this.amortering);
         this.savings = (this.savings < 0) ? 0 : this.savings;
 
-        this.fee = (bankSettings.fee * loanSettings.amount);
+        this.lånekostnad = (bankSettings.lånekostnad * loanSettings.amount);
 
-        this.månadsbetalning = this.amortering + this.savings + this.fee;
+        //this.månadsbetalning = this.amortering + this.savings + this.lånekostnad;
 
         this.efterAmortering = this.savings * loanSettings.time * 12;
 

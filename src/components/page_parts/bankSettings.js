@@ -1,70 +1,150 @@
 var React = require("react");
 
 var BankSettings = React.createClass({
-    componentWillMount: function() {
-        this.loanSettings = this.props.values;
+    componentWillMount: function () {
+        this.bankSettings = this.props.values;
+        //console.log(this.bankSettings);
     },
 
-    changeTime: function (event) {
-        this.loanSettings.time = +event.target.value;
-        this.props.stateChange(this.loanSettings);
-    },
-    changeAmount: function (event) {
-        this.loanSettings.amount = +event.target.value;
-        this.props.stateChange(this.loanSettings);
-    },
-    changeF�rspar: function (event) {
-        this.loanSettings.f�rspar = +event.target.value;
-        this.props.stateChange(this.loanSettings);
+    getInitialState: function () {
+        return {
+            advancedSettings: false
+        }
     },
 
-    render: function(){
-        return <div className="header">
-            <h1 className="clear">JAK-l�n</h1>
+    changeUKvot: function (event) {
+        this.bankSettings.u_kvot = +event.target.value;
+        this.props.stateChange(this.bankSettings);
+    },
 
-            <p>L�neber�kning med s�kerhet</p>
+    changeSeeAdvanced: function (event) {
+        this.setState({advancedSettings: event.target.checked});
+    },
 
-            <div className="floatL">
-                <p><b>Belopp jag vill l�na (kr):</b></p>
-                <p></p>
-                <input id="belopp"
-                       type="range"
-                       value={this.props.values.amount}
-                       min={this.props.bankSettings.minAmount}
-                       max={this.props.bankSettings.maxAmount}
-                       step={1000}
-                       onChange={this.changeAmount}/>
+    renderInput: function (value, functionToRun) {
+        return <input type="number" max="10000000000" min="0" value={value} onChange={function(event){
+            functionToRun(event);
+            this.props.stateChange(this.bankSettings);
+        }.bind(this)}/>
+    },
 
-                <input type="number"
-                       value={this.props.values.amount}
-                       min={this.props.bankSettings.minAmount}
-                       max={this.props.bankSettings.maxAmount}
-                       onChange={this.changeAmount}/>
-            </div>
+    renderAdvancedSettings: function () {
+        return this.state.advancedSettings ?
+            <div>
+                <p>Belopp</p>
 
-            <div className="floatL">
-                <p><b>P� hur l�ng tid (�r):</b></p>
-                <input id="tid"
-                       type="range"
-                       value={this.props.values.time}
-                       min={this.props.bankSettings.minTime}
-                       max={this.props.bankSettings.maxTime}
-                       onChange={this.changeTime}/>
-                <input type="number"
-                       value={this.props.values.time}
-                       min={this.props.bankSettings.minTime}
-                       max={this.props.bankSettings.maxTime}
-                       onChange={this.changeTime}/>
+                <div>
+                    <label>Med säkerhet</label>
+                    <label>Min</label>
+                    {this.renderInput(this.bankSettings.med_säkerhet.amount.min, function (event) {
+                        this.bankSettings.med_säkerhet.amount.min = +event.target.value
+                    }.bind(this))}
+                    <label>Max</label>
+                    {this.renderInput(this.bankSettings.med_säkerhet.amount.max, function (event) {
+                        this.bankSettings.med_säkerhet.amount.max = +event.target.value
+                    }.bind(this))}
+                </div>
+                <div>
+                    <label>Utan säkerhet</label>
+                    <label>Min</label>
+                    {this.renderInput(this.bankSettings.utan_säkerhet.amount.min, function (event) {
+                        this.bankSettings.utan_säkerhet.amount.min = +event.target.value
+                    }.bind(this))}
+                    <label>Max</label>
+                    {this.renderInput(this.bankSettings.utan_säkerhet.amount.max, function (event) {
+                        this.bankSettings.utan_säkerhet.amount.max = +event.target.value
+                    }.bind(this))}
+                </div>
 
-                <p className="noMargins"><i>Idag mest f�rdelaktiga amorteringstid i nya JAK-banken: Upp till {this.props.bestAmortering.toFixed(1)} �r</i></p>
-            </div>
+                <p>Tid (år)</p>
 
-            <div className="hundredpc clear">
-                <p className="noMargins"><b>Tillf�r sparpo�ng</b></p>
-                <input id="f�rsparpo�ng" type="number"
-                       min={0}
-                       defaultValue={this.props.values.f�rspar}
-                       onChange={this.changeF�rspar}/>
+                <div>
+                    <label>Med säkerhet</label>
+                    <label>Min</label>
+                    {this.renderInput(this.bankSettings.med_säkerhet.time.min, function (event) {
+                        this.bankSettings.med_säkerhet.time.min = +event.target.value
+                    }.bind(this))}
+                    <label>Max</label>
+                    {this.renderInput(this.bankSettings.med_säkerhet.time.max, function (event) {
+                        this.bankSettings.med_säkerhet.time.max = +event.target.value
+                    }.bind(this))}
+                </div>
+                <div>
+                    <label>Utan säkerhet</label>
+                    <label>Min</label>
+                    {this.renderInput(this.bankSettings.utan_säkerhet.time.min, function (event) {
+                        this.bankSettings.utan_säkerhet.time.min = +event.target.value
+                    }.bind(this))}
+                    <label>Max</label>
+                    {this.renderInput(this.bankSettings.utan_säkerhet.time.max, function (event) {
+                        this.bankSettings.utan_säkerhet.time.max = +event.target.value
+                    }.bind(this))}
+                </div>
+
+                <p>Lånekostnad (%)</p>
+
+                <div>
+                    <label>Med säkerhet</label>
+                    <input type="number" max="200" min="0" value={this.bankSettings.med_säkerhet.lånekostnad*100}
+                        onChange={function(event){
+                            this.bankSettings.med_säkerhet.lånekostnad = +event.target.value / 100;
+                            this.props.stateChange(this.bankSettings);
+                        }.bind(this)}/>
+                </div>
+                <div>
+                    <label>Utan säkerhet</label>
+                    <input type="number" max="200" min="0" value={this.bankSettings.utan_säkerhet.lånekostnad*100}
+                           onChange={function(event){
+                            this.bankSettings.utan_säkerhet.lånekostnad = +event.target.value / 100;
+                            this.props.stateChange(this.bankSettings);
+                        }.bind(this)}/>
+                </div>
+
+                <p>Låneinsats (%)</p>
+
+                <div>
+                    <label>Med säkerhet</label>
+                    <input type="number" max="200" min="0" value={this.bankSettings.med_säkerhet.låneinsats*100}
+                           onChange={function(event){
+                            this.bankSettings.med_säkerhet.låneinsats = +event.target.value / 100;
+                            this.props.stateChange(this.bankSettings);
+                        }.bind(this)} />
+                </div>
+                <div>
+                    <label>Utan säkerhet</label>
+                    <input type="number" max="200" min="0" value={this.bankSettings.utan_säkerhet.låneinsats*100}
+                           onChange={function(event){
+                            this.bankSettings.utan_säkerhet.låneinsats = +event.target.value / 100;
+                            this.props.stateChange(this.bankSettings);
+                        }.bind(this)}/>
+                </div>
+
+                <span>Optimal U-kvot (0-1)</span>
+                <input type="number" max="1" min="0" step="0.1" value={this.bankSettings.optimal_u_kvot}
+                       onChange={function(event){
+                            this.bankSettings.optimal_u_kvot = +event.target.value;
+                            this.props.stateChange(this.bankSettings);
+                        }.bind(this)}/>
+
+                <p>Sparfaktor 1,0</p>
+            </div> : "";
+    },
+
+    render: function () {
+        var temp = this.renderAdvancedSettings();
+        return <div className="marginbottom">
+            <label className="u-kvot">Aktuell U-Kvot: </label>
+            <input type="number" min="0" max="1" step={0.01}
+                   value={this.props.values.u_kvot}
+                   onChange={this.changeUKvot}/>
+            <span className="u-kvot2">
+              <i>Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk U-kvot</i>
+            </span>
+
+            <div>
+                <label className="u-kvot">Avancerade inställningar: </label>
+                <input type="checkbox" checked={this.state.advancedSettings} onChange={this.changeSeeAdvanced}/>
+                {temp}
             </div>
         </div>;
     }
