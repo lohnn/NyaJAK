@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a359ed0d-ef57-43f3-b628-feedc727a616" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/settings_objects/bankSettingsFactory.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/specials/firstLast.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/JAKMixin.js" afterPath="$PROJECT_DIR$/src/components/JAKMixin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/page_parts/bankSettings.js" afterPath="$PROJECT_DIR$/src/components/page_parts/bankSettings.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/css/checkbox.css" afterPath="$PROJECT_DIR$/dist/css/checkbox.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/less/checkbox.less" afterPath="$PROJECT_DIR$/src/less/checkbox.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/page_parts/loanSettings.js" afterPath="$PROJECT_DIR$/src/components/page_parts/loanSettings.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="$PROJECT_DIR$/dist/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/main.js" afterPath="$PROJECT_DIR$/dist/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/newJAK.js" afterPath="$PROJECT_DIR$/src/components/newJAK.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/paymentCalculator.js" afterPath="$PROJECT_DIR$/src/components/paymentCalculator.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/css/style.css" afterPath="$PROJECT_DIR$/dist/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/less/style.less" afterPath="$PROJECT_DIR$/src/less/style.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/wrapper.js" afterPath="$PROJECT_DIR$/src/components/wrapper.js" />
     </list>
     <ignored path="JAKLånesystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,71 +34,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JAKMixin.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JAKMixin.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/JAKMixin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="954">
-              <caret line="24" column="78" selection-start-line="24" selection-start-column="78" selection-end-line="24" selection-end-column="78" />
-              <folding />
+            <state vertical-scroll-proportion="0.3" vertical-offset="630" max-vertical-offset="1170">
+              <caret line="42" column="71" selection-start-line="42" selection-start-column="71" selection-end-line="42" selection-end-column="71" />
+              <folding>
+                <marker date="1444564462606" expanded="true" signature="453:1860" placeholder="&lt;xml/&gt;" />
+                <marker date="1444564462606" expanded="true" signature="499:1845" placeholder="&lt;xml/&gt;" />
+                <marker date="1444564462606" expanded="true" signature="521:1803" placeholder="&lt;xml/&gt;" />
+                <marker date="1444564462606" expanded="true" signature="700:978" placeholder="&lt;xml/&gt;" />
+                <marker date="1444564462606" expanded="true" signature="728:953" placeholder="&lt;xml/&gt;" />
+                <marker date="1444564462606" expanded="true" signature="776:918" placeholder="&lt;xml/&gt;" />
+                <marker date="1444564462606" expanded="true" signature="1084:1299" placeholder="&lt;xml/&gt;" />
+                <marker date="1444564462606" expanded="true" signature="1321:1480" placeholder="&lt;xml/&gt;" />
+                <marker date="1444564462606" expanded="true" signature="1529:1651" placeholder="&lt;xml/&gt;" />
+                <marker date="1444564462606" expanded="true" signature="1673:1780" placeholder="&lt;xml/&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="newJAK.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
+      <file leaf-file-name="firstLast.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/specials/firstLast.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="503" max-vertical-offset="1008">
-              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="oldJAK.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/oldJAK.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="1044">
-              <caret line="27" column="80" selection-start-line="27" selection-start-column="80" selection-end-line="27" selection-end-column="80" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wrapper.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/wrapper.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="990">
-              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bankSettingsFactory.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/settings_objects/bankSettingsFactory.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1440">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bankSettings.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/page_parts/bankSettings.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.862069" vertical-offset="2296" max-vertical-offset="2844">
-              <caret line="137" column="54" selection-start-line="137" selection-start-column="54" selection-end-line="137" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="paymentCalculator.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37947494" vertical-offset="183" max-vertical-offset="1044">
-              <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -145,7 +102,6 @@
         <option value="$PROJECT_DIR$/src/less/style.less" />
         <option value="$PROJECT_DIR$/src/components/specials/checkbox.js" />
         <option value="$PROJECT_DIR$/src/less/checkbox.less" />
-        <option value="$PROJECT_DIR$/src/components/JAKMixin.js" />
         <option value="$PROJECT_DIR$/src/components/settings_objects/bankSettings.js" />
         <option value="$PROJECT_DIR$/src/components/newJAK.js" />
         <option value="$PROJECT_DIR$/src/components/wrapper.js" />
@@ -153,6 +109,7 @@
         <option value="$PROJECT_DIR$/src/components/page_parts/bankSettings.js" />
         <option value="$PROJECT_DIR$/src/components/settings_objects/bankSettingsFactory.js" />
         <option value="$PROJECT_DIR$/src/components/paymentCalculator.js" />
+        <option value="$PROJECT_DIR$/src/components/JAKMixin.js" />
       </list>
     </option>
   </component>
@@ -208,9 +165,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
+    <option name="x" value="-1" />
     <option name="y" value="27" />
-    <option name="width" value="1366" />
-    <option name="height" value="741" />
+    <option name="width" value="1368" />
+    <option name="height" value="742" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -265,7 +223,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -395,6 +352,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -418,7 +376,7 @@
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="paymen&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/paymentCalculator.js&#10;loanSet&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js&#10;loansett&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js&#10;loanS&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js" />
+    <property name="SearchEverywhereHistoryKey" value="firstL&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/specials/firstLast.js&#10;paymen&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/paymentCalculator.js&#10;loanSet&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js&#10;loansett&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js&#10;loanS&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -809,14 +767,15 @@
       <workItem from="1444501298132" duration="1371000" />
       <workItem from="1444551298890" duration="13000" />
       <workItem from="1444551791947" duration="4919000" />
+      <workItem from="1444564091096" duration="408000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98534000" />
+    <option name="totallyTimeSpent" value="98942000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1366" height="741" extended-state="1" />
+    <frame x="-1" y="27" width="1368" height="742" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -830,12 +789,12 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Go" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27099842" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27056962" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293348" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15178572" sideWeight="0.2355507" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15175954" sideWeight="0.7407407" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15153733" sideWeight="0.7407407" order="1" side_tool="false" content_ui="combo" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -920,14 +879,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/wrapper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -939,7 +890,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-          <folding />
+          <folding>
+            <marker date="1444564462606" expanded="true" signature="453:1860" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="499:1845" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="521:1803" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="700:978" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="728:953" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="776:918" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1084:1299" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1321:1480" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1529:1651" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1673:1780" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -969,7 +931,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="143" column="14" selection-start-line="143" selection-start-column="14" selection-end-line="143" selection-end-column="14" />
-          <folding />
+          <folding>
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -991,7 +958,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="65" column="25" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
-          <folding />
+          <folding>
+            <marker date="1444564462606" expanded="true" signature="453:1860" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="499:1845" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="521:1803" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="700:978" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="728:953" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="776:918" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1084:1299" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1321:1480" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1529:1651" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1673:1780" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1021,7 +999,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="142" column="24" selection-start-line="142" selection-start-column="24" selection-end-line="142" selection-end-column="24" />
-          <folding />
+          <folding>
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1043,7 +1026,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1444564462606" expanded="true" signature="453:1860" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="499:1845" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="521:1803" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="700:978" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="728:953" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="776:918" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1084:1299" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1321:1480" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1529:1651" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1673:1780" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1073,7 +1067,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-          <folding />
+          <folding>
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1088,7 +1087,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1444564462606" expanded="true" signature="453:1860" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="499:1845" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="521:1803" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="700:978" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="728:953" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="776:918" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1084:1299" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1321:1480" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1529:1651" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1673:1780" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1118,7 +1128,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-          <folding />
+          <folding>
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1242,27 +1257,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/JAKMixin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="954">
-          <caret line="24" column="78" selection-start-line="24" selection-start-column="78" selection-end-line="24" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="557" max-vertical-offset="1008">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/wrapper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="990">
           <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-          <folding />
+          <folding>
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444555361318" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1270,7 +1274,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="2538">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1284,17 +1287,72 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/page_parts/bankSettings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.862069" vertical-offset="2296" max-vertical-offset="2844">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2296" max-vertical-offset="2844">
           <caret line="137" column="54" selection-start-line="137" selection-start-column="54" selection-end-line="137" selection-end-column="54" />
-          <folding />
+          <folding>
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1444557788987" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37947494" vertical-offset="183" max-vertical-offset="1044">
-          <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="183" max-vertical-offset="1044">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7921478" vertical-offset="503" max-vertical-offset="1008">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/specials/firstLast.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="433">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/JAKMixin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3" vertical-offset="630" max-vertical-offset="1170">
+          <caret line="42" column="71" selection-start-line="42" selection-start-column="71" selection-end-line="42" selection-end-column="71" />
+          <folding>
+            <marker date="1444564462606" expanded="true" signature="453:1860" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="499:1845" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="521:1803" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="700:978" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="728:953" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="776:918" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1084:1299" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1321:1480" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1529:1651" placeholder="&lt;xml/&gt;" />
+            <marker date="1444564462606" expanded="true" signature="1673:1780" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>

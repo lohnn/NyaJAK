@@ -64,6 +64,16 @@
   -o-transition: left 250ms, background 500ms;
   transition: left 250ms, background 500ms;
 }
+body {
+  font-family: Roboto, sans-serif;
+  background: #f6f4f0;
+}
+.border_radius {
+  border-radius: 5px;
+}
+.border {
+  border: 1px solid #d3d1cd;
+}
 .floatL {
   float: left;
 }
@@ -87,7 +97,9 @@
   margin-bottom: 10px;
 }
 .header {
-  background-color: #ffd27f;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #d3d1cd;
 }
 .newJAK {
   background-color: #9c9;
