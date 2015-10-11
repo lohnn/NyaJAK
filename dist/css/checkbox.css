@@ -29,12 +29,6 @@
 .checkbox_block_not_selected {
   color: #777777;
 }
-.lightGreen {
-  background-color: #9db497;
-}
-.lightRed {
-  background-color: #ffb0ae;
-}
 .selectBox {
   position: absolute;
   width: 50%;
@@ -54,7 +48,7 @@
 }
 .leftSelected {
   left: 0;
-  background: #498053;
+  background: #696F02;
   -webkit-transition: left 250ms, background 500ms;
   -moz-transition: left 250ms, background 500ms;
   -ms-transition: left 250ms, background 500ms;
@@ -63,7 +57,7 @@
 }
 .rightSelected {
   left: 50%;
-  background: #8b5b56;
+  background: #B71C1C;
   -webkit-transition: left 250ms, background 500ms;
   -moz-transition: left 250ms, background 500ms;
   -ms-transition: left 250ms, background 500ms;

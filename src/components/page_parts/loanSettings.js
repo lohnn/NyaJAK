@@ -2,8 +2,10 @@ var React = require("react");
 var Checkbox = require("../specials/checkbox");
 
 var LoanSettings = React.createClass({
+
     componentWillMount: function () {
         this.loanSettings = this.props.values;
+        this.bankSettings = this.props.bankSettings;
     },
 
     changeTime: function (event) {
@@ -19,87 +21,108 @@ var LoanSettings = React.createClass({
         this.props.stateChange(this.loanSettings);
     },
 
-    changeSäkerhet: function(value) {
+    changeSäkerhet: function (value) {
+        this.bankSettings.setSäkerhet(value);
+
         this.loanSettings.säkerhet = value;
         this.props.stateChange(this.loanSettings);
     },
-    changeStraightPayment: function(value) {
+    changeStraightPayment: function (value) {
         this.loanSettings.rak_månadsbetalning = value;
         this.props.stateChange(this.loanSettings);
     },
-    changeSkattejämkning: function(value) {
+    changeSkattejämkning: function (value) {
         this.loanSettings.skattejämkning = value;
         this.props.stateChange(this.loanSettings);
     },
 
     render: function () {
+        var bestAmortering = ((this.bankSettings.getTimeMax() - this.bankSettings.getTimeMin()) /
+            this.bankSettings.getOptimalUKvot()) * this.bankSettings.getUKvot() + this.bankSettings.getTimeMin();
+        bestAmortering = (this.bankSettings.getTimeMax() < bestAmortering) ? this.bankSettings.getTimeMax() : bestAmortering;
+
         return <div className="header">
             <h1 className="clear">JAK-lån</h1>
 
             <p>Låneberäkning med säkerhet</p>
 
             <div className="floatL">
-                <p><b>Belopp jag vill låna (kr):</b></p>
+                <p>
+                    <b>Belopp jag vill låna (kr):</b>
+                </p>
 
                 <div>
                     <input type="number"
-                           value={this.props.values.amount}
-                           min={this.props.bankSettings.minAmount}
-                           max={this.props.bankSettings.maxAmount}
-                           onChange={this.changeAmount}/>
+                        value={this.loanSettings.amount}
+                        min={this.bankSettings.getAmountMin()}
+                        max={this.bankSettings.getAmountMax()}
+                        onChange={this.changeAmount}/>
                 </div>
                 <div>
                     <input id="belopp"
-                           type="range"
-                           value={this.props.values.amount}
-                           min={this.props.bankSettings.minAmount}
-                           max={this.props.bankSettings.maxAmount}
-                           step={1000}
-                           onChange={this.changeAmount}/>
+                        type="range"
+                        value={this.loanSettings.amount}
+                        min={this.bankSettings.getAmountMin()}
+                        max={this.bankSettings.getAmountMax()}
+                        step={1000}
+                        onChange={this.changeAmount}/>
                 </div>
             </div>
 
             <div className="floatL">
                 <div className="floatL">
-                    <p><b>På hur lång tid (år):</b></p>
+                    <p>
+                        <b>På hur lång tid (år):</b>
+                    </p>
 
                     <div>
                         <input type="number"
-                               value={this.props.values.time}
-                               min={this.props.bankSettings.minTime}
-                               max={this.props.bankSettings.maxTime}
-                               onChange={this.changeTime}/>
+                            value={this.loanSettings.time}
+                            min={this.bankSettings.getTimeMin()}
+                            max={this.bankSettings.getTimeMax()}
+                            onChange={this.changeTime}/>
                     </div>
                     <div>
                         <input id="tid"
-                               type="range"
-                               value={this.props.values.time}
-                               min={this.props.bankSettings.minTime}
-                               max={this.props.bankSettings.maxTime}
-                               onChange={this.changeTime}/>
+                            type="range"
+                            value={this.loanSettings.time}
+                            min={this.bankSettings.getTimeMin()}
+                            max={this.bankSettings.getTimeMax()}
+                            onChange={this.changeTime}/>
                     </div>
                 </div>
                 <div className="floatL">
-                    <p><b>Säkerhet:</b></p>
+                    <p>
+                        <b>Säkerhet:</b>
+                    </p>
                     <Checkbox value={this.loanSettings.säkerhet} onChange={this.changeSäkerhet}/>
                 </div>
                 <div className="floatL">
-                    <p><b>Försparade poäng:</b></p>
+                    <p>
+                        <b>Försparade poäng:</b>
+                    </p>
                     <input id="försparpoäng" type="number"
-                           min={0}
-                           value={this.props.values.förspar}
-                           onChange={this.changeFörspar}/>
+                        min={0}
+                        value={this.loanSettings.förspar}
+                        step={1000}
+                        onChange={this.changeFörspar}/>
                 </div>
-                <p className="noMargins clear"><i>Idag mest fördelaktiga amorteringstid i nya JAK-banken: Upp
-                    till {this.props.bestAmortering.toFixed(1)} år</i></p>
+                <p className="noMargins clear">
+                    <i>Idag mest fördelaktiga amorteringstid i nya JAK-banken: Upp
+                        till {bestAmortering.toFixed(1)} år</i>
+                </p>
             </div>
             <div className="floatL">
                 <div className="floatL">
-                    <p><b>Rak månadsbetalning:</b></p>
+                    <p>
+                        <b>Rak månadsbetalning:</b>
+                    </p>
                     <Checkbox value={this.loanSettings.rak_månadsbetalning} onChange={this.changeStraightPayment}/>
                 </div>
                 <div className="floatL">
-                    <p><b>Skattejämkning:</b></p>
+                    <p>
+                        <b>Skattejämkning:</b>
+                    </p>
                     <Checkbox value={this.loanSettings.skattejämkning} onChange={this.changeSkattejämkning}/>
                 </div>
             </div>

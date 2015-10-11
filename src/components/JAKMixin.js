@@ -16,7 +16,7 @@ var JAKMixin = {
     },
 
     render: function () {
-        this.calculate(this.props.values.loanSettings, this.props.values.bankSettings);
+        this.calculate(this.props.loanSettings, this.props.bankSettings);
         return <div className="fiftypc floatL ">
             <div>
                 <div className={this.divClass}>

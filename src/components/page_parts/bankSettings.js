@@ -36,23 +36,23 @@ var BankSettings = React.createClass({
                 <div>
                     <label>Med säkerhet</label>
                     <label>Min</label>
-                    {this.renderInput(this.bankSettings.med_säkerhet.amount.min, function (event) {
-                        this.bankSettings.med_säkerhet.amount.min = +event.target.value
+                    {this.renderInput(this.bankSettings.getMedSäkerhet().amount.min, function (event) {
+                        this.bankSettings.getMedSäkerhet().amount.min = +event.target.value
                     }.bind(this))}
                     <label>Max</label>
-                    {this.renderInput(this.bankSettings.med_säkerhet.amount.max, function (event) {
-                        this.bankSettings.med_säkerhet.amount.max = +event.target.value
+                    {this.renderInput(this.bankSettings.getMedSäkerhet().amount.max, function (event) {
+                        this.bankSettings.getMedSäkerhet().amount.max = +event.target.value
                     }.bind(this))}
                 </div>
                 <div>
                     <label>Utan säkerhet</label>
                     <label>Min</label>
-                    {this.renderInput(this.bankSettings.utan_säkerhet.amount.min, function (event) {
-                        this.bankSettings.utan_säkerhet.amount.min = +event.target.value
+                    {this.renderInput(this.bankSettings.getUtanSäkerhet().amount.min, function (event) {
+                        this.bankSettings.getUtanSäkerhet().amount.min = +event.target.value
                     }.bind(this))}
                     <label>Max</label>
-                    {this.renderInput(this.bankSettings.utan_säkerhet.amount.max, function (event) {
-                        this.bankSettings.utan_säkerhet.amount.max = +event.target.value
+                    {this.renderInput(this.bankSettings.getUtanSäkerhet().amount.max, function (event) {
+                        this.bankSettings.getUtanSäkerhet().amount.max = +event.target.value
                     }.bind(this))}
                 </div>
 
@@ -61,23 +61,23 @@ var BankSettings = React.createClass({
                 <div>
                     <label>Med säkerhet</label>
                     <label>Min</label>
-                    {this.renderInput(this.bankSettings.med_säkerhet.time.min, function (event) {
-                        this.bankSettings.med_säkerhet.time.min = +event.target.value
+                    {this.renderInput(this.bankSettings.getMedSäkerhet().time.min, function (event) {
+                        this.bankSettings.getMedSäkerhet().time.min = +event.target.value
                     }.bind(this))}
                     <label>Max</label>
-                    {this.renderInput(this.bankSettings.med_säkerhet.time.max, function (event) {
-                        this.bankSettings.med_säkerhet.time.max = +event.target.value
+                    {this.renderInput(this.bankSettings.getMedSäkerhet().time.max, function (event) {
+                        this.bankSettings.getMedSäkerhet().time.max = +event.target.value
                     }.bind(this))}
                 </div>
                 <div>
                     <label>Utan säkerhet</label>
                     <label>Min</label>
-                    {this.renderInput(this.bankSettings.utan_säkerhet.time.min, function (event) {
-                        this.bankSettings.utan_säkerhet.time.min = +event.target.value
+                    {this.renderInput(this.bankSettings.getUtanSäkerhet().time.min, function (event) {
+                        this.bankSettings.getUtanSäkerhet().time.min = +event.target.value
                     }.bind(this))}
                     <label>Max</label>
-                    {this.renderInput(this.bankSettings.utan_säkerhet.time.max, function (event) {
-                        this.bankSettings.utan_säkerhet.time.max = +event.target.value
+                    {this.renderInput(this.bankSettings.getUtanSäkerhet().time.max, function (event) {
+                        this.bankSettings.getUtanSäkerhet().time.max = +event.target.value
                     }.bind(this))}
                 </div>
 
@@ -85,17 +85,17 @@ var BankSettings = React.createClass({
 
                 <div>
                     <label>Med säkerhet</label>
-                    <input type="number" max="200" min="0" value={this.bankSettings.med_säkerhet.lånekostnad*100}
+                    <input type="number" max="200" min="0" value={this.bankSettings.getMedSäkerhet().lånekostnad*100}
                         onChange={function(event){
-                            this.bankSettings.med_säkerhet.lånekostnad = +event.target.value / 100;
+                            this.bankSettings.getMedSäkerhet().lånekostnad = +event.target.value / 100;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
                 </div>
                 <div>
                     <label>Utan säkerhet</label>
-                    <input type="number" max="200" min="0" value={this.bankSettings.utan_säkerhet.lånekostnad*100}
+                    <input type="number" max="200" min="0" value={this.bankSettings.getUtanSäkerhet().lånekostnad*100}
                            onChange={function(event){
-                            this.bankSettings.utan_säkerhet.lånekostnad = +event.target.value / 100;
+                            this.bankSettings.getUtanSäkerhet().lånekostnad = +event.target.value / 100;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
                 </div>
@@ -104,23 +104,23 @@ var BankSettings = React.createClass({
 
                 <div>
                     <label>Med säkerhet</label>
-                    <input type="number" max="200" min="0" value={this.bankSettings.med_säkerhet.låneinsats*100}
+                    <input type="number" max="200" min="0" value={this.bankSettings.getMedSäkerhet().låneinsats*100}
                            onChange={function(event){
-                            this.bankSettings.med_säkerhet.låneinsats = +event.target.value / 100;
+                            this.bankSettings.getMedSäkerhet().låneinsats = +event.target.value / 100;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)} />
                 </div>
                 <div>
                     <label>Utan säkerhet</label>
-                    <input type="number" max="200" min="0" value={this.bankSettings.utan_säkerhet.låneinsats*100}
+                    <input type="number" max="200" min="0" value={this.bankSettings.getUtanSäkerhet().låneinsats*100}
                            onChange={function(event){
-                            this.bankSettings.utan_säkerhet.låneinsats = +event.target.value / 100;
+                            this.bankSettings.getUtanSäkerhet().låneinsats = +event.target.value / 100;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
                 </div>
 
                 <span>Optimal U-kvot (0-1)</span>
-                <input type="number" max="1" min="0" step="0.1" value={this.bankSettings.optimal_u_kvot}
+                <input type="number" max="1" min="0" step="0.1" value={this.bankSettings.getOptimalUKvot()}
                        onChange={function(event){
                             this.bankSettings.optimal_u_kvot = +event.target.value;
                             this.props.stateChange(this.bankSettings);
@@ -135,7 +135,7 @@ var BankSettings = React.createClass({
         return <div className="marginbottom">
             <label className="u-kvot">Aktuell U-Kvot: </label>
             <input type="number" min="0" max="1" step={0.01}
-                   value={this.props.values.u_kvot}
+                   value={this.props.values.getUKvot()}
                    onChange={this.changeUKvot}/>
             <span className="u-kvot2">
               <i>Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk U-kvot</i>
