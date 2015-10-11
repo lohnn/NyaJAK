@@ -45,9 +45,15 @@ var BankSettingsFactory = function () {
     this.getUKvot = function () {
         return bankSettings.u_kvot;
     };
+    this.setUKvot = function (value) {
+        bankSettings.u_kvot = value;
+    }
 
     this.getOptimalUKvot = function () {
         return bankSettings.optimal_u_kvot;
+    };
+    this.setOptimalUKvot = function (value) {
+        bankSettings.optimal_u_kvot = value;
     };
 
     this.getAmountMax = function () {
@@ -69,7 +75,6 @@ var BankSettingsFactory = function () {
     this.getLånekostnad = function () {
         return getCurrent().lånekostnad;
     }
-
 };
 
 module.exports = BankSettingsFactory;

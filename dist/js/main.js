@@ -19910,17 +19910,17 @@ var OldJAK = React.createClass({displayName: "OldJAK",
 
         this.savings = ((poängförbrukning - loanSettings.förspar) / poängförbrukning) * this.amortering;
 
-        this.lånekostnad = (bankSettings.lånekostnad * loanSettings.amount);
+        this.lånekostnad = (bankSettings.getLånekostnad() * loanSettings.amount);
 
         this.månadsbetalning = this.amortering + this.savings + this.lånekostnad;
 
         this.efterAmortering = this.savings * loanSettings.time * 12;
 
         //M26
-        var minstaSparkrav = 100 / (bankSettings.optimal_u_kvot / bankSettings.u_kvot);
+        var minstaSparkrav = 100 / (bankSettings.getOptimalUKvot() / bankSettings.getUKvot());
         //M44
-        var sparkravsändring = 100 / (bankSettings.optimal_u_kvot / ((bankSettings.optimal_u_kvot /
-            (bankSettings.maxTime - bankSettings.minTime)) * (loanSettings.time - bankSettings.minTime)));
+        var sparkravsändring = 100 / (bankSettings.getOptimalUKvot() / ((bankSettings.getOptimalUKvot() /
+            (bankSettings.getTimeMax() - bankSettings.getTimeMin)) * (loanSettings.time - bankSettings.getTimeMin())));
         sparkravsändring = (minstaSparkrav > sparkravsändring ) ? minstaSparkrav : sparkravsändring;
         //N38
         //var sparpoängOmräknad = loanSettings.förspar * (1 / (bankSettings.u_kvot / bankSettings.optimal_u_kvot));
@@ -19955,7 +19955,7 @@ var BankSettings = React.createClass({displayName: "BankSettings",
     },
 
     changeUKvot: function (event) {
-        this.bankSettings.u_kvot = +event.target.value;
+        this.bankSettings.setUKvot(+event.target.value);
         this.props.stateChange(this.bankSettings);
     },
 
@@ -20064,7 +20064,7 @@ var BankSettings = React.createClass({displayName: "BankSettings",
                 React.createElement("span", null, "Optimal U-kvot (0-1)"), 
                 React.createElement("input", {type: "number", max: "1", min: "0", step: "0.1", value: this.bankSettings.getOptimalUKvot(), 
                        onChange: function(event){
-                            this.bankSettings.optimal_u_kvot = +event.target.value;
+                            this.bankSettings.setOptimalUKvot(+event.target.value);
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}), 
 
@@ -20335,9 +20335,15 @@ var BankSettingsFactory = function () {
     this.getUKvot = function () {
         return bankSettings.u_kvot;
     };
+    this.setUKvot = function (value) {
+        bankSettings.u_kvot = value;
+    }
 
     this.getOptimalUKvot = function () {
         return bankSettings.optimal_u_kvot;
+    };
+    this.setOptimalUKvot = function (value) {
+        bankSettings.optimal_u_kvot = value;
     };
 
     this.getAmountMax = function () {
@@ -20359,7 +20365,6 @@ var BankSettingsFactory = function () {
     this.getLånekostnad = function () {
         return getCurrent().lånekostnad;
     }
-
 };
 
 module.exports = BankSettingsFactory;

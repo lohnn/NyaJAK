@@ -13,7 +13,7 @@ var BankSettings = React.createClass({
     },
 
     changeUKvot: function (event) {
-        this.bankSettings.u_kvot = +event.target.value;
+        this.bankSettings.setUKvot(+event.target.value);
         this.props.stateChange(this.bankSettings);
     },
 
@@ -122,7 +122,7 @@ var BankSettings = React.createClass({
                 <span>Optimal U-kvot (0-1)</span>
                 <input type="number" max="1" min="0" step="0.1" value={this.bankSettings.getOptimalUKvot()}
                        onChange={function(event){
-                            this.bankSettings.optimal_u_kvot = +event.target.value;
+                            this.bankSettings.setOptimalUKvot(+event.target.value);
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
 
