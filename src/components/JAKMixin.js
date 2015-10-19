@@ -18,38 +18,61 @@ var JAKMixin = {
 
     render: function () {
         this.calculate(this.props.loanSettings, this.props.bankSettings);
+        var skattejämkning = <p>
+            Skattereduktion/år: <FirstLast first="-22" last="-5"/>
+        </p>;
+
         return <div className="fiftypc floatL ">
             <div>
                 <div className={this.divClass}>
                     <h2>{this.headerText}</h2>
 
-                    <FirstLast first="Första månaden" last="Sista månaden" />
+                    <div className="floatL">
+                        <p>Månadsbetalning</p>
 
-                    <p>
-                        <b>Månadsbetalning:
-                            <FirstLast first={this.payState.monthlyPay.start.toFixed(0)}
-                                last={this.payState.monthlyPay.end.toFixed(0)} />
-                            kr</b>
-                    </p>
+                        <p><b><FirstLast first={this.payState.monthlyPay.start.toFixed(0)}
+                                         last={this.payState.monthlyPay.end.toFixed(0)}/> kr</b></p>
 
-                    <p>Varav amortering (rak): {this.amortering.toFixed(0)} kr</p>
+                        <p><FirstLast first="Första" last="Sista månaden"/></p>
+                    </div>
 
-                    <p>Varav sparande:
-                        <FirstLast first={this.payState.postSavings.start.toFixed(0)}
-                            last={this.payState.postSavings.end.toFixed(0)} />
-                        kr </p>
+                    <div className="floatL">
+                        <img className="floatL" src="images/bracket.png"/>
 
-                    <p>Varav lånekostnad: <FirstLast first={this.payState.loanCost.start.toFixed(0)}
-                        last={this.payState.loanCost.end.toFixed(0)} /> kr</p>
-                    <br />
+                        <p>Amortering (rak): {this.amortering.toFixed(0)} kr</p>
 
-                    <p>
-                        <b>Sparbelopp efter amortering: {this.efterAmortering.toFixed(0)}</b>
-                    </p>
+                        <p>Sparande:
+                            <FirstLast first={this.payState.postSavings.start.toFixed(0)}
+                                       last={this.payState.postSavings.end.toFixed(0)}/>
+                            kr </p>
 
-                    <p>
-                        <b>Sparpoäng kvar: {this.sparpoängKvar.toFixed(0)}</b>
-                    </p>
+                        <p>Lånekostnad: <FirstLast first={this.payState.loanCost.start.toFixed(0)}
+                                                   last={this.payState.loanCost.end.toFixed(0)}/> kr</p>
+                    </div>
+                    <hr className="clear"/>
+                    <div className="clear">
+                        <p>
+                            <i>Sparbelopp efter amortering: {this.efterAmortering.toFixed(0)}</i>
+                        </p>
+
+                        <p>
+                            <b>Sparpoäng kvar: {this.sparpoängKvar.toFixed(0)}</b>
+                        </p>
+
+                        {skattejämkning}
+
+                        <p>
+                            Avgår låneinsats: 60000 kr
+                        </p>
+
+                        <p>
+                            Total lånekostnad: 307 245 kr
+                        </p>
+
+                        <p>
+                            Effektiv ränta: 3.04%
+                        </p>
+                    </div>
                 </div>
                 <hr />
             </div>
