@@ -6,7 +6,8 @@ var React = require("react");
 var FirstLast = require("./specials/firstLast");
 var Låneinsats = require("./calc_classes/låneinsats");
 var Ränta = require("./calc_classes/ränta");
-var Skattereduktion = require("./calc_classes/skattereduktion");
+var Skatteavdrag = require("./calc_classes/skatteavdrag");
+var Skatteåterbetalning = require("./calc_classes/skatteåterbetalning");
 
 var JAKMixin = {
     divClass: "",
@@ -21,10 +22,22 @@ var JAKMixin = {
 
     render: function () {
         this.calculate(this.props.loanSettings, this.props.bankSettings);
-        var skattereduktion = Skattereduktion.calculate();
-        var skattejämkning = <p>
-            Skattereduktion/år: <FirstLast first={skattereduktion.first} last={skattereduktion.last}/>
-        </p>;
+
+        if (this.props.loanSettings.skattejämkning) {
+            var skatteavdrag = Skatteavdrag.calculate(this.payState.loanCost);
+            skatteavdrag = <div class="clear" style={{marginLeft: 14+"px"}}>
+                Skatteavdrag: <span className="orangeText boldText">
+                <FirstLast first={skatteavdrag.first.toFixed(0)} last={skatteavdrag.last.toFixed(0)}/> kr</span>
+            </div>;
+        }
+        if (!this.props.loanSettings.skattejämkning) {
+            var skatteåterbetalning = Skatteåterbetalning.calculate();
+            skatteåterbetalning =
+                <p>
+                    Skatteåterbetalning/år:
+                    <FirstLast first={skatteåterbetalning.first} last={skatteåterbetalning.last}/> kr
+                </p>;
+        }
 
         return <div className="fiftypc floatL ">
             <div>
@@ -44,16 +57,18 @@ var JAKMixin = {
                         <img className="floatL" src="images/bracket.png"/>
 
                         <div className="floatL">
-                            <p>Amortering (rak): {this.amortering.toFixed(0)} kr</p>
+                            <p>Amortering (rak): <span className="orangeText boldText">{this.amortering.toFixed(0)}
+                                kr</span></p>
 
-                            <p>Sparande:
-                                <FirstLast first={this.payState.postSavings.start.toFixed(0)}
-                                           last={this.payState.postSavings.end.toFixed(0)}/>
-                                kr </p>
+                            <p>Sparande: <span className="orangeText boldText"><FirstLast
+                                first={this.payState.postSavings.start.toFixed(0)}
+                                last={this.payState.postSavings.end.toFixed(0)}/> kr </span></p>
 
-                            <p>Lånekostnad: <FirstLast first={this.payState.loanCost.start.toFixed(0)}
-                                                       last={this.payState.loanCost.end.toFixed(0)}/> kr</p>
+                            <p>Lånekostnad: <span className="orangeText boldText"><FirstLast
+                                first={this.payState.loanCost.start.toFixed(0)}
+                                last={this.payState.loanCost.end.toFixed(0)}/> kr</span></p>
                         </div>
+                        {skatteavdrag}
                     </div>
                     <hr className="clear"/>
                     <div className="clear">
@@ -62,10 +77,10 @@ var JAKMixin = {
                         </p>
 
                         <p>
-                            <b>Sparpoäng kvar: {this.sparpoängKvar.toFixed(0)}</b>
+                            Sparpoäng kvar: {this.sparpoängKvar.toFixed(0)}
                         </p>
 
-                        {skattejämkning}
+                        {skatteåterbetalning}
 
                         <p>
                             Avgår låneinsats: {Låneinsats.calculate()} kr

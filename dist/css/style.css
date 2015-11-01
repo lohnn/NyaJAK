@@ -102,11 +102,21 @@ body {
   border: 1px solid #d3d1cd;
 }
 .newJAK {
-  background-color: #9c9;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #d3d1cd;
 }
 .oldJAK {
-  background-color: #ff9999;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #d3d1cd;
 }
 .noMargins {
   margin: 3px;
+}
+.orangeText {
+  color: #e37310;
+}
+.boldText {
+  font-weight: bold;
 }

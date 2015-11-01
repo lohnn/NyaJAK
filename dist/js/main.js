@@ -19946,7 +19946,8 @@ var React = require("react");
 var FirstLast = require("./specials/firstLast");
 var Låneinsats = require("./calc_classes/låneinsats");
 var Ränta = require("./calc_classes/ränta");
-var Skattereduktion = require("./calc_classes/skattereduktion");
+var Skatteavdrag = require("./calc_classes/skatteavdrag");
+var Skatteåterbetalning = require("./calc_classes/skatteåterbetalning");
 
 var JAKMixin = {
     divClass: "",
@@ -19961,10 +19962,22 @@ var JAKMixin = {
 
     render: function () {
         this.calculate(this.props.loanSettings, this.props.bankSettings);
-        var skattereduktion = Skattereduktion.calculate();
-        var skattejämkning = React.createElement("p", null, 
-            "Skattereduktion/år: ", React.createElement(FirstLast, {first: skattereduktion.first, last: skattereduktion.last})
-        );
+
+        if (this.props.loanSettings.skattejämkning) {
+            var skatteavdrag = Skatteavdrag.calculate(this.payState.loanCost);
+            skatteavdrag = React.createElement("div", {class: "clear", style: {marginLeft: 14+"px"}}, 
+                "Skatteavdrag: ", React.createElement("span", {className: "orangeText boldText"}, 
+                React.createElement(FirstLast, {first: skatteavdrag.first.toFixed(0), last: skatteavdrag.last.toFixed(0)}), " kr")
+            );
+        }
+        if (!this.props.loanSettings.skattejämkning) {
+            var skatteåterbetalning = Skatteåterbetalning.calculate();
+            skatteåterbetalning =
+                React.createElement("p", null, 
+                    "Skatteåterbetalning/år:", 
+                    React.createElement(FirstLast, {first: skatteåterbetalning.first, last: skatteåterbetalning.last}), " kr"
+                );
+        }
 
         return React.createElement("div", {className: "fiftypc floatL "}, 
             React.createElement("div", null, 
@@ -19984,16 +19997,18 @@ var JAKMixin = {
                         React.createElement("img", {className: "floatL", src: "images/bracket.png"}), 
 
                         React.createElement("div", {className: "floatL"}, 
-                            React.createElement("p", null, "Amortering (rak): ", this.amortering.toFixed(0), " kr"), 
+                            React.createElement("p", null, "Amortering (rak): ", React.createElement("span", {className: "orangeText boldText"}, this.amortering.toFixed(0), 
+                                "kr")), 
 
-                            React.createElement("p", null, "Sparande:", 
-                                React.createElement(FirstLast, {first: this.payState.postSavings.start.toFixed(0), 
-                                           last: this.payState.postSavings.end.toFixed(0)}), 
-                                "kr "), 
+                            React.createElement("p", null, "Sparande: ", React.createElement("span", {className: "orangeText boldText"}, React.createElement(FirstLast, {
+                                first: this.payState.postSavings.start.toFixed(0), 
+                                last: this.payState.postSavings.end.toFixed(0)}), " kr ")), 
 
-                            React.createElement("p", null, "Lånekostnad: ", React.createElement(FirstLast, {first: this.payState.loanCost.start.toFixed(0), 
-                                                       last: this.payState.loanCost.end.toFixed(0)}), " kr")
-                        )
+                            React.createElement("p", null, "Lånekostnad: ", React.createElement("span", {className: "orangeText boldText"}, React.createElement(FirstLast, {
+                                first: this.payState.loanCost.start.toFixed(0), 
+                                last: this.payState.loanCost.end.toFixed(0)}), " kr"))
+                        ), 
+                        skatteavdrag
                     ), 
                     React.createElement("hr", {className: "clear"}), 
                     React.createElement("div", {className: "clear"}, 
@@ -20002,10 +20017,10 @@ var JAKMixin = {
                         ), 
 
                         React.createElement("p", null, 
-                            React.createElement("b", null, "Sparpoäng kvar: ", this.sparpoängKvar.toFixed(0))
+                            "Sparpoäng kvar: ", this.sparpoängKvar.toFixed(0)
                         ), 
 
-                        skattejämkning, 
+                        skatteåterbetalning, 
 
                         React.createElement("p", null, 
                             "Avgår låneinsats: ", Låneinsats.calculate(), " kr"
@@ -20028,7 +20043,7 @@ var JAKMixin = {
 
 module.exports = JAKMixin;
 
-},{"./calc_classes/låneinsats":158,"./calc_classes/ränta":159,"./calc_classes/skattereduktion":160,"./specials/firstLast":168,"react":156}],158:[function(require,module,exports){
+},{"./calc_classes/låneinsats":158,"./calc_classes/ränta":159,"./calc_classes/skatteavdrag":160,"./calc_classes/skatteåterbetalning":161,"./specials/firstLast":169,"react":156}],158:[function(require,module,exports){
 /**
  * Created by lohnn on 2015-10-30.
  */
@@ -20060,14 +20075,28 @@ module.exports = Ränta;
  */
 
 var Skatteredution = {
-    calculate: function () {
-        return {first: -33, last: -2}
+    calculate: function (loanCost) {
+        console.log(loanCost);
+        return {first: (-0.3 * loanCost.start), last: (-0.3 * loanCost.end)};
     }
 };
 
 module.exports = Skatteredution;
 
 },{}],161:[function(require,module,exports){
+/**
+ * Created by lohnn on 2015-11-01.
+ */
+
+var Skatteåterbetalning = {
+    calculate: function () {
+        return {first: -33, last: -2};
+    }
+};
+
+module.exports = Skatteåterbetalning;
+
+},{}],162:[function(require,module,exports){
 /**
  * Created by lohnn
  */
@@ -20120,7 +20149,7 @@ var NewJAK = React.createClass({displayName: "NewJAK",
 
 module.exports = NewJAK;
 
-},{"./JAKMixin":157,"./paymentCalculator":165,"react":156}],162:[function(require,module,exports){
+},{"./JAKMixin":157,"./paymentCalculator":166,"react":156}],163:[function(require,module,exports){
 /**
  * Created by lohnn
  */
@@ -20175,7 +20204,7 @@ var OldJAK = React.createClass({displayName: "OldJAK",
 
 module.exports = OldJAK;
 
-},{"./JAKMixin":157,"./paymentCalculator":165,"react":156}],163:[function(require,module,exports){
+},{"./JAKMixin":157,"./paymentCalculator":166,"react":156}],164:[function(require,module,exports){
 var React = require("react");
 
 var BankSettings = React.createClass({displayName: "BankSettings",
@@ -20330,7 +20359,7 @@ var BankSettings = React.createClass({displayName: "BankSettings",
 
 module.exports = BankSettings;
 
-},{"react":156}],164:[function(require,module,exports){
+},{"react":156}],165:[function(require,module,exports){
 var React = require("react");
 var Checkbox = require("../specials/checkbox");
 
@@ -20377,7 +20406,7 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
         return React.createElement("div", {className: "header"}, 
             React.createElement("h1", {className: "clear"}, "JAK-lån"), 
 
-            React.createElement("p", null, "Låneberäkning med säkerhet"), 
+            React.createElement("p", null, "Låneberäkning"), 
 
             React.createElement("div", {className: "floatL"}, 
                 React.createElement("p", null, 
@@ -20468,7 +20497,7 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
 
 module.exports = LoanSettings;
 
-},{"../specials/checkbox":167,"react":156}],165:[function(require,module,exports){
+},{"../specials/checkbox":168,"react":156}],166:[function(require,module,exports){
 /**
  * Created by lohnn
  */
@@ -20522,7 +20551,7 @@ var PaymentMixin = {
 
 module.exports = PaymentMixin;
 
-},{}],166:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 /**
  * Created by lohnn on 2015-10-10.
  */
@@ -20607,7 +20636,7 @@ var BankSettingsFactory = function () {
 
 module.exports = BankSettingsFactory;
 
-},{}],167:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 var React = require("react");
 
 var Checkbox = React.createClass({displayName: "Checkbox",
@@ -20651,7 +20680,7 @@ var Checkbox = React.createClass({displayName: "Checkbox",
 
 module.exports = Checkbox;
 
-},{"react":156}],168:[function(require,module,exports){
+},{"react":156}],169:[function(require,module,exports){
 /**
  * Created by lohnn on 2015-10-11.
  */
@@ -20667,7 +20696,7 @@ var MinMax = React.createClass({displayName: "MinMax",
 
 module.exports = MinMax;
 
-},{"react":156}],169:[function(require,module,exports){
+},{"react":156}],170:[function(require,module,exports){
 /**
  * Created by lohnn
  */
@@ -20719,7 +20748,7 @@ var Wrapper = React.createClass({displayName: "Wrapper",
 
 module.exports = Wrapper;
 
-},{"./newJAK":161,"./oldJAK":162,"./page_parts/bankSettings":163,"./page_parts/loanSettings":164,"./settings_objects/bankSettingsFactory":166,"react":156}],170:[function(require,module,exports){
+},{"./newJAK":162,"./oldJAK":163,"./page_parts/bankSettings":164,"./page_parts/loanSettings":165,"./settings_objects/bankSettingsFactory":167,"react":156}],171:[function(require,module,exports){
 var Wrapper = require("./components/wrapper");
 var React = require('react');
 
@@ -20728,4 +20757,4 @@ React.render(
     document.getElementById("main")
 );
 
-},{"./components/wrapper":169,"react":156}]},{},[170])
+},{"./components/wrapper":170,"react":156}]},{},[171])

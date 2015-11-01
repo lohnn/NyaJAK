@@ -44,7 +44,7 @@ var LoanSettings = React.createClass({
         return <div className="header">
             <h1 className="clear">JAK-lån</h1>
 
-            <p>Låneberäkning med säkerhet</p>
+            <p>Låneberäkning</p>
 
             <div className="floatL">
                 <p>
