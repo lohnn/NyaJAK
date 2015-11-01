@@ -4,6 +4,9 @@
 
 var React = require("react");
 var FirstLast = require("./specials/firstLast");
+var Låneinsats = require("./calc_classes/låneinsats");
+var Ränta = require("./calc_classes/ränta");
+var Skattereduktion = require("./calc_classes/skattereduktion");
 
 var JAKMixin = {
     divClass: "",
@@ -18,8 +21,9 @@ var JAKMixin = {
 
     render: function () {
         this.calculate(this.props.loanSettings, this.props.bankSettings);
+        var skattereduktion = Skattereduktion.calculate();
         var skattejämkning = <p>
-            Skattereduktion/år: <FirstLast first="-22" last="-5"/>
+            Skattereduktion/år: <FirstLast first={skattereduktion.first} last={skattereduktion.last}/>
         </p>;
 
         return <div className="fiftypc floatL ">
@@ -39,15 +43,17 @@ var JAKMixin = {
                     <div className="floatL">
                         <img className="floatL" src="images/bracket.png"/>
 
-                        <p>Amortering (rak): {this.amortering.toFixed(0)} kr</p>
+                        <div className="floatL">
+                            <p>Amortering (rak): {this.amortering.toFixed(0)} kr</p>
 
-                        <p>Sparande:
-                            <FirstLast first={this.payState.postSavings.start.toFixed(0)}
-                                       last={this.payState.postSavings.end.toFixed(0)}/>
-                            kr </p>
+                            <p>Sparande:
+                                <FirstLast first={this.payState.postSavings.start.toFixed(0)}
+                                           last={this.payState.postSavings.end.toFixed(0)}/>
+                                kr </p>
 
-                        <p>Lånekostnad: <FirstLast first={this.payState.loanCost.start.toFixed(0)}
-                                                   last={this.payState.loanCost.end.toFixed(0)}/> kr</p>
+                            <p>Lånekostnad: <FirstLast first={this.payState.loanCost.start.toFixed(0)}
+                                                       last={this.payState.loanCost.end.toFixed(0)}/> kr</p>
+                        </div>
                     </div>
                     <hr className="clear"/>
                     <div className="clear">
@@ -62,15 +68,15 @@ var JAKMixin = {
                         {skattejämkning}
 
                         <p>
-                            Avgår låneinsats: 60000 kr
+                            Avgår låneinsats: {Låneinsats.calculate()} kr
                         </p>
 
                         <p>
-                            Total lånekostnad: 307 245 kr
+                            Total lånekostnad: {this.payState.loanCost.total} kr
                         </p>
 
                         <p>
-                            Effektiv ränta: 3.04%
+                            Effektiv ränta: {Ränta.calculate()}%
                         </p>
                     </div>
                 </div>

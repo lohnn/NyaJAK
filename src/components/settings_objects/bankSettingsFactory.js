@@ -9,7 +9,7 @@ var BankSettings = function () {
 
     this.amount = {min: 2000, max: 6000000};
     this.time = {min: 2, max: 40};
-    this.lånekostnad = 0.0025;
+    this.lånekostnad = 3;
     this.låneinsats = 0.6;
 };
 
@@ -29,6 +29,9 @@ var BankSettingsFactory = function () {
         u_kvot: 0.63,
         optimal_u_kvot: 0.9
     };
+
+    //Set standard settings for utan säkerhet
+    bankSettings.utan_säkerhet.lånekostnad = 4.5;
 
     var getCurrent = function () {
         return säkerhet ? bankSettings.med_säkerhet : bankSettings.utan_säkerhet;
@@ -73,7 +76,7 @@ var BankSettingsFactory = function () {
     };
 
     this.getLånekostnad = function () {
-        return getCurrent().lånekostnad;
+        return getCurrent().lånekostnad / 100 / 12;
     }
 };
 

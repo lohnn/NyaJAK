@@ -81,21 +81,21 @@ var BankSettings = React.createClass({
                     }.bind(this))}
                 </div>
 
-                <p>Lånekostnad (%)</p>
+                <p>Lånekostnad (% per år)</p>
 
                 <div>
                     <label>Med säkerhet</label>
-                    <input type="number" max="200" min="0" value={this.bankSettings.getMedSäkerhet().lånekostnad*100}
-                        onChange={function(event){
-                            this.bankSettings.getMedSäkerhet().lånekostnad = +event.target.value / 100;
+                    <input type="number" max="200" min="0" step="0.1" value={this.bankSettings.getMedSäkerhet().lånekostnad}
+                           onChange={function(event){
+                            this.bankSettings.getMedSäkerhet().lånekostnad = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
                 </div>
                 <div>
                     <label>Utan säkerhet</label>
-                    <input type="number" max="200" min="0" value={this.bankSettings.getUtanSäkerhet().lånekostnad*100}
+                    <input type="number" max="200" min="0" step="0.1" value={this.bankSettings.getUtanSäkerhet().lånekostnad}
                            onChange={function(event){
-                            this.bankSettings.getUtanSäkerhet().lånekostnad = +event.target.value / 100;
+                            this.bankSettings.getUtanSäkerhet().lånekostnad = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
                 </div>
@@ -108,7 +108,7 @@ var BankSettings = React.createClass({
                            onChange={function(event){
                             this.bankSettings.getMedSäkerhet().låneinsats = +event.target.value / 100;
                             this.props.stateChange(this.bankSettings);
-                        }.bind(this)} />
+                        }.bind(this)}/>
                 </div>
                 <div>
                     <label>Utan säkerhet</label>

@@ -3,16 +3,19 @@
  */
 
 var PaymentMixin = {
-    payState: {
-        monthlyPay: {start: 0, end: 20},
-        loanCost: {start: 20, end: 0},
-        postSavings: {start: 0, end: 20}
+    payState: function () {
+        this.monthlyPay = {start: 0, end: 20};
+        this.loanCost = {start: 20, end: 0, total: 0};
+        this.postSavings = {start: 0, end: 20};
     },
 
     calculateStraightPayment: function (loanSettings, bankSettings, amortering, eftersparkrav) {
+        var payState = new this.payState();
+
         var loanCost = {start: bankSettings.getLånekostnad() * (loanSettings.amount)};
         var tempAmount = loanSettings.amount - amortering * (loanSettings.time * 12 - 1);
         loanCost.end = bankSettings.getLånekostnad() * (tempAmount);
+        loanCost.total = (loanCost.start + loanCost.end) / 2 * (loanSettings.time * 12);
 
         var ackumuleradePoang = 0, sumPostSavings = 0;
         for (var i = 0; i < loanSettings.time * 12; i += 1) {
@@ -34,19 +37,15 @@ var PaymentMixin = {
             postSavingsEnd = tempAmount;
         }
 
-        var postSavings = {
-            start: postSavingsStart,
-            end: postSavingsEnd
-        };
+        payState.loanCost.start = loanCost.start;
+        payState.loanCost.end = loanCost.end;
+        payState.loanCost.total = loanCost.total;
+        payState.postSavings.start = postSavingsStart;
+        payState.postSavings.end = postSavingsEnd;
+        payState.monthlyPay.start = payState.postSavings.start + amortering + loanCost.start;
+        payState.monthlyPay.end = payState.postSavings.end + amortering + loanCost.end;
 
-        return {
-            monthlyPay: {
-                start: postSavings.start + amortering + loanCost.start,
-                end: postSavings.end + amortering + loanCost.end
-            },
-            loanCost: loanCost,
-            postSavings: postSavings
-        };
+        return payState;
     }
 };
 
