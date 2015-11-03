@@ -3,7 +3,7 @@
  */
 
 var NewJAK = require("./newJAK");
-var OldJAK = require("./oldJAK");
+//var OldJAK = require("./oldJAK");
 var React = require("react");
 var LoanSettings = require("./page_parts/loanSettings");
 var BankSettings = require("./page_parts/bankSettings");
@@ -17,7 +17,7 @@ var Wrapper = React.createClass({
             loanSettings: {
                 amount: 1000000,
                 time: 20,
-                förspar: 50039000,
+                förspar: 500000000,
                 säkerhet: true,
                 rak_månadsbetalning: true,
                 skattejämkning: true
@@ -36,7 +36,6 @@ var Wrapper = React.createClass({
             <div>
                 <hr />
                 <NewJAK loanSettings={this.state.loanSettings} bankSettings={this.state.bankSettings} />
-                <OldJAK loanSettings={this.state.loanSettings} bankSettings={this.state.bankSettings} />
                 <br />
             </div>
             <BankSettings values={this.state.bankSettings}
@@ -45,6 +44,7 @@ var Wrapper = React.createClass({
                 }.bind(this)}/>
         </div>;
     }
+    //                <OldJAK loanSettings={this.state.loanSettings} bankSettings={this.state.bankSettings} />
 });
 
 module.exports = Wrapper;

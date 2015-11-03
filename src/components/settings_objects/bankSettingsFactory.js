@@ -26,7 +26,7 @@ var BankSettingsFactory = function () {
     var bankSettings = {
         med_säkerhet: new BankSettings(),
         utan_säkerhet: new BankSettings(),
-        u_kvot: 0.63,
+        u_kvot: 0.58,
         optimal_u_kvot: 0.9
     };
 

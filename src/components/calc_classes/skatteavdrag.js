@@ -4,7 +4,6 @@
 
 var Skatteredution = {
     calculate: function (loanCost) {
-        console.log(loanCost);
         return {first: (-0.3 * loanCost.start), last: (-0.3 * loanCost.end)};
     }
 };

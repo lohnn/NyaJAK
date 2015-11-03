@@ -23,15 +23,17 @@ var JAKMixin = {
     render: function () {
         this.calculate(this.props.loanSettings, this.props.bankSettings);
 
+        var skatteavdrag = {};
         if (this.props.loanSettings.skattejämkning) {
-            var skatteavdrag = Skatteavdrag.calculate(this.payState.loanCost);
+            skatteavdrag = Skatteavdrag.calculate(this.payState.loanCost);
             skatteavdrag = <div class="clear" style={{marginLeft: 14+"px"}}>
                 Skatteavdrag: <span className="orangeText boldText">
                 <FirstLast first={skatteavdrag.first.toFixed(0)} last={skatteavdrag.last.toFixed(0)}/> kr</span>
             </div>;
         }
+        var skatteåterbetalning = {};
         if (!this.props.loanSettings.skattejämkning) {
-            var skatteåterbetalning = Skatteåterbetalning.calculate();
+            skatteåterbetalning = Skatteåterbetalning.calculate();
             skatteåterbetalning =
                 <p>
                     Skatteåterbetalning/år:

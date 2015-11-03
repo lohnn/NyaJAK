@@ -17,33 +17,42 @@ var PaymentMixin = {
         loanCost.end = bankSettings.getLånekostnad() * (tempAmount);
         loanCost.total = (loanCost.start + loanCost.end) / 2 * (loanSettings.time * 12);
 
+
+        var skatteavdrag = (loanSettings.skattejämkning) ? 0.7 : 1;
+        var jämkadLånekostnad = {start: loanCost.start * skatteavdrag, end: loanCost.end * skatteavdrag};
+        var eftersparPerMånad = ((eftersparkrav / (loanSettings.time * 12)) / ((loanSettings.time * 12) + 1)) * 2;
+
         var ackumuleradePoang = 0, sumPostSavings = 0;
         for (var i = 0; i < loanSettings.time * 12; i += 1) {
             tempAmount = loanSettings.amount - amortering * i;
-            sumPostSavings += (amortering / 2) + (loanCost.start - bankSettings.getLånekostnad() * (tempAmount));
+            sumPostSavings += (eftersparPerMånad / 2) + (jämkadLånekostnad.start - bankSettings.getLånekostnad() * (tempAmount) * skatteavdrag);
             ackumuleradePoang += sumPostSavings;
         }
 
-        var postSavingsStart = (amortering / 2) + (loanCost.start - loanCost.start) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12));
-        var postSavingsEnd = (amortering / 2) + (loanCost.start - loanCost.end) + ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12));
+        var efterspar = {
+            start: ((eftersparPerMånad / 2) + (jämkadLånekostnad.start - jämkadLånekostnad.start) +
+            ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12))),
+            end: ((eftersparPerMånad / 2) + (jämkadLånekostnad.start - jämkadLånekostnad.end) +
+            ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12)))
+        };
 
-        if (postSavingsStart < 0) {
-            postSavingsStart = 0;
+        if (efterspar.start < 0) {
+            efterspar.start = 0;
 
-            tempAmount = postSavingsStart;
+            tempAmount = efterspar.start;
             for (i = 0; i < loanSettings.time * 12 - 1; i += 1) {
-                tempAmount = loanCost.start / (loanSettings.time * 12) + tempAmount;
+                tempAmount = jämkadLånekostnad.start / (loanSettings.time * 12) + tempAmount;
             }
-            postSavingsEnd = tempAmount;
+            efterspar.end = tempAmount;
         }
 
         payState.loanCost.start = loanCost.start;
         payState.loanCost.end = loanCost.end;
         payState.loanCost.total = loanCost.total;
-        payState.postSavings.start = postSavingsStart;
-        payState.postSavings.end = postSavingsEnd;
-        payState.monthlyPay.start = payState.postSavings.start + amortering + loanCost.start;
-        payState.monthlyPay.end = payState.postSavings.end + amortering + loanCost.end;
+        payState.postSavings.start = efterspar.start;
+        payState.postSavings.end = efterspar.end;
+        payState.monthlyPay.start = payState.postSavings.start + amortering + jämkadLånekostnad.start;
+        payState.monthlyPay.end = payState.postSavings.end + amortering + jämkadLånekostnad.end;
 
         return payState;
     }
