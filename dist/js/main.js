@@ -19973,12 +19973,11 @@ var JAKMixin = {
         }
         var skatteåterbetalning = {};
         if (!this.props.loanSettings.skattejämkning) {
-            skatteåterbetalning = Skatteåterbetalning.calculate();
-            skatteåterbetalning =
-                React.createElement("p", null, 
-                    "Skatteåterbetalning/år:", 
-                    React.createElement(FirstLast, {first: skatteåterbetalning.first, last: skatteåterbetalning.last}), " kr"
-                );
+            skatteåterbetalning = Skatteåterbetalning.calculate(this.props.loanSettings, this.props.bankSettings.getLånekostnad(), this.amortering);
+            skatteåterbetalning = React.createElement("p", null, 
+                "Skatteåterbetalning/år: ", React.createElement(FirstLast, {first: skatteåterbetalning.first.toFixed(0), 
+                                                   last: skatteåterbetalning.last.toFixed(0)}), " kr"
+            );
         }
 
         return React.createElement("div", {className: "fiftypc floatL "}, 
@@ -20029,7 +20028,7 @@ var JAKMixin = {
                         ), 
 
                         React.createElement("p", null, 
-                            "Total lånekostnad: ", this.payState.loanCost.total, " kr"
+                            "Total lånekostnad: ", this.payState.loanCost.total.toFixed(0), " kr"
                         ), 
 
                         React.createElement("p", null, 
@@ -20090,8 +20089,19 @@ module.exports = Skatteredution;
  */
 
 var Skatteåterbetalning = {
-    calculate: function () {
-        return {first: -33, last: -2};
+    calculate: function (loanSettings, lånekostnad, amortering) {
+        var skatteavdrag = 0.3;
+        var getSumFromTime = function (firstMonth, lastMonth) {
+            var tempAmount1 = lånekostnad * (loanSettings.amount - amortering * (firstMonth)) * skatteavdrag;
+            var tempAmount2 = lånekostnad * (loanSettings.amount - amortering * (lastMonth)) * skatteavdrag;
+            return (tempAmount1 + tempAmount2) * ((firstMonth - lastMonth) / 2);
+        };
+        //loanSettings.time * 12 - 1
+
+        return {
+            first: getSumFromTime(0, 11),
+            last: getSumFromTime(loanSettings.time * 12 - 12, loanSettings.time * 12 - 1)
+        };
     }
 };
 
@@ -20483,7 +20493,6 @@ var PaymentMixin = {
             ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12)))
         };
 
-        //TODO: Check if o is correct
         if (efterspar.start < 0) {
             efterspar.start = 0;
 
@@ -20518,10 +20527,10 @@ var BankSettings = function () {
         return new BankSettings();
     }
 
-    this.amount = {min: 2000, max: 6000000};
+    this.amount = {min: 20000, max: 6000000};
     this.time = {min: 2, max: 40};
     this.lånekostnad = 3;
-    this.låneinsats = 0.6;
+    this.låneinsats = 0.06; //TODO: Ange procent här, räkna om på andra ställen PLZ
 };
 
 var BankSettingsFactory = function () {

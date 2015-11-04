@@ -7,10 +7,10 @@ var BankSettings = function () {
         return new BankSettings();
     }
 
-    this.amount = {min: 2000, max: 6000000};
+    this.amount = {min: 20000, max: 6000000};
     this.time = {min: 2, max: 40};
     this.lånekostnad = 3;
-    this.låneinsats = 0.6;
+    this.låneinsats = 0.06; //TODO: Ange procent här, räkna om på andra ställen PLZ
 };
 
 var BankSettingsFactory = function () {

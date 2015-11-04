@@ -33,12 +33,11 @@ var JAKMixin = {
         }
         var skatteåterbetalning = {};
         if (!this.props.loanSettings.skattejämkning) {
-            skatteåterbetalning = Skatteåterbetalning.calculate();
-            skatteåterbetalning =
-                <p>
-                    Skatteåterbetalning/år:
-                    <FirstLast first={skatteåterbetalning.first} last={skatteåterbetalning.last}/> kr
-                </p>;
+            skatteåterbetalning = Skatteåterbetalning.calculate(this.props.loanSettings, this.props.bankSettings.getLånekostnad(), this.amortering);
+            skatteåterbetalning = <p>
+                Skatteåterbetalning/år: <FirstLast first={skatteåterbetalning.first.toFixed(0)}
+                                                   last={skatteåterbetalning.last.toFixed(0)}/> kr
+            </p>;
         }
 
         return <div className="fiftypc floatL ">
@@ -89,7 +88,7 @@ var JAKMixin = {
                         </p>
 
                         <p>
-                            Total lånekostnad: {this.payState.loanCost.total} kr
+                            Total lånekostnad: {this.payState.loanCost.total.toFixed(0)} kr
                         </p>
 
                         <p>
