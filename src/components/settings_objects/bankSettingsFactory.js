@@ -10,7 +10,7 @@ var BankSettings = function () {
     this.amount = {min: 20000, max: 6000000};
     this.time = {min: 2, max: 40};
     this.lånekostnad = 3;
-    this.låneinsats = 0.06; //TODO: Ange procent här, räkna om på andra ställen PLZ
+    this.låneinsats = 6;
 };
 
 var BankSettingsFactory = function () {
@@ -77,7 +77,11 @@ var BankSettingsFactory = function () {
 
     this.getLånekostnad = function () {
         return getCurrent().lånekostnad / 100 / 12;
-    }
+    };
+
+    this.getLåneinsats = function () {
+        return getCurrent().låneinsats / 100;
+    };
 };
 
 module.exports = BankSettingsFactory;

@@ -84,7 +84,9 @@ var JAKMixin = {
                         {skatteåterbetalning}
 
                         <p>
-                            Avgår låneinsats: {Låneinsats.calculate()} kr
+                            Avgår
+                            låneinsats: {Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats())}
+                            kr
                         </p>
 
                         <p>

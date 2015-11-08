@@ -85,7 +85,8 @@ var BankSettings = React.createClass({
 
                 <div>
                     <label>Med säkerhet</label>
-                    <input type="number" max="200" min="0" step="0.1" value={this.bankSettings.getMedSäkerhet().lånekostnad}
+                    <input type="number" max="200" min="0" step="0.1"
+                           value={this.bankSettings.getMedSäkerhet().lånekostnad}
                            onChange={function(event){
                             this.bankSettings.getMedSäkerhet().lånekostnad = +event.target.value;
                             this.props.stateChange(this.bankSettings);
@@ -93,7 +94,8 @@ var BankSettings = React.createClass({
                 </div>
                 <div>
                     <label>Utan säkerhet</label>
-                    <input type="number" max="200" min="0" step="0.1" value={this.bankSettings.getUtanSäkerhet().lånekostnad}
+                    <input type="number" max="200" min="0" step="0.1"
+                           value={this.bankSettings.getUtanSäkerhet().lånekostnad}
                            onChange={function(event){
                             this.bankSettings.getUtanSäkerhet().lånekostnad = +event.target.value;
                             this.props.stateChange(this.bankSettings);
@@ -104,17 +106,17 @@ var BankSettings = React.createClass({
 
                 <div>
                     <label>Med säkerhet</label>
-                    <input type="number" max="200" min="0" value={this.bankSettings.getMedSäkerhet().låneinsats*100}
+                    <input type="number" max="200" min="0" step="0.1" value={this.bankSettings.getMedSäkerhet().låneinsats}
                            onChange={function(event){
-                            this.bankSettings.getMedSäkerhet().låneinsats = +event.target.value / 100;
+                            this.bankSettings.getMedSäkerhet().låneinsats = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
                 </div>
                 <div>
                     <label>Utan säkerhet</label>
-                    <input type="number" max="200" min="0" value={this.bankSettings.getUtanSäkerhet().låneinsats*100}
+                    <input type="number" max="200" min="0" step="0.1" value={this.bankSettings.getUtanSäkerhet().låneinsats}
                            onChange={function(event){
-                            this.bankSettings.getUtanSäkerhet().låneinsats = +event.target.value / 100;
+                            this.bankSettings.getUtanSäkerhet().låneinsats = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
                 </div>

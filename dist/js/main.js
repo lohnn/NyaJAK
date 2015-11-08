@@ -20024,7 +20024,9 @@ var JAKMixin = {
                         skatteåterbetalning, 
 
                         React.createElement("p", null, 
-                            "Avgår låneinsats: ", Låneinsats.calculate(), " kr"
+                            "Avgår" + ' ' +
+                            "låneinsats: ", Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats()), 
+                            "kr"
                         ), 
 
                         React.createElement("p", null, 
@@ -20050,8 +20052,8 @@ module.exports = JAKMixin;
  */
 
 var Låneinsats = {
-    calculate: function () {
-        return 1400;
+    calculate: function (lånebelopp, insatsProcent) {
+        return lånebelopp * insatsProcent;
     }
 };
 
@@ -20249,7 +20251,8 @@ var BankSettings = React.createClass({displayName: "BankSettings",
 
                 React.createElement("div", null, 
                     React.createElement("label", null, "Med säkerhet"), 
-                    React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", value: this.bankSettings.getMedSäkerhet().lånekostnad, 
+                    React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", 
+                           value: this.bankSettings.getMedSäkerhet().lånekostnad, 
                            onChange: function(event){
                             this.bankSettings.getMedSäkerhet().lånekostnad = +event.target.value;
                             this.props.stateChange(this.bankSettings);
@@ -20257,7 +20260,8 @@ var BankSettings = React.createClass({displayName: "BankSettings",
                 ), 
                 React.createElement("div", null, 
                     React.createElement("label", null, "Utan säkerhet"), 
-                    React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", value: this.bankSettings.getUtanSäkerhet().lånekostnad, 
+                    React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", 
+                           value: this.bankSettings.getUtanSäkerhet().lånekostnad, 
                            onChange: function(event){
                             this.bankSettings.getUtanSäkerhet().lånekostnad = +event.target.value;
                             this.props.stateChange(this.bankSettings);
@@ -20268,17 +20272,17 @@ var BankSettings = React.createClass({displayName: "BankSettings",
 
                 React.createElement("div", null, 
                     React.createElement("label", null, "Med säkerhet"), 
-                    React.createElement("input", {type: "number", max: "200", min: "0", value: this.bankSettings.getMedSäkerhet().låneinsats*100, 
+                    React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", value: this.bankSettings.getMedSäkerhet().låneinsats, 
                            onChange: function(event){
-                            this.bankSettings.getMedSäkerhet().låneinsats = +event.target.value / 100;
+                            this.bankSettings.getMedSäkerhet().låneinsats = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)})
                 ), 
                 React.createElement("div", null, 
                     React.createElement("label", null, "Utan säkerhet"), 
-                    React.createElement("input", {type: "number", max: "200", min: "0", value: this.bankSettings.getUtanSäkerhet().låneinsats*100, 
+                    React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", value: this.bankSettings.getUtanSäkerhet().låneinsats, 
                            onChange: function(event){
-                            this.bankSettings.getUtanSäkerhet().låneinsats = +event.target.value / 100;
+                            this.bankSettings.getUtanSäkerhet().låneinsats = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)})
                 ), 
@@ -20530,7 +20534,7 @@ var BankSettings = function () {
     this.amount = {min: 20000, max: 6000000};
     this.time = {min: 2, max: 40};
     this.lånekostnad = 3;
-    this.låneinsats = 0.06; //TODO: Ange procent här, räkna om på andra ställen PLZ
+    this.låneinsats = 6;
 };
 
 var BankSettingsFactory = function () {
@@ -20597,7 +20601,11 @@ var BankSettingsFactory = function () {
 
     this.getLånekostnad = function () {
         return getCurrent().lånekostnad / 100 / 12;
-    }
+    };
+
+    this.getLåneinsats = function () {
+        return getCurrent().låneinsats / 100;
+    };
 };
 
 module.exports = BankSettingsFactory;

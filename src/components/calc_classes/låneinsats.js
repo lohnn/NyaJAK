@@ -3,8 +3,8 @@
  */
 
 var Låneinsats = {
-    calculate: function () {
-        return 1400;
+    calculate: function (lånebelopp, insatsProcent) {
+        return lånebelopp * insatsProcent;
     }
 };
 
