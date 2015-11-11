@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a359ed0d-ef57-43f3-b628-feedc727a616" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/JAKMixin.js" afterPath="$PROJECT_DIR$/src/components/JAKMixin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/page_parts/bankSettings.js" afterPath="$PROJECT_DIR$/src/components/page_parts/bankSettings.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/settings_objects/bankSettingsFactory.js" afterPath="$PROJECT_DIR$/src/components/settings_objects/bankSettingsFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/calc_classes/låneinsats.js" afterPath="$PROJECT_DIR$/src/components/calc_classes/låneinsats.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/page_parts/loanSettings.js" afterPath="$PROJECT_DIR$/src/components/page_parts/loanSettings.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/main.js" afterPath="$PROJECT_DIR$/dist/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/newJAK.js" afterPath="$PROJECT_DIR$/src/components/newJAK.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/calc_classes/ränta.js" afterPath="$PROJECT_DIR$/src/components/calc_classes/ränta.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JAKLånesystem.iws" />
@@ -33,29 +34,27 @@
         <entry file="file://$PROJECT_DIR$/src/components/JAKMixin.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="87" column="104" selection-start-line="87" selection-start-column="104" selection-end-line="87" selection-end-column="104" />
+              <caret line="107" column="58" selection-start-line="107" selection-start-column="58" selection-end-line="107" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="låneinsats.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/calc_classes/låneinsats.js">
+      <file leaf-file-name="newJAK.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#42#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.8023256">
+              <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bankSettingsFactory.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/settings_objects/bankSettingsFactory.js">
+      <file leaf-file-name="paymentCalculator.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19685039">
-              <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -103,21 +102,21 @@
         <option value="$PROJECT_DIR$/src/less/checkbox.less" />
         <option value="$PROJECT_DIR$/src/components/settings_objects/bankSettings.js" />
         <option value="$PROJECT_DIR$/src/index.html" />
-        <option value="$PROJECT_DIR$/src/components/calc_classes/ränta.js" />
-        <option value="$PROJECT_DIR$/src/components/page_parts/loanSettings.js" />
         <option value="$PROJECT_DIR$/src/components/calc_classes/skattereduktion.js" />
         <option value="$PROJECT_DIR$/src/less/style.less" />
         <option value="$PROJECT_DIR$/src/components/specials/firstLast.js" />
         <option value="$PROJECT_DIR$/src/components/calc_classes/skatteavdrag.js" />
         <option value="$PROJECT_DIR$/.jshintrc" />
-        <option value="$PROJECT_DIR$/src/components/newJAK.js" />
-        <option value="$PROJECT_DIR$/src/components/wrapper.js" />
         <option value="$PROJECT_DIR$/src/components/paymentCalculator.js" />
         <option value="$PROJECT_DIR$/src/components/calc_classes/skatteåterbetalning.js" />
-        <option value="$PROJECT_DIR$/src/components/JAKMixin.js" />
-        <option value="$PROJECT_DIR$/src/components/settings_objects/bankSettingsFactory.js" />
         <option value="$PROJECT_DIR$/src/components/calc_classes/låneinsats.js" />
         <option value="$PROJECT_DIR$/src/components/page_parts/bankSettings.js" />
+        <option value="$PROJECT_DIR$/src/components/settings_objects/bankSettingsFactory.js" />
+        <option value="$PROJECT_DIR$/src/components/calc_classes/ränta.js" />
+        <option value="$PROJECT_DIR$/src/components/page_parts/loanSettings.js" />
+        <option value="$PROJECT_DIR$/src/components/JAKMixin.js" />
+        <option value="$PROJECT_DIR$/src/components/wrapper.js" />
+        <option value="$PROJECT_DIR$/src/components/newJAK.js" />
       </list>
     </option>
   </component>
@@ -429,6 +428,7 @@
     <property name="FullScreen" value="false" />
     <property name="SearchEverywhereHistoryKey" value="wra&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/wrapper.js&#10;loan&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/page_parts/loanSettings.js&#10;loanset&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/page_parts/loanSettings.js&#10;less&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/less/style.less&#10;med säkerhet&#9;null&#9;null&#10;firstL&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/specials/firstLast.js&#10;paymen&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/paymentCalculator.js&#10;loanSet&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js&#10;loansett&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js&#10;loanS&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js" />
     <property name="GO_FMT" value="false" />
+    <property name="ToolWindowDocumentation.ShowToolbar" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -850,7 +850,7 @@
       <workItem from="1446585046079" duration="2715000" />
       <workItem from="1446587778906" duration="3086000" />
       <workItem from="1446912757061" duration="266000" />
-      <workItem from="1447011404177" duration="904000" />
+      <workItem from="1447011404177" duration="8086000" />
     </task>
     <task id="LOCAL-00001" summary="Räknar jämkad lånekostnad vid val av skattejämkning.">
       <created>1446587908420</created>
@@ -864,11 +864,17 @@
       <option name="project" value="LOCAL" />
       <updated>1446671423682</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Låneinsats uträknad.">
+      <created>1447012346129</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1447012346129</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140499000" />
+    <option name="totallyTimeSpent" value="147681000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -876,10 +882,11 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293348" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15297619" sideWeight="0.31842965" order="6" side_tool="true" content_ui="tabs" x="136" y="567" width="1496" height="826" />
+      <window_info id="Documentation" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15297619" sideWeight="0.31842965" order="6" side_tool="true" content_ui="tabs" x="136" y="567" width="1496" height="826" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23227917" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -903,7 +910,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293348" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297619" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -925,7 +931,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Räknar jämkad lånekostnad vid val av skattejämkning." />
     <MESSAGE value="Skatteåterbetalning klar." />
-    <option name="LAST_COMMIT_MESSAGE" value="Skatteåterbetalning klar." />
+    <MESSAGE value="Låneinsats uträknad." />
+    <option name="LAST_COMMIT_MESSAGE" value="Låneinsats uträknad." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1144,13 +1151,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.093406595">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.65625">
@@ -1207,99 +1207,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/oldJAK.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44769403">
-          <caret line="20696" column="80" selection-start-line="20696" selection-start-column="80" selection-end-line="20696" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/wrapper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/calc_classes/ränta.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/calc_classes/skatteåterbetalning.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/calc_classes/skatteavdrag.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page_parts/loanSettings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="54" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/JAKMixin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="87" column="104" selection-start-line="87" selection-start-column="104" selection-end-line="87" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/calc_classes/låneinsats.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/page_parts/bankSettings.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23509562">
@@ -1310,8 +1217,110 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/settings_objects/bankSettingsFactory.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19685039">
-          <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.9943757">
+          <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/calc_classes/låneinsats.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07649044">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/calc_classes/skatteavdrag.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07649044">
+          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/calc_classes/skatteåterbetalning.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4015748">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/calc_classes/ränta.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07544379">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8534923">
+          <caret line="19976" column="54" selection-start-line="19976" selection-start-column="54" selection-end-line="19976" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11584327">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page_parts/loanSettings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54105735">
+          <caret line="74" column="44" selection-start-line="74" selection-start-column="44" selection-end-line="74" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/oldJAK.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15298088">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/wrapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3633296">
+          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/JAKMixin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="58" selection-start-line="107" selection-start-column="58" selection-end-line="107" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8023256">
+          <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
           <folding />
         </state>
       </provider>

@@ -50,7 +50,7 @@ var BankSettingsFactory = function () {
     };
     this.setUKvot = function (value) {
         bankSettings.u_kvot = value;
-    }
+    };
 
     this.getOptimalUKvot = function () {
         return bankSettings.optimal_u_kvot;

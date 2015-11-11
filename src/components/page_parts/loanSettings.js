@@ -27,10 +27,6 @@ var LoanSettings = React.createClass({
         this.loanSettings.säkerhet = value;
         this.props.stateChange(this.loanSettings);
     },
-    changeStraightPayment: function (value) {
-        this.loanSettings.rak_månadsbetalning = value;
-        this.props.stateChange(this.loanSettings);
-    },
     changeSkattejämkning: function (value) {
         this.loanSettings.skattejämkning = value;
         this.props.stateChange(this.loanSettings);
@@ -113,12 +109,6 @@ var LoanSettings = React.createClass({
                 </p>
             </div>
             <div className="floatL">
-                <div className="floatL">
-                    <p>
-                        <b>Rak månadsbetalning:</b>
-                    </p>
-                    <Checkbox value={this.loanSettings.rak_månadsbetalning} onChange={this.changeStraightPayment}/>
-                </div>
                 <div className="floatL">
                     <p>
                         <b>Skattejämkning:</b>

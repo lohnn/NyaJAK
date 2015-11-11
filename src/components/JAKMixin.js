@@ -5,9 +5,10 @@
 var React = require("react");
 var FirstLast = require("./specials/firstLast");
 var Låneinsats = require("./calc_classes/låneinsats");
-var Ränta = require("./calc_classes/ränta");
+//var Ränta = require("./calc_classes/ränta");
 var Skatteavdrag = require("./calc_classes/skatteavdrag");
 var Skatteåterbetalning = require("./calc_classes/skatteåterbetalning");
+var Checkbox = require("./specials/checkbox");
 
 var JAKMixin = {
     divClass: "",
@@ -15,7 +16,6 @@ var JAKMixin = {
 
     componentWillMount: function () {
         this.amortering = 0;
-        this.savings = 0;
         this.efterAmortering = 0;
         this.sparpoängKvar = 0;
     },
@@ -43,7 +43,13 @@ var JAKMixin = {
         return <div className="fiftypc floatL ">
             <div>
                 <div className={this.divClass}>
-                    <h2>{this.headerText}</h2>
+                    <h2 className="floatL">{this.headerText}</h2>
+                    <div className="floatL">
+                        <p>
+                            <b>Rak månadsbetalning:</b>
+                        </p>
+                        <Checkbox value={this.state.rak_månadsbetalning} onChange={this.changeStraightPayment}/>
+                    </div>
 
                     <div className="floatL">
                         <p>Månadsbetalning</p>
@@ -74,17 +80,17 @@ var JAKMixin = {
                     <hr className="clear"/>
                     <div className="clear">
                         <p>
-                            <i>Sparbelopp efter amortering: {this.efterAmortering.toFixed(0)}</i>
+                            Sparbelopp efter amortering: {this.efterAmortering.toFixed(0)} kr
                         </p>
 
                         <p>
-                            Sparpoäng kvar: {this.sparpoängKvar.toFixed(0)}
+                            Sparpoäng kvar: {this.sparpoängKvar.toFixed(0)} poäng
                         </p>
 
                         {skatteåterbetalning}
 
                         <p>
-                            Avgår
+                            Erläggs som
                             låneinsats: {Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats())}
                             kr
                         </p>
@@ -92,15 +98,16 @@ var JAKMixin = {
                         <p>
                             Total lånekostnad: {this.payState.loanCost.total.toFixed(0)} kr
                         </p>
-
-                        <p>
-                            Effektiv ränta: {Ränta.calculate()}%
-                        </p>
                     </div>
                 </div>
                 <hr />
             </div>
         </div>;
+        /*
+           <p>
+             Motsvarar effektiv ränta: {Ränta.calculate()}%
+           </p>
+         */
     }
 };
 
