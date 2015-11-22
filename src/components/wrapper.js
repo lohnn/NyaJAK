@@ -24,7 +24,7 @@ var Wrapper = React.createClass({
                 bestAmortering: 0
             },
             bankSettings: new BankSettingsFactory(),
-            showGamlaJAK: true
+            showGamlaJAK: false
         };
     },
 

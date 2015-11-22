@@ -35,7 +35,7 @@ var NewJAK = React.createClass({
                 </p>
                 <Checkbox value={this.state.rak_månadsbetalning} onChange={this.changeStraightPayment}/>
             </div>
-            <div className="clear" />
+            <div className="clear"/>
         </div>;
 
         this.amortering = (loanSettings.amount / (loanSettings.time * 12));
@@ -58,7 +58,7 @@ var NewJAK = React.createClass({
         var eftersparkrav = ((sparkravsändring / 100) * ((loanSettings.amount / (loanSettings.time * 12)) /
         2 * ((loanSettings.time * 12) + 1) * (loanSettings.time * 12)) - (sparpoängOmräknad));
 
-        var nyttEftersparkrav = Math.max(0, (poängförbrukning * (eftersparprocent / 100)) - sparpoängOmräknad);
+        var nyttEftersparkrav = Math.max(0, (poängförbrukning * (eftersparprocent / 100)) - (sparpoängOmräknad * (loanSettings.förspar / sparpoängOmräknad)));
 
         this.lånekostnad = (bankSettings.getLånekostnad() * loanSettings.amount);
 
@@ -67,7 +67,17 @@ var NewJAK = React.createClass({
 
         this.efterAmortering = ((this.payState.postSavings.start + this.payState.postSavings.end) / 2) * (loanSettings.time * 12);
 
-        this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning - this.payState.ackumuleradePoäng)) * (loanSettings.förspar / sparpoängOmräknad));
+        if (!this.state.rak_månadsbetalning) {
+            this.payState.ackumuleradePoäng = this.payState.eftersparPerMånad * 0.5 * (loanSettings.time * 12) * ((loanSettings.time * 12) + 1);
+
+            //this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning - this.payState.ackumuleradePoäng)) * (loanSettings.förspar / sparpoängOmräknad));
+        }
+
+        //console.log(this.payState.ackumuleradePoäng);
+
+        this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad));
+
+        if (isNaN(this.sparpoängKvar)) this.sparpoängKvar = 0;
     }
 });
 
