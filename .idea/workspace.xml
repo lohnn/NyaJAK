@@ -4,10 +4,8 @@
     <list default="true" id="a359ed0d-ef57-43f3-b628-feedc727a616" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="$PROJECT_DIR$/dist/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/main.js" afterPath="$PROJECT_DIR$/dist/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/newJAK.js" afterPath="$PROJECT_DIR$/src/components/newJAK.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/paymentCalculator.js" afterPath="$PROJECT_DIR$/src/components/paymentCalculator.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/wrapper.js" afterPath="$PROJECT_DIR$/src/components/wrapper.js" />
     </list>
     <ignored path="JAKLånesystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,8 +90,8 @@
       <file leaf-file-name="paymentCalculator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37107778">
-              <caret line="22" column="75" selection-start-line="22" selection-start-column="75" selection-end-line="22" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.6493861">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -891,7 +889,7 @@
       <workItem from="1446912757061" duration="266000" />
       <workItem from="1447011404177" duration="9088000" />
       <workItem from="1447781901359" duration="52000" />
-      <workItem from="1448100350433" duration="36358000" />
+      <workItem from="1448100350433" duration="37124000" />
     </task>
     <task id="LOCAL-00001" summary="Räknar jämkad lånekostnad vid val av skattejämkning.">
       <created>1446587908420</created>
@@ -923,11 +921,17 @@
       <option name="project" value="LOCAL" />
       <updated>1448195545038</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Calculations might be done now... Extensive testing needed!">
+      <created>1448220697644</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1448220697644</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185093000" />
+    <option name="totallyTimeSpent" value="185859000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -987,7 +991,8 @@
     <MESSAGE value="Låneinsats uträknad." />
     <MESSAGE value="Totala sparbeloppet uträknat." />
     <MESSAGE value="So much done!&#10;Gamla JAK-banken working.&#10;Functionality for straight payment or not.&#10;TODO: calculate sparpoängKvar correctly." />
-    <option name="LAST_COMMIT_MESSAGE" value="So much done!&#10;Gamla JAK-banken working.&#10;Functionality for straight payment or not.&#10;TODO: calculate sparpoängKvar correctly." />
+    <MESSAGE value="Calculations might be done now... Extensive testing needed!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calculations might be done now... Extensive testing needed!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1368,8 +1373,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37107778">
-          <caret line="22" column="75" selection-start-line="22" selection-start-column="75" selection-end-line="22" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.6493861">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>
