@@ -23,7 +23,6 @@ var LoanSettings = React.createClass({
 
     changeSäkerhet: function (value) {
         this.bankSettings.setSäkerhet(value);
-
         this.loanSettings.säkerhet = value;
         this.props.stateChange(this.loanSettings);
     },
@@ -33,9 +32,9 @@ var LoanSettings = React.createClass({
     },
 
     render: function () {
-        var bestAmortering = ((this.bankSettings.getTimeMax() - this.bankSettings.getTimeMin()) /
+        this.loanSettings.bestAmortering = ((this.bankSettings.getTimeMax() - this.bankSettings.getTimeMin()) /
             this.bankSettings.getOptimalUKvot()) * this.bankSettings.getUKvot() + this.bankSettings.getTimeMin();
-        bestAmortering = (this.bankSettings.getTimeMax() < bestAmortering) ? this.bankSettings.getTimeMax() : bestAmortering;
+        this.loanSettings.bestAmortering = (this.bankSettings.getTimeMax() < this.loanSettings.bestAmortering) ? this.bankSettings.getTimeMax() : this.loanSettings.bestAmortering;
 
         return <div className="header">
             <h1 className="clear">JAK-lån</h1>
@@ -105,7 +104,7 @@ var LoanSettings = React.createClass({
                 </div>
                 <p className="noMargins clear">
                     <i>Idag mest fördelaktiga amorteringstid i nya JAK-banken: Upp
-                        till {bestAmortering.toFixed(1)} år</i>
+                        till {this.loanSettings.bestAmortering.toFixed(1)} år</i>
                 </p>
             </div>
             <div className="floatL">

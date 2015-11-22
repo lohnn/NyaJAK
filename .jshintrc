@@ -1,7 +1,7 @@
 {
-  "maxparams": 5,
+//  "maxparams": 5,
   "maxdepth": 5,
-  "maxstatements": 30,
+//  "maxstatements": 30,
   "maxcomplexity": 10,
   "node": true,
   "browser": true,

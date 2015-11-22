@@ -19948,7 +19948,6 @@ var Låneinsats = require("./calc_classes/låneinsats");
 //var Ränta = require("./calc_classes/ränta");
 var Skatteavdrag = require("./calc_classes/skatteavdrag");
 var Skatteåterbetalning = require("./calc_classes/skatteåterbetalning");
-var Checkbox = require("./specials/checkbox");
 
 var JAKMixin = {
     divClass: "",
@@ -19975,21 +19974,15 @@ var JAKMixin = {
         if (!this.props.loanSettings.skattejämkning) {
             skatteåterbetalning = Skatteåterbetalning.calculate(this.props.loanSettings, this.props.bankSettings.getLånekostnad(), this.amortering);
             skatteåterbetalning = React.createElement("p", null, 
-                "Skatteåterbetalning/år: ", React.createElement(FirstLast, {first: skatteåterbetalning.first.toFixed(0), 
-                                                   last: skatteåterbetalning.last.toFixed(0)}), " kr"
+                "(Skatteåterbetalning/år: ", React.createElement(FirstLast, {first: skatteåterbetalning.first.toFixed(0), 
+                                                    last: skatteåterbetalning.last.toFixed(0)}), " kr)"
             );
         }
 
         return React.createElement("div", {className: "fiftypc floatL "}, 
             React.createElement("div", null, 
                 React.createElement("div", {className: this.divClass}, 
-                    React.createElement("h2", {className: "floatL"}, this.headerText), 
-                    React.createElement("div", {className: "floatL"}, 
-                        React.createElement("p", null, 
-                            React.createElement("b", null, "Rak månadsbetalning:")
-                        ), 
-                        React.createElement(Checkbox, {value: this.state.rak_månadsbetalning, onChange: this.changeStraightPayment})
-                    ), 
+                    this.headerText, 
 
                     React.createElement("div", {className: "floatL"}, 
                         React.createElement("p", null, "Månadsbetalning"), 
@@ -20027,8 +20020,6 @@ var JAKMixin = {
                             "Sparpoäng kvar: ", this.sparpoängKvar.toFixed(0), " poäng"
                         ), 
 
-                        skatteåterbetalning, 
-
                         React.createElement("p", null, 
                             "Erläggs som" + ' ' +
                             "låneinsats: ", Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats()), 
@@ -20037,23 +20028,28 @@ var JAKMixin = {
 
                         React.createElement("p", null, 
                             "Total lånekostnad: ", this.payState.loanCost.total.toFixed(0), " kr"
-                        )
+                        ), 
+
+                        React.createElement("p", null, 
+                            "Totalt skatteavdrag: ", (this.payState.loanCost.total * -0.3).toFixed(0), "kr"
+                        ), 
+                        skatteåterbetalning
                     )
                 ), 
                 React.createElement("hr", null)
             )
         );
         /*
-           <p>
-             Motsvarar effektiv ränta: {Ränta.calculate()}%
-           </p>
+         <p>
+         Motsvarar effektiv ränta: {Ränta.calculate()}%
+         </p>
          */
     }
 };
 
 module.exports = JAKMixin;
 
-},{"./calc_classes/låneinsats":158,"./calc_classes/skatteavdrag":159,"./calc_classes/skatteåterbetalning":160,"./specials/checkbox":166,"./specials/firstLast":167,"react":156}],158:[function(require,module,exports){
+},{"./calc_classes/låneinsats":158,"./calc_classes/skatteavdrag":159,"./calc_classes/skatteåterbetalning":160,"./specials/firstLast":168,"react":156}],158:[function(require,module,exports){
 /**
  * Created by lohnn on 2015-10-30.
  */
@@ -20111,6 +20107,7 @@ module.exports = Skatteåterbetalning;
 var JAKMixin = require("./JAKMixin");
 var PaymentMixin = require("./paymentCalculator");
 var React = require("react");
+var Checkbox = require("./specials/checkbox");
 
 var NewJAK = React.createClass({displayName: "NewJAK",
     mixins: [JAKMixin],
@@ -20122,52 +20119,101 @@ var NewJAK = React.createClass({displayName: "NewJAK",
     getInitialState: function () {
         return {
             rak_månadsbetalning: true
-        }
+        };
     },
 
     componentWillMount: function () {
         this.divClass = "newJAK";
-        this.headerText = "Nya JAK-banken";
     },
 
     //TODO: See if I can modulize this even more, making sure I provide all "this"-settings
     calculate: function (loanSettings, bankSettings) {
+        this.headerText = React.createElement("div", null, 
+            React.createElement("h2", {className: "floatL"}, "Nya JAK-banken"), 
+
+            React.createElement("div", {className: "floatL"}, 
+                React.createElement("p", null, 
+                    React.createElement("b", null, "Rak månadsbetalning:")
+                ), 
+                React.createElement(Checkbox, {value: this.state.rak_månadsbetalning, onChange: this.changeStraightPayment})
+            ), 
+            React.createElement("div", {className: "clear"})
+        );
+
         this.amortering = (loanSettings.amount / (loanSettings.time * 12));
 
         //M26
-        var minstaSparkrav = 100 / (bankSettings.getOptimalUKvot() / bankSettings.getUKvot());
+        var minstaSparprocent = 100 / (bankSettings.getOptimalUKvot() / bankSettings.getUKvot());
         //M43
         var sparkravsändring = 100 / (bankSettings.getOptimalUKvot() / ((bankSettings.getOptimalUKvot() /
             (bankSettings.getTimeMax() - bankSettings.getTimeMin())) * (loanSettings.time - bankSettings.getTimeMin())));
-        sparkravsändring = (minstaSparkrav > sparkravsändring ) ? minstaSparkrav : sparkravsändring;
+        sparkravsändring = (minstaSparprocent > sparkravsändring ) ? minstaSparprocent : sparkravsändring;
         //N38
         var sparpoängOmräknad = loanSettings.förspar * (1 / (bankSettings.getUKvot() / bankSettings.getOptimalUKvot()));
 
         //M44
+        var eftersparprocent = Math.max(minstaSparprocent,
+            ((loanSettings.bestAmortering * minstaSparprocent) + ((loanSettings.time - loanSettings.bestAmortering) * 100)) / loanSettings.time);
+
+        var poängförbrukning = ((this.amortering / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));
+
         var eftersparkrav = ((sparkravsändring / 100) * ((loanSettings.amount / (loanSettings.time * 12)) /
         2 * ((loanSettings.time * 12) + 1) * (loanSettings.time * 12)) - (sparpoängOmräknad));
 
-        //this.savings = ((eftersparkrav / poängförbrukning) * this.amortering);
-        //this.savings = (this.savings < 0) ? 0 : this.savings;
+        var nyttEftersparkrav = Math.max(0, (poängförbrukning * (eftersparprocent / 100)) - sparpoängOmräknad);
 
         this.lånekostnad = (bankSettings.getLånekostnad() * loanSettings.amount);
 
-        //this.månadsbetalning = this.amortering + this.savings + this.lånekostnad;
-
         //Beräkna raka månadsbetalningen
-        this.payState = PaymentMixin.calculateStraightPayment(loanSettings, bankSettings, this.amortering, eftersparkrav);
+        this.payState = PaymentMixin.calculatePayment(loanSettings, bankSettings, this.amortering, eftersparkrav, nyttEftersparkrav, this.state.rak_månadsbetalning);
 
         this.efterAmortering = ((this.payState.postSavings.start + this.payState.postSavings.end) / 2) * (loanSettings.time * 12);
 
-        //O44
-        var poängförbrukning = ((this.amortering / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));
-        this.sparpoängKvar = (loanSettings.förspar > poängförbrukning) ? loanSettings.förspar - poängförbrukning : 0;
+        this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning - this.payState.ackumuleradePoäng)) * (loanSettings.förspar / sparpoängOmräknad));
     }
 });
 
 module.exports = NewJAK;
 
-},{"./JAKMixin":157,"./paymentCalculator":164,"react":156}],162:[function(require,module,exports){
+},{"./JAKMixin":157,"./paymentCalculator":165,"./specials/checkbox":167,"react":156}],162:[function(require,module,exports){
+/**
+ * Created by lohnn
+ */
+
+var JAKMixin = require("./JAKMixin");
+var PaymentMixin = require("./paymentCalculator");
+var React = require("react");
+
+var OldJAK = React.createClass({displayName: "OldJAK",
+    mixins: [JAKMixin],
+
+    componentWillMount: function () {
+        this.divClass = "oldJAK";
+        this.headerText = React.createElement("h2", null, "Gamla JAK-banken");
+    },
+
+    calculate: function (loanSettings, bankSettings) {
+
+        this.amortering = (loanSettings.amount / (loanSettings.time * 12));
+
+        var poängförbrukning = ((this.amortering / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));
+
+        var eftersparkrav = Math.max(0, poängförbrukning - loanSettings.förspar);
+
+        this.lånekostnad = (bankSettings.getLånekostnad() * loanSettings.amount);
+
+        //Beräkna raka månadsbetalningen
+        this.payState = PaymentMixin.calculatePayment(loanSettings, bankSettings, this.amortering, eftersparkrav, eftersparkrav, false);
+
+        this.efterAmortering = ((this.payState.postSavings.start + this.payState.postSavings.end) / 2) * (loanSettings.time * 12);
+
+        this.sparpoängKvar = Math.max(0, loanSettings.förspar - poängförbrukning);
+    }
+});
+
+module.exports = OldJAK;
+
+},{"./JAKMixin":157,"./paymentCalculator":165,"react":156}],163:[function(require,module,exports){
 var React = require("react");
 
 var BankSettings = React.createClass({displayName: "BankSettings",
@@ -20305,6 +20351,7 @@ var BankSettings = React.createClass({displayName: "BankSettings",
     render: function () {
         var temp = this.renderAdvancedSettings();
         return React.createElement("div", {className: "marginbottom"}, 
+            React.createElement("h3", null, "Inställningar:"), 
             React.createElement("label", {className: "u-kvot"}, "Aktuell U-Kvot: "), 
             React.createElement("input", {type: "number", min: "0", max: "1", step: 0.01, 
                    value: this.props.values.getUKvot(), 
@@ -20324,7 +20371,7 @@ var BankSettings = React.createClass({displayName: "BankSettings",
 
 module.exports = BankSettings;
 
-},{"react":156}],163:[function(require,module,exports){
+},{"react":156}],164:[function(require,module,exports){
 var React = require("react");
 var Checkbox = require("../specials/checkbox");
 
@@ -20350,7 +20397,6 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
 
     changeSäkerhet: function (value) {
         this.bankSettings.setSäkerhet(value);
-
         this.loanSettings.säkerhet = value;
         this.props.stateChange(this.loanSettings);
     },
@@ -20360,9 +20406,9 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
     },
 
     render: function () {
-        var bestAmortering = ((this.bankSettings.getTimeMax() - this.bankSettings.getTimeMin()) /
+        this.loanSettings.bestAmortering = ((this.bankSettings.getTimeMax() - this.bankSettings.getTimeMin()) /
             this.bankSettings.getOptimalUKvot()) * this.bankSettings.getUKvot() + this.bankSettings.getTimeMin();
-        bestAmortering = (this.bankSettings.getTimeMax() < bestAmortering) ? this.bankSettings.getTimeMax() : bestAmortering;
+        this.loanSettings.bestAmortering = (this.bankSettings.getTimeMax() < this.loanSettings.bestAmortering) ? this.bankSettings.getTimeMax() : this.loanSettings.bestAmortering;
 
         return React.createElement("div", {className: "header"}, 
             React.createElement("h1", {className: "clear"}, "JAK-lån"), 
@@ -20432,7 +20478,7 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
                 ), 
                 React.createElement("p", {className: "noMargins clear"}, 
                     React.createElement("i", null, "Idag mest fördelaktiga amorteringstid i nya JAK-banken: Upp" + ' ' +
-                        "till ", bestAmortering.toFixed(1), " år")
+                        "till ", this.loanSettings.bestAmortering.toFixed(1), " år")
                 )
             ), 
             React.createElement("div", {className: "floatL"}, 
@@ -20452,7 +20498,7 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
 
 module.exports = LoanSettings;
 
-},{"../specials/checkbox":166,"react":156}],164:[function(require,module,exports){
+},{"../specials/checkbox":167,"react":156}],165:[function(require,module,exports){
 /**
  * Created by lohnn
  */
@@ -20462,9 +20508,10 @@ var PaymentMixin = {
         this.monthlyPay = {start: 0, end: 20};
         this.loanCost = {start: 20, end: 0, total: 0};
         this.postSavings = {start: 0, end: 20};
+        this.ackumuleradePoäng = 0;
     },
 
-    calculateStraightPayment: function (loanSettings, bankSettings, amortering, eftersparkrav) {
+    calculatePayment: function (loanSettings, bankSettings, amortering, eftersparkrav, nyttEftersparkrav, rak_månadsbetalning) {
         var payState = new this.payState();
 
         var loanCost = {start: bankSettings.getLånekostnad() * (loanSettings.amount)};
@@ -20472,42 +20519,51 @@ var PaymentMixin = {
         loanCost.end = bankSettings.getLånekostnad() * (tempAmount);
         loanCost.total = (loanCost.start + loanCost.end) / 2 * (loanSettings.time * 12);
 
-
         var skatteavdrag = (loanSettings.skattejämkning) ? 0.7 : 1;
         var jämkadLånekostnad = {start: loanCost.start * skatteavdrag, end: loanCost.end * skatteavdrag};
-        var eftersparPerMånad = ((eftersparkrav / (loanSettings.time * 12)) / ((loanSettings.time * 12) + 1)) * 2;
+        var eftersparPerMånad = ((nyttEftersparkrav / (loanSettings.time * 12)) / ((loanSettings.time * 12) + 1)) * 2;
 
-        var ackumuleradePoang = 0, sumPostSavings = 0;
+        var postSavings;
+        var sumPostSavings = 0, ackumuleradePoang = 0;
         for (var i = 0; i < loanSettings.time * 12; i += 1) {
             tempAmount = loanSettings.amount - amortering * i;
-            sumPostSavings += (eftersparPerMånad / 2) + (jämkadLånekostnad.start - bankSettings.getLånekostnad() * (tempAmount) * skatteavdrag);
+            var tempLånekostnad = (skatteavdrag * bankSettings.getLånekostnad() * tempAmount);
+            var tempPostSavings = (eftersparPerMånad / 2) + (jämkadLånekostnad.start - tempLånekostnad);
+            sumPostSavings += tempPostSavings;
             ackumuleradePoang += sumPostSavings;
         }
 
-        var efterspar = {
-            start: ((eftersparPerMånad / 2) + (jämkadLånekostnad.start - jämkadLånekostnad.start) +
-            ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12))),
-            end: ((eftersparPerMånad / 2) + (jämkadLånekostnad.start - jämkadLånekostnad.end) +
-            ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12)))
-        };
+        if (rak_månadsbetalning) {
+            postSavings = {
+                start: ((eftersparPerMånad / 2) + (jämkadLånekostnad.start - jämkadLånekostnad.start) +
+                ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12))),
+                end: ((eftersparPerMånad / 2) + (jämkadLånekostnad.start - jämkadLånekostnad.end) +
+                ((2 * (eftersparkrav - ackumuleradePoang)) / ((loanSettings.time * 12 + 1) * loanSettings.time * 12)))
+            };
 
-        if (efterspar.start < 0) {
-            efterspar.start = 0;
+            if (postSavings.start < 0) {
+                postSavings.start = 0;
 
-            tempAmount = efterspar.start;
-            for (i = 0; i < loanSettings.time * 12 - 1; i += 1) {
-                tempAmount = jämkadLånekostnad.start / (loanSettings.time * 12) + tempAmount;
+                tempAmount = postSavings.start;
+                for (i = 0; i < loanSettings.time * 12 - 1; i += 1) {
+                    tempAmount = jämkadLånekostnad.start / (loanSettings.time * 12) + tempAmount;
+                }
+                postSavings.end = tempAmount;
             }
-            efterspar.end = tempAmount;
+        } else {
+            postSavings = {start: eftersparPerMånad, end: eftersparPerMånad};
+            //ackumuleradePoang = 42;
         }
+
 
         payState.loanCost.start = loanCost.start;
         payState.loanCost.end = loanCost.end;
         payState.loanCost.total = loanCost.total;
-        payState.postSavings.start = efterspar.start;
-        payState.postSavings.end = efterspar.end;
+        payState.postSavings.start = postSavings.start;
+        payState.postSavings.end = postSavings.end;
         payState.monthlyPay.start = payState.postSavings.start + amortering + jämkadLånekostnad.start;
         payState.monthlyPay.end = payState.postSavings.end + amortering + jämkadLånekostnad.end;
+        payState.ackumuleradePoäng = ackumuleradePoang;
 
         return payState;
     }
@@ -20515,7 +20571,7 @@ var PaymentMixin = {
 
 module.exports = PaymentMixin;
 
-},{}],165:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 /**
  * Created by lohnn on 2015-10-10.
  */
@@ -20604,7 +20660,7 @@ var BankSettingsFactory = function () {
 
 module.exports = BankSettingsFactory;
 
-},{}],166:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 var React = require("react");
 
 var Checkbox = React.createClass({displayName: "Checkbox",
@@ -20648,7 +20704,7 @@ var Checkbox = React.createClass({displayName: "Checkbox",
 
 module.exports = Checkbox;
 
-},{"react":156}],167:[function(require,module,exports){
+},{"react":156}],168:[function(require,module,exports){
 /**
  * Created by lohnn on 2015-10-11.
  */
@@ -20664,13 +20720,13 @@ var MinMax = React.createClass({displayName: "MinMax",
 
 module.exports = MinMax;
 
-},{"react":156}],168:[function(require,module,exports){
+},{"react":156}],169:[function(require,module,exports){
 /**
  * Created by lohnn
  */
 
 var NewJAK = require("./newJAK");
-//var OldJAK = require("./oldJAK");
+var OldJAK = require("./oldJAK");
 var React = require("react");
 var LoanSettings = require("./page_parts/loanSettings");
 var BankSettings = require("./page_parts/bankSettings");
@@ -20684,39 +20740,52 @@ var Wrapper = React.createClass({displayName: "Wrapper",
             loanSettings: {
                 amount: 1000000,
                 time: 20,
-                förspar: 500000000,
+                förspar: 5000000,
                 säkerhet: true,
                 rak_månadsbetalning: true,
-                skattejämkning: true
+                skattejämkning: true,
+                bestAmortering: 0
             },
-            bankSettings: new BankSettingsFactory()
+            bankSettings: new BankSettingsFactory(),
+            showGamlaJAK: true
         };
     },
 
+    showGamlaJAKbanken: function (event) {
+        this.setState({showGamlaJAK: event.target.checked});
+    },
+
     render: function () {
+        var gamlaJAK = this.state.showGamlaJAK ?
+            React.createElement(OldJAK, {loanSettings: this.state.loanSettings, bankSettings: this.state.bankSettings}) : "";
         return React.createElement("div", null, 
             React.createElement(LoanSettings, {values: this.state.loanSettings, bankSettings: this.state.bankSettings, 
-                stateChange: function (loanSettings) {
+                          stateChange: function (loanSettings) {
                     this.setState({loanSettings: loanSettings});
                 }.bind(this)}), 
 
             React.createElement("div", null, 
                 React.createElement("hr", null), 
+                React.createElement("label", {className: "startFiftypc"}, "Jämförelse med gamla JAK-banken", 
+                    React.createElement("input", {type: "checkbox", checked: this.state.showGamlaJAK, 
+                           onChange: this.showGamlaJAKbanken})), 
+
+                React.createElement("div", {className: "clear"}), 
                 React.createElement(NewJAK, {loanSettings: this.state.loanSettings, bankSettings: this.state.bankSettings}), 
-                React.createElement("br", null)
+                gamlaJAK, 
+                React.createElement("div", {className: "clear"})
             ), 
             React.createElement(BankSettings, {values: this.state.bankSettings, 
-                stateChange: function (bankSettings) {
+                          stateChange: function (bankSettings) {
                     this.setState({bankSettings: bankSettings});
                 }.bind(this)})
         );
     }
-    //                <OldJAK loanSettings={this.state.loanSettings} bankSettings={this.state.bankSettings} />
 });
 
 module.exports = Wrapper;
 
-},{"./newJAK":161,"./page_parts/bankSettings":162,"./page_parts/loanSettings":163,"./settings_objects/bankSettingsFactory":165,"react":156}],169:[function(require,module,exports){
+},{"./newJAK":161,"./oldJAK":162,"./page_parts/bankSettings":163,"./page_parts/loanSettings":164,"./settings_objects/bankSettingsFactory":166,"react":156}],170:[function(require,module,exports){
 var Wrapper = require("./components/wrapper");
 var React = require('react');
 
@@ -20725,4 +20794,4 @@ React.render(
     document.getElementById("main")
 );
 
-},{"./components/wrapper":168,"react":156}]},{},[169])
+},{"./components/wrapper":169,"react":156}]},{},[170])

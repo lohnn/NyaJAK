@@ -83,6 +83,9 @@ body {
 .hundredpc {
   width: 100%;
 }
+.startFiftypc {
+  margin-left: 50%;
+}
 .clear {
   clear: both;
 }

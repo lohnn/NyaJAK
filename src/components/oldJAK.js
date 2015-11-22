@@ -11,42 +11,25 @@ var OldJAK = React.createClass({
 
     componentWillMount: function () {
         this.divClass = "oldJAK";
-        this.headerText = "Gamla JAK-banken";
+        this.headerText = <h2>Gamla JAK-banken</h2>;
     },
 
     calculate: function (loanSettings, bankSettings) {
 
         this.amortering = (loanSettings.amount / (loanSettings.time * 12));
 
-        var poängförbrukning = (((loanSettings.amount / (loanSettings.time * 12)) /
-            2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));
+        var poängförbrukning = ((this.amortering / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));
 
-        this.savings = ((poängförbrukning - loanSettings.förspar) / poängförbrukning) * this.amortering;
+        var eftersparkrav = Math.max(0, poängförbrukning - loanSettings.förspar);
 
         this.lånekostnad = (bankSettings.getLånekostnad() * loanSettings.amount);
 
-        this.månadsbetalning = this.amortering + this.savings + this.lånekostnad;
+        //Beräkna raka månadsbetalningen
+        this.payState = PaymentMixin.calculatePayment(loanSettings, bankSettings, this.amortering, eftersparkrav, eftersparkrav, false);
 
-        this.efterAmortering = this.savings * loanSettings.time * 12;
+        this.efterAmortering = ((this.payState.postSavings.start + this.payState.postSavings.end) / 2) * (loanSettings.time * 12);
 
-        //M26
-        var minstaSparkrav = 100 / (bankSettings.getOptimalUKvot() / bankSettings.getUKvot());
-        //M44
-        var sparkravsändring = 100 / (bankSettings.getOptimalUKvot() / ((bankSettings.getOptimalUKvot() /
-            (bankSettings.getTimeMax() - bankSettings.getTimeMin)) * (loanSettings.time - bankSettings.getTimeMin())));
-        sparkravsändring = (minstaSparkrav > sparkravsändring ) ? minstaSparkrav : sparkravsändring;
-        //N38
-        //var sparpoängOmräknad = loanSettings.förspar * (1 / (bankSettings.u_kvot / bankSettings.optimal_u_kvot));
-        //M44
-        //var eftersparkrav = ((sparkravsändring / 100) * ((loanSettings.amount / (loanSettings.time * 12)) /
-        //    2 * ((loanSettings.time * 12) + 1) * (loanSettings.time * 12)) - (sparpoängOmräknad));
-        //O44
-
-        this.sparpoängKvar = (loanSettings.förspar > poängförbrukning) ? loanSettings.förspar - poängförbrukning : 0;
-
-        var eftersparkrav = (((loanSettings.amount / (loanSettings.time * 12)) / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12)) - loanSettings.förspar;
-
-        this.payState = PaymentMixin.calculateStraightPayment(loanSettings, bankSettings, this.amortering, eftersparkrav);
+        this.sparpoängKvar = Math.max(0, loanSettings.förspar - poängförbrukning);
     }
 });
 

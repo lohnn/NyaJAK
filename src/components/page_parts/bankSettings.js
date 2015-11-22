@@ -135,6 +135,7 @@ var BankSettings = React.createClass({
     render: function () {
         var temp = this.renderAdvancedSettings();
         return <div className="marginbottom">
+            <h3>Inställningar:</h3>
             <label className="u-kvot">Aktuell U-Kvot: </label>
             <input type="number" min="0" max="1" step={0.01}
                    value={this.props.values.getUKvot()}
