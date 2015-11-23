@@ -69,11 +69,7 @@ var NewJAK = React.createClass({
 
         if (!this.state.rak_månadsbetalning) {
             this.payState.ackumuleradePoäng = this.payState.eftersparPerMånad * 0.5 * (loanSettings.time * 12) * ((loanSettings.time * 12) + 1);
-
-            //this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning - this.payState.ackumuleradePoäng)) * (loanSettings.förspar / sparpoängOmräknad));
         }
-
-        //console.log(this.payState.ackumuleradePoäng);
 
         this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad));
 

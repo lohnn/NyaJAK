@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a359ed0d-ef57-43f3-b628-feedc727a616" name="Default" comment="PostSavings now works!">
+    <list default="true" id="a359ed0d-ef57-43f3-b628-feedc727a616" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/main.js" afterPath="$PROJECT_DIR$/dist/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/newJAK.js" afterPath="$PROJECT_DIR$/src/components/newJAK.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/paymentCalculator.js" afterPath="$PROJECT_DIR$/src/components/paymentCalculator.js" />
@@ -81,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+              <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -90,8 +90,8 @@
       <file leaf-file-name="paymentCalculator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7653479">
-              <caret line="66" column="61" selection-start-line="66" selection-start-column="61" selection-end-line="66" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.39699864">
+              <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -889,7 +889,7 @@
       <workItem from="1446912757061" duration="266000" />
       <workItem from="1447011404177" duration="9088000" />
       <workItem from="1447781901359" duration="52000" />
-      <workItem from="1448100350433" duration="40593000" />
+      <workItem from="1448100350433" duration="41655000" />
     </task>
     <task id="LOCAL-00001" summary="Räknar jämkad lånekostnad vid val av skattejämkning.">
       <created>1446587908420</created>
@@ -939,11 +939,17 @@
       <option name="project" value="LOCAL" />
       <updated>1448222694331</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Recalculated eftersparkrav on rak månadsbetalning.">
+      <created>1448302946732</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1448302946732</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189328000" />
+    <option name="totallyTimeSpent" value="190390000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -1006,7 +1012,8 @@
     <MESSAGE value="Calculations might be done now... Extensive testing needed!" />
     <MESSAGE value="Ackumulerade poäng works now." />
     <MESSAGE value="PostSavings now works!" />
-    <option name="LAST_COMMIT_MESSAGE" value="PostSavings now works!" />
+    <MESSAGE value="Recalculated eftersparkrav on rak månadsbetalning." />
+    <option name="LAST_COMMIT_MESSAGE" value="Recalculated eftersparkrav on rak månadsbetalning." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1337,14 +1344,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/oldJAK.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.jshintrc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3076923">
@@ -1380,15 +1379,23 @@
     <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/oldJAK.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7653479">
-          <caret line="66" column="61" selection-start-line="66" selection-start-column="61" selection-end-line="66" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.39699864">
+          <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
           <folding />
         </state>
       </provider>

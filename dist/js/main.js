@@ -20171,11 +20171,7 @@ var NewJAK = React.createClass({displayName: "NewJAK",
 
         if (!this.state.rak_månadsbetalning) {
             this.payState.ackumuleradePoäng = this.payState.eftersparPerMånad * 0.5 * (loanSettings.time * 12) * ((loanSettings.time * 12) + 1);
-
-            //this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning - this.payState.ackumuleradePoäng)) * (loanSettings.förspar / sparpoängOmräknad));
         }
-
-        //console.log(this.payState.ackumuleradePoäng);
 
         this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad));
 
@@ -20536,6 +20532,7 @@ var PaymentMixin = {
         var postSavings, ackumuleradePoang = 0;
 
         if (rak_månadsbetalning) {
+            //I
             var sumPostSavings = 0;
             for (var i = 0; i < loanSettings.time * 12; i += 1) {
                 tempAmount = loanSettings.amount - amortering * i;
@@ -20563,17 +20560,11 @@ var PaymentMixin = {
                 //var tempLånekostnad = (skatteavdrag * bankSettings.getLånekostnad() * tempAmount);
                 //postSavings.end = (eftersparPerMånad / 2) + (jämkadLånekostnad.start - tempLånekostnad);
 
-                //TODO: User equation for calculating postSavins start and end instead of setting 0
-                //TODO: NaN exception, set to Zero!
                 //TODO: Kontrollera sparpoängkvar
                 //TODO: Layout!
 
-                postSavings.start = 0;
-                tempAmount = postSavings.start;
-                for (i = 0; i < loanSettings.time * 12 - 1; i += 1) {
-                    tempAmount = jämkadLånekostnad.start / (loanSettings.time * 12) + tempAmount;
-                }
-                postSavings.end = tempAmount;
+                postSavings.start = (eftersparPerMånad / 2);
+                postSavings.end = (eftersparPerMånad / 2) + (jämkadLånekostnad.start - jämkadLånekostnad.end);
             } else { //Använd I
                 var oldAckumuleradePoang = ackumuleradePoang;
                 sumPostSavings = ackumuleradePoang = 0;
