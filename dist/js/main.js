@@ -19948,6 +19948,7 @@ var Låneinsats = require("./calc_classes/låneinsats");
 //var Ränta = require("./calc_classes/ränta");
 var Skatteavdrag = require("./calc_classes/skatteavdrag");
 var Skatteåterbetalning = require("./calc_classes/skatteåterbetalning");
+var NumerShow = require("./../extras/NumberShow");
 
 var JAKMixin = {
     divClass: "",
@@ -19981,7 +19982,7 @@ var JAKMixin = {
 
         return React.createElement("div", {className: "fiftypc floatL "}, 
             React.createElement("div", null, 
-                React.createElement("div", {className: this.divClass}, 
+                React.createElement("div", {className: "box"}, 
                     this.headerText, 
 
                     React.createElement("div", {className: "floatL"}, 
@@ -19997,7 +19998,8 @@ var JAKMixin = {
                         React.createElement("img", {className: "floatL", src: "images/bracket.png"}), 
 
                         React.createElement("div", {className: "floatL"}, 
-                            React.createElement("p", null, "Amortering (rak): ", React.createElement("span", {className: "orangeText boldText"}, this.amortering.toFixed(0), 
+                            React.createElement("p", null, "Amortering (rak): ", React.createElement("span", {
+                                className: "orangeText boldText"}, NumerShow.setSeparator(this.amortering.toFixed(0)), 
                                 "kr")), 
 
                             React.createElement("p", null, "Sparande: ", React.createElement("span", {className: "orangeText boldText"}, React.createElement(FirstLast, {
@@ -20013,25 +20015,26 @@ var JAKMixin = {
                     React.createElement("hr", {className: "clear"}), 
                     React.createElement("div", {className: "clear"}, 
                         React.createElement("p", null, 
-                            "Sparbelopp efter amortering: ", this.efterAmortering.toFixed(0), " kr"
+                            "Sparbelopp efter amortering: ", NumerShow.setSeparator(this.efterAmortering.toFixed(0)), " kr"
                         ), 
 
                         React.createElement("p", null, 
-                            "Sparpoäng kvar: ", this.sparpoängKvar.toFixed(0), " poäng"
+                            "Sparpoäng kvar: ", NumerShow.setSeparator(this.sparpoängKvar.toFixed(0)), " poäng"
                         ), 
 
                         React.createElement("p", null, 
                             "Erläggs som" + ' ' +
-                            "låneinsats: ", Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats()), 
+                            "låneinsats: ", NumerShow.setSeparator(Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats())), 
                             "kr"
                         ), 
 
                         React.createElement("p", null, 
-                            "Total lånekostnad: ", this.payState.loanCost.total.toFixed(0), " kr"
+                            "Total lånekostnad: ", NumerShow.setSeparator(this.payState.loanCost.total.toFixed(0)), " kr"
                         ), 
 
                         React.createElement("p", null, 
-                            "Totalt skatteavdrag: ", (this.payState.loanCost.total * -0.3).toFixed(0), "kr"
+                            "Totalt" + ' ' +
+                            "skatteavdrag: ", NumerShow.setSeparator((this.payState.loanCost.total * -0.3).toFixed(0)), "kr"
                         ), 
                         skatteåterbetalning
                     )
@@ -20049,7 +20052,7 @@ var JAKMixin = {
 
 module.exports = JAKMixin;
 
-},{"./calc_classes/låneinsats":158,"./calc_classes/skatteavdrag":159,"./calc_classes/skatteåterbetalning":160,"./specials/firstLast":168,"react":156}],158:[function(require,module,exports){
+},{"./../extras/NumberShow":170,"./calc_classes/låneinsats":158,"./calc_classes/skatteavdrag":159,"./calc_classes/skatteåterbetalning":160,"./specials/firstLast":168,"react":156}],158:[function(require,module,exports){
 /**
  * Created by lohnn on 2015-10-30.
  */
@@ -20122,10 +20125,6 @@ var NewJAK = React.createClass({displayName: "NewJAK",
         };
     },
 
-    componentWillMount: function () {
-        this.divClass = "newJAK";
-    },
-
     //TODO: See if I can modulize this even more, making sure I provide all "this"-settings
     calculate: function (loanSettings, bankSettings) {
         this.headerText = React.createElement("div", null, 
@@ -20194,7 +20193,6 @@ var OldJAK = React.createClass({displayName: "OldJAK",
     mixins: [JAKMixin],
 
     componentWillMount: function () {
-        this.divClass = "oldJAK";
         this.headerText = React.createElement("h2", null, "Gamla JAK-banken");
     },
 
@@ -20416,87 +20414,92 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
             this.bankSettings.getOptimalUKvot()) * this.bankSettings.getUKvot() + this.bankSettings.getTimeMin();
         this.loanSettings.bestAmortering = (this.bankSettings.getTimeMax() < this.loanSettings.bestAmortering) ? this.bankSettings.getTimeMax() : this.loanSettings.bestAmortering;
 
-        return React.createElement("div", {className: "header"}, 
-            React.createElement("h1", {className: "clear"}, "JAK-lån"), 
+        return React.createElement("div", null, 
+            React.createElement("h1", {className: "clear"}, React.createElement("img", {src: "https://www.jak.se/logo.png", alt: "JAK-lån"})), 
 
-            React.createElement("p", null, "Låneberäkning"), 
-
-            React.createElement("div", {className: "floatL"}, 
-                React.createElement("p", null, 
-                    React.createElement("b", null, "Belopp jag vill låna (kr):")
-                ), 
-
-                React.createElement("div", null, 
-                    React.createElement("input", {type: "number", 
-                        value: this.loanSettings.amount, 
-                        min: this.bankSettings.getAmountMin(), 
-                        max: this.bankSettings.getAmountMax(), 
-                        onChange: this.changeAmount})
-                ), 
-                React.createElement("div", null, 
-                    React.createElement("input", {id: "belopp", 
-                        type: "range", 
-                        value: this.loanSettings.amount, 
-                        min: this.bankSettings.getAmountMin(), 
-                        max: this.bankSettings.getAmountMax(), 
-                        step: 1000, 
-                        onChange: this.changeAmount})
-                )
-            ), 
-
-            React.createElement("div", {className: "floatL"}, 
+            React.createElement("div", {className: "box"}, 
                 React.createElement("div", {className: "floatL"}, 
-                    React.createElement("p", null, 
-                        React.createElement("b", null, "På hur lång tid (år):")
+                    React.createElement("div", {className: "floatL"}, 
+                        React.createElement("h2", {className: "floatL bigMarginRight"}, "Låneberäkning"), 
+                        React.createElement("div", {className: "floatL normalMargins"}, 
+                            React.createElement("p", null, 
+                                React.createElement("b", null, "Försparade poäng:")
+                            ), 
+                            React.createElement("input", {id: "försparpoäng", type: "number", 
+                                   min: 0, 
+                                   value: this.loanSettings.förspar, 
+                                   step: 1000, 
+                                   onChange: this.changeFörspar})
+                        )
                     ), 
+                    React.createElement("div", {className: "clear"}), 
+                    React.createElement("div", {className: "floatL"}, 
+                        React.createElement("div", {className: "floatL normalMargins"}, 
+                            React.createElement("p", null, 
+                                React.createElement("b", null, "Belopp jag vill låna (kr):")
+                            ), 
+                            React.createElement("div", null, 
+                                React.createElement("input", {type: "number", 
+                                       value: this.loanSettings.amount, 
+                                       min: this.bankSettings.getAmountMin(), 
+                                       max: this.bankSettings.getAmountMax(), 
+                                       onChange: this.changeAmount})
+                            ), 
+                            React.createElement("div", null, 
+                                React.createElement("input", {id: "belopp", 
+                                       type: "range", 
+                                       value: this.loanSettings.amount, 
+                                       min: this.bankSettings.getAmountMin(), 
+                                       max: this.bankSettings.getAmountMax(), 
+                                       step: 1000, 
+                                       onChange: this.changeAmount})
+                            )
+                        ), 
+                        React.createElement("div", {className: "floatL normalMargins"}, 
+                            React.createElement("p", null, 
+                                React.createElement("b", null, "På hur lång tid (år):")
+                            ), 
 
-                    React.createElement("div", null, 
-                        React.createElement("input", {type: "number", 
-                            value: this.loanSettings.time, 
-                            min: this.bankSettings.getTimeMin(), 
-                            max: this.bankSettings.getTimeMax(), 
-                            onChange: this.changeTime})
+                            React.createElement("div", null, 
+                                React.createElement("input", {type: "number", 
+                                       value: this.loanSettings.time, 
+                                       min: this.bankSettings.getTimeMin(), 
+                                       max: this.bankSettings.getTimeMax(), 
+                                       onChange: this.changeTime})
+                            ), 
+                            React.createElement("div", null, 
+                                React.createElement("input", {id: "tid", 
+                                       type: "range", 
+                                       value: this.loanSettings.time, 
+                                       min: this.bankSettings.getTimeMin(), 
+                                       max: this.bankSettings.getTimeMax(), 
+                                       onChange: this.changeTime})
+                            )
+                        )
                     ), 
-                    React.createElement("div", null, 
-                        React.createElement("input", {id: "tid", 
-                            type: "range", 
-                            value: this.loanSettings.time, 
-                            min: this.bankSettings.getTimeMin(), 
-                            max: this.bankSettings.getTimeMax(), 
-                            onChange: this.changeTime})
+                    React.createElement("div", {className: "floatL"}, 
+                        React.createElement("div", {className: "floatL normalMargins"}, 
+                            React.createElement("p", null, 
+                                React.createElement("b", null, "Säkerhet:")
+                            ), 
+                            React.createElement(Checkbox, {value: this.loanSettings.säkerhet, onChange: this.changeSäkerhet})
+                        ), 
+                        React.createElement("div", {className: "floatL normalMargins"}, 
+                            React.createElement("p", null, 
+                                React.createElement("b", null, "Skattejämkning:")
+                            ), 
+                            React.createElement(Checkbox, {value: this.loanSettings.skattejämkning, onChange: this.changeSkattejämkning})
+                        )
                     )
                 ), 
-                React.createElement("div", {className: "floatL"}, 
-                    React.createElement("p", null, 
-                        React.createElement("b", null, "Säkerhet:")
-                    ), 
-                    React.createElement(Checkbox, {value: this.loanSettings.säkerhet, onChange: this.changeSäkerhet})
-                ), 
-                React.createElement("div", {className: "floatL"}, 
-                    React.createElement("p", null, 
-                        React.createElement("b", null, "Försparade poäng:")
-                    ), 
-                    React.createElement("input", {id: "försparpoäng", type: "number", 
-                        min: 0, 
-                        value: this.loanSettings.förspar, 
-                        step: 1000, 
-                        onChange: this.changeFörspar})
-                ), 
+
                 React.createElement("p", {className: "noMargins clear"}, 
                     React.createElement("i", null, "Idag mest fördelaktiga amorteringstid i nya JAK-banken: Upp" + ' ' +
-                        "till ", this.loanSettings.bestAmortering.toFixed(1), " år")
-                )
-            ), 
-            React.createElement("div", {className: "floatL"}, 
-                React.createElement("div", {className: "floatL"}, 
-                    React.createElement("p", null, 
-                        React.createElement("b", null, "Skattejämkning:")
-                    ), 
-                    React.createElement(Checkbox, {value: this.loanSettings.skattejämkning, onChange: this.changeSkattejämkning})
-                )
-            ), 
+                        "till ", React.createElement("span", {className: "yearText"}, this.loanSettings.bestAmortering.toFixed(1)), " år")
+                ), 
 
-            React.createElement("div", {className: "hundredpc clear"}
+                React.createElement("div", {className: "hundredpc clear"}
+                )
             )
         );
     }
@@ -20554,14 +20557,6 @@ var PaymentMixin = {
                 if (nyttEftersparkrav > 0) {
                     eftersparPerMånad = 0;
                 }
-                //console.log(eftersparPerMånad);
-                //postSavings.start = (eftersparPerMånad / 2);
-                //var tempAmount = loanSettings.amount - amortering * loanSettings.time * 12;
-                //var tempLånekostnad = (skatteavdrag * bankSettings.getLånekostnad() * tempAmount);
-                //postSavings.end = (eftersparPerMånad / 2) + (jämkadLånekostnad.start - tempLånekostnad);
-
-                //TODO: Kontrollera sparpoängkvar
-                //TODO: Layout!
 
                 postSavings.start = (eftersparPerMånad / 2);
                 postSavings.end = (eftersparPerMånad / 2) + (jämkadLånekostnad.start - jämkadLånekostnad.end);
@@ -20736,18 +20731,19 @@ module.exports = Checkbox;
  * Created by lohnn on 2015-10-11.
  */
 
-
 var React = require("react");
+var NumerShow = require("./../../extras/NumberShow");
+
 
 var MinMax = React.createClass({displayName: "MinMax",
     render: function () {
-        return React.createElement("span", null, this.props.first, " | ", this.props.last)
+        return React.createElement("span", null, NumerShow.setSeparator(this.props.first), " | ", NumerShow.setSeparator(this.props.last))
     }
 });
 
 module.exports = MinMax;
 
-},{"react":156}],169:[function(require,module,exports){
+},{"./../../extras/NumberShow":170,"react":156}],169:[function(require,module,exports){
 /**
  * Created by lohnn
  */
@@ -20813,6 +20809,15 @@ var Wrapper = React.createClass({displayName: "Wrapper",
 module.exports = Wrapper;
 
 },{"./newJAK":161,"./oldJAK":162,"./page_parts/bankSettings":163,"./page_parts/loanSettings":164,"./settings_objects/bankSettingsFactory":166,"react":156}],170:[function(require,module,exports){
+var NumberShow = {
+    setSeparator: function (nStr) {
+        return nStr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+};
+
+module.exports = NumberShow;
+
+},{}],171:[function(require,module,exports){
 var Wrapper = require("./components/wrapper");
 var React = require('react');
 
@@ -20821,4 +20826,4 @@ React.render(
     document.getElementById("main")
 );
 
-},{"./components/wrapper":169,"react":156}]},{},[170])
+},{"./components/wrapper":169,"react":156}]},{},[171])

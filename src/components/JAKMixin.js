@@ -8,6 +8,7 @@ var Låneinsats = require("./calc_classes/låneinsats");
 //var Ränta = require("./calc_classes/ränta");
 var Skatteavdrag = require("./calc_classes/skatteavdrag");
 var Skatteåterbetalning = require("./calc_classes/skatteåterbetalning");
+var NumerShow = require("./../extras/NumberShow");
 
 var JAKMixin = {
     divClass: "",
@@ -41,7 +42,7 @@ var JAKMixin = {
 
         return <div className="fiftypc floatL ">
             <div>
-                <div className={this.divClass}>
+                <div className="box">
                     {this.headerText}
 
                     <div className="floatL">
@@ -57,7 +58,8 @@ var JAKMixin = {
                         <img className="floatL" src="images/bracket.png"/>
 
                         <div className="floatL">
-                            <p>Amortering (rak): <span className="orangeText boldText">{this.amortering.toFixed(0)}
+                            <p>Amortering (rak): <span
+                                className="orangeText boldText">{NumerShow.setSeparator(this.amortering.toFixed(0))}
                                 kr</span></p>
 
                             <p>Sparande: <span className="orangeText boldText"><FirstLast
@@ -73,25 +75,26 @@ var JAKMixin = {
                     <hr className="clear"/>
                     <div className="clear">
                         <p>
-                            Sparbelopp efter amortering: {this.efterAmortering.toFixed(0)} kr
+                            Sparbelopp efter amortering: {NumerShow.setSeparator(this.efterAmortering.toFixed(0))} kr
                         </p>
 
                         <p>
-                            Sparpoäng kvar: {this.sparpoängKvar.toFixed(0)} poäng
+                            Sparpoäng kvar: {NumerShow.setSeparator(this.sparpoängKvar.toFixed(0))} poäng
                         </p>
 
                         <p>
                             Erläggs som
-                            låneinsats: {Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats())}
+                            låneinsats: {NumerShow.setSeparator(Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats()))}
                             kr
                         </p>
 
                         <p>
-                            Total lånekostnad: {this.payState.loanCost.total.toFixed(0)} kr
+                            Total lånekostnad: {NumerShow.setSeparator(this.payState.loanCost.total.toFixed(0))} kr
                         </p>
 
                         <p>
-                            Totalt skatteavdrag: {(this.payState.loanCost.total * -0.3).toFixed(0)}kr
+                            Totalt
+                            skatteavdrag: {NumerShow.setSeparator((this.payState.loanCost.total * -0.3).toFixed(0))}kr
                         </p>
                         {skatteåterbetalning}
                     </div>

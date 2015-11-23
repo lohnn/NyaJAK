@@ -47,14 +47,6 @@ var PaymentMixin = {
                 if (nyttEftersparkrav > 0) {
                     eftersparPerMånad = 0;
                 }
-                //console.log(eftersparPerMånad);
-                //postSavings.start = (eftersparPerMånad / 2);
-                //var tempAmount = loanSettings.amount - amortering * loanSettings.time * 12;
-                //var tempLånekostnad = (skatteavdrag * bankSettings.getLånekostnad() * tempAmount);
-                //postSavings.end = (eftersparPerMånad / 2) + (jämkadLånekostnad.start - tempLånekostnad);
-
-                //TODO: Kontrollera sparpoängkvar
-                //TODO: Layout!
 
                 postSavings.start = (eftersparPerMånad / 2);
                 postSavings.end = (eftersparPerMånad / 2) + (jämkadLånekostnad.start - jämkadLånekostnad.end);

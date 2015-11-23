@@ -20,10 +20,6 @@ var NewJAK = React.createClass({
         };
     },
 
-    componentWillMount: function () {
-        this.divClass = "newJAK";
-    },
-
     //TODO: See if I can modulize this even more, making sure I provide all "this"-settings
     calculate: function (loanSettings, bankSettings) {
         this.headerText = <div>

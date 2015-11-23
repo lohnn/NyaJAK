@@ -74,6 +74,9 @@ body {
 .border {
   border: 1px solid #d3d1cd;
 }
+.padding {
+  padding: 10px;
+}
 .floatL {
   float: left;
 }
@@ -99,20 +102,14 @@ body {
 .marginbottom {
   margin-bottom: 10px;
 }
-.header {
-  background-color: #fff;
-  border-radius: 5px;
-  border: 1px solid #d3d1cd;
+.bigMarginRight {
+  margin-right: 250px;
 }
-.newJAK {
+.box {
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #d3d1cd;
-}
-.oldJAK {
-  background-color: #fff;
-  border-radius: 5px;
-  border: 1px solid #d3d1cd;
+  padding: 10px;
 }
 .noMargins {
   margin: 3px;
@@ -122,4 +119,27 @@ body {
 }
 .boldText {
   font-weight: bold;
+}
+input[type=range] {
+  margin: 0;
+}
+.normalMargins {
+  margin: 0 12px;
+}
+.yearText {
+  font-style: normal;
+  font-weight: bold;
+}
+@media (max-width: 750px) {
+  .fiftypc {
+    width: 100%;
+  }
+}
+@media (max-width: 450px) {
+  .bigMarginRight {
+    margin-right: 0;
+  }
+  .noMargins {
+    padding-top: 10px;
+  }
 }

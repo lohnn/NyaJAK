@@ -10,7 +10,6 @@ var OldJAK = React.createClass({
     mixins: [JAKMixin],
 
     componentWillMount: function () {
-        this.divClass = "oldJAK";
         this.headerText = <h2>Gamla JAK-banken</h2>;
     },
 

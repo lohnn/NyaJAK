@@ -13,6 +13,10 @@ body {
   border: 1px solid #d3d1cd;
 }
 
+.padding {
+  padding: 10px;
+}
+
 .floatL {
   float: left;
 }
@@ -46,24 +50,15 @@ body {
   margin-bottom: 10px;
 }
 
-.header {
-  background-color: #fff;
-  .border_radius;
-  .border;
+.bigMarginRight {
+  margin-right: 250px;
 }
 
-.newJAK {
+.box {
   background-color: #fff;
   .border_radius;
   .border;
-  //background-color: #9c9;
-}
-
-.oldJAK {
-  background-color: #fff;
-  .border_radius;
-  .border;
-  //background-color: #ff9999;
+  .padding;
 }
 
 .noMargins {
@@ -78,6 +73,31 @@ body {
   font-weight: bold;
 }
 
-.padding {
+input[type=range] {
+  margin: 0;
+}
 
+.normalMargins {
+  margin: 0 12px;
+}
+
+.yearText {
+  font-style: normal;
+  font-weight: bold;
+}
+
+@media (max-width: 750px) {
+  .fiftypc {
+    width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .bigMarginRight {
+    margin-right: 0;
+  }
+
+  .noMargins {
+    padding-top: 10px;
+  }
 }

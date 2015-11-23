@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a359ed0d-ef57-43f3-b628-feedc727a616" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/extras/NumberShow.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/JAKMixin.js" afterPath="$PROJECT_DIR$/src/components/JAKMixin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/specials/firstLast.js" afterPath="$PROJECT_DIR$/src/components/specials/firstLast.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="$PROJECT_DIR$/dist/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/page_parts/loanSettings.js" afterPath="$PROJECT_DIR$/src/components/page_parts/loanSettings.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/js/main.js" afterPath="$PROJECT_DIR$/dist/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/newJAK.js" afterPath="$PROJECT_DIR$/src/components/newJAK.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/oldJAK.js" afterPath="$PROJECT_DIR$/src/components/oldJAK.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/paymentCalculator.js" afterPath="$PROJECT_DIR$/src/components/paymentCalculator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/css/style.css" afterPath="$PROJECT_DIR$/dist/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/less/style.less" afterPath="$PROJECT_DIR$/src/less/style.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JAKLånesystem.iws" />
@@ -27,16 +36,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="wrapper.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/wrapper.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="bankSettings.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/page_parts/bankSettings.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -47,21 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JAKMixin.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/JAKMixin.js">
+      <file leaf-file-name="newJAK.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/less/style.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.615385">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -71,27 +60,67 @@
         <entry file="file://$PROJECT_DIR$/src/components/oldJAK.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="newJAK.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
+      <file leaf-file-name="wrapper.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/wrapper.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+              <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="paymentCalculator.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
+      <file leaf-file-name="JAKMixin.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/JAKMixin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39699864">
-              <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.76704544">
+              <caret line="103" column="15" selection-start-line="103" selection-start-column="15" selection-end-line="103" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="firstLast.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/specials/firstLast.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="106" selection-start-line="10" selection-start-column="106" selection-end-line="10" selection-end-column="106" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NumberShow.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/extras/NumberShow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/less/style.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.961538">
+              <caret line="100" column="22" selection-start-line="100" selection-start-column="22" selection-end-line="100" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -138,22 +167,23 @@
         <option value="$PROJECT_DIR$/src/less/checkbox.less" />
         <option value="$PROJECT_DIR$/src/components/settings_objects/bankSettings.js" />
         <option value="$PROJECT_DIR$/src/components/calc_classes/skattereduktion.js" />
-        <option value="$PROJECT_DIR$/src/components/specials/firstLast.js" />
         <option value="$PROJECT_DIR$/src/components/calc_classes/skatteåterbetalning.js" />
         <option value="$PROJECT_DIR$/src/components/calc_classes/låneinsats.js" />
         <option value="$PROJECT_DIR$/src/components/settings_objects/bankSettingsFactory.js" />
         <option value="$PROJECT_DIR$/src/components/calc_classes/ränta.js" />
-        <option value="$PROJECT_DIR$/src/components/page_parts/loanSettings.js" />
         <option value="$PROJECT_DIR$/src/components/calc_classes/skatteavdrag.js" />
-        <option value="$PROJECT_DIR$/src/components/JAKMixin.js" />
-        <option value="$PROJECT_DIR$/src/less/style.less" />
         <option value="$PROJECT_DIR$/src/components/page_parts/bankSettings.js" />
-        <option value="$PROJECT_DIR$/src/components/oldJAK.js" />
         <option value="$PROJECT_DIR$/.jshintrc" />
-        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/components/wrapper.js" />
-        <option value="$PROJECT_DIR$/src/components/newJAK.js" />
         <option value="$PROJECT_DIR$/src/components/paymentCalculator.js" />
+        <option value="$PROJECT_DIR$/src/components/newJAK.js" />
+        <option value="$PROJECT_DIR$/src/components/oldJAK.js" />
+        <option value="$PROJECT_DIR$/src/components/page_parts/loanSettings.js" />
+        <option value="$PROJECT_DIR$/src/less/style.less" />
+        <option value="$PROJECT_DIR$/src/index.html" />
+        <option value="$PROJECT_DIR$/src/extras/NumberShow.js" />
+        <option value="$PROJECT_DIR$/src/components/specials/firstLast.js" />
+        <option value="$PROJECT_DIR$/src/components/JAKMixin.js" />
       </list>
     </option>
   </component>
@@ -346,6 +376,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="extras" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JAKLånesystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NyaJAK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -438,6 +486,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JAKLånesystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NyaJAK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JAKLånesystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NyaJAK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -463,7 +543,7 @@
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="wra&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/wrapper.js&#10;loan&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/page_parts/loanSettings.js&#10;loanset&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/page_parts/loanSettings.js&#10;less&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/less/style.less&#10;med säkerhet&#9;null&#9;null&#10;firstL&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/specials/firstLast.js&#10;paymen&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/paymentCalculator.js&#10;loanSet&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js&#10;loansett&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js&#10;loanS&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js" />
+    <property name="SearchEverywhereHistoryKey" value="oldj&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/oldJAK.js&#10;new&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/newJAK.js&#10;loanse&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/page_parts/loanSettings.js&#10;wra&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/wrapper.js&#10;loan&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/page_parts/loanSettings.js&#10;loanset&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/components/page_parts/loanSettings.js&#10;less&#9;FILE&#9;file://I:/hit kan du flytta saker/NyaJAK/src/less/style.less&#10;med säkerhet&#9;null&#9;null&#10;firstL&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/specials/firstLast.js&#10;paymen&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/paymentCalculator.js&#10;loanSet&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js&#10;loansett&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js&#10;loanS&#9;FILE&#9;file:///home/lohnn/Documents/Programming/NyaJAK/src/components/page_parts/loanSettings.js" />
     <property name="GO_FMT" value="false" />
     <property name="ToolWindowDocumentation.ShowToolbar" value="false" />
   </component>
@@ -889,7 +969,7 @@
       <workItem from="1446912757061" duration="266000" />
       <workItem from="1447011404177" duration="9088000" />
       <workItem from="1447781901359" duration="52000" />
-      <workItem from="1448100350433" duration="41655000" />
+      <workItem from="1448100350433" duration="47326000" />
     </task>
     <task id="LOCAL-00001" summary="Räknar jämkad lånekostnad vid val av skattejämkning.">
       <created>1446587908420</created>
@@ -945,11 +1025,17 @@
       <option name="project" value="LOCAL" />
       <updated>1448302946732</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Use math instead for calculating postSavings for G column.">
+      <created>1448304044906</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1448304044906</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190390000" />
+    <option name="totallyTimeSpent" value="196061000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -1013,7 +1099,8 @@
     <MESSAGE value="Ackumulerade poäng works now." />
     <MESSAGE value="PostSavings now works!" />
     <MESSAGE value="Recalculated eftersparkrav on rak månadsbetalning." />
-    <option name="LAST_COMMIT_MESSAGE" value="Recalculated eftersparkrav on rak månadsbetalning." />
+    <MESSAGE value="Use math instead for calculating postSavings for G column." />
+    <option name="LAST_COMMIT_MESSAGE" value="Use math instead for calculating postSavings for G column." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1026,13 +1113,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/wrapper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1225,13 +1305,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.65625">
@@ -1257,13 +1330,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.64430577">
           <caret line="45" column="31" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/specials/firstLast.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23868954">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -1296,14 +1362,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/page_parts/loanSettings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16234653">
-          <caret line="34" column="40" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/calc_classes/skatteavdrag.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16234653">
@@ -1328,22 +1386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/less/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.615385">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/JAKMixin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.jshintrc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3076923">
@@ -1352,10 +1394,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
+    <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28854313">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.37380627">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1368,18 +1410,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/wrapper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/newJAK.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1387,15 +1421,71 @@
     <entry file="file://$PROJECT_DIR$/src/components/oldJAK.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/paymentCalculator.js">
+    <entry file="file://$PROJECT_DIR$/dist/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39699864">
-          <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09618105">
+          <caret line="4" column="107" selection-start-line="4" selection-start-column="107" selection-end-line="4" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/less/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.961538">
+          <caret line="100" column="22" selection-start-line="100" selection-start-column="22" selection-end-line="100" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/page_parts/loanSettings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.675307">
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/wrapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/extras/NumberShow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/specials/firstLast.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="106" selection-start-line="10" selection-start-column="106" selection-end-line="10" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/JAKMixin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76704544">
+          <caret line="103" column="15" selection-start-line="103" selection-start-column="15" selection-end-line="103" selection-end-column="15" />
           <folding />
         </state>
       </provider>
