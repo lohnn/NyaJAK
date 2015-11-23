@@ -58,7 +58,7 @@ var NewJAK = React.createClass({
         var eftersparkrav = ((sparkravsändring / 100) * ((loanSettings.amount / (loanSettings.time * 12)) /
         2 * ((loanSettings.time * 12) + 1) * (loanSettings.time * 12)) - (sparpoängOmräknad));
 
-        var nyttEftersparkrav = Math.max(0, (poängförbrukning * (eftersparprocent / 100)) - (sparpoängOmräknad * (loanSettings.förspar / sparpoängOmräknad)));
+        var nyttEftersparkrav = Math.max(0, ((poängförbrukning * (eftersparprocent / 100)) - sparpoängOmräknad));
 
         this.lånekostnad = (bankSettings.getLånekostnad() * loanSettings.amount);
 

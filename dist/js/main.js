@@ -20160,7 +20160,7 @@ var NewJAK = React.createClass({displayName: "NewJAK",
         var eftersparkrav = ((sparkravsändring / 100) * ((loanSettings.amount / (loanSettings.time * 12)) /
         2 * ((loanSettings.time * 12) + 1) * (loanSettings.time * 12)) - (sparpoängOmräknad));
 
-        var nyttEftersparkrav = Math.max(0, (poängförbrukning * (eftersparprocent / 100)) - (sparpoängOmräknad * (loanSettings.förspar / sparpoängOmräknad)));
+        var nyttEftersparkrav = Math.max(0, ((poängförbrukning * (eftersparprocent / 100)) - sparpoängOmräknad));
 
         this.lånekostnad = (bankSettings.getLånekostnad() * loanSettings.amount);
 
@@ -20554,11 +20554,19 @@ var PaymentMixin = {
 
             //Använd G
             if (postSavings.start < 0) {
+                if (nyttEftersparkrav > 0) {
+                    eftersparPerMånad = 0;
+                }
                 //console.log(eftersparPerMånad);
                 //postSavings.start = (eftersparPerMånad / 2);
                 //var tempAmount = loanSettings.amount - amortering * loanSettings.time * 12;
                 //var tempLånekostnad = (skatteavdrag * bankSettings.getLånekostnad() * tempAmount);
                 //postSavings.end = (eftersparPerMånad / 2) + (jämkadLånekostnad.start - tempLånekostnad);
+
+                //TODO: User equation for calculating postSavins start and end instead of setting 0
+                //TODO: NaN exception, set to Zero!
+                //TODO: Kontrollera sparpoängkvar
+                //TODO: Layout!
 
                 postSavings.start = 0;
                 tempAmount = postSavings.start;
