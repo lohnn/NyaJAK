@@ -19966,15 +19966,14 @@ var JAKMixin = {
         var skatteavdrag = {};
         if (this.props.loanSettings.skattejämkning) {
             skatteavdrag = Skatteavdrag.calculate(this.payState.loanCost);
-            skatteavdrag = React.createElement("div", {class: "clear", style: {marginLeft: 14+"px"}}, 
-                "Skatteavdrag: ", React.createElement("span", {className: "orangeText boldText"}, 
-                React.createElement(FirstLast, {first: skatteavdrag.first.toFixed(0), last: skatteavdrag.last.toFixed(0)}), " kr")
-            );
+            skatteavdrag = React.createElement("p", {className: "paymentPart"}, "Skatteavdrag: ", React.createElement("span", {className: "orangeText boldText"}, React.createElement(FirstLast, {
+                first: skatteavdrag.first.toFixed(0), 
+                last: skatteavdrag.last.toFixed(0)}), " kr"));
         }
         var skatteåterbetalning = {};
         if (!this.props.loanSettings.skattejämkning) {
             skatteåterbetalning = Skatteåterbetalning.calculate(this.props.loanSettings, this.props.bankSettings.getLånekostnad(), this.amortering);
-            skatteåterbetalning = React.createElement("p", null, 
+            skatteåterbetalning = React.createElement("p", {style: {marginTop: "5px", marginBottom: "5px"}}, 
                 "(Skatteåterbetalning/år: ", React.createElement(FirstLast, {first: skatteåterbetalning.first.toFixed(0), 
                                                     last: skatteåterbetalning.last.toFixed(0)}), " kr)"
             );
@@ -19985,58 +19984,64 @@ var JAKMixin = {
                 React.createElement("div", {className: "box"}, 
                     this.headerText, 
 
-                    React.createElement("div", {className: "floatL"}, 
-                        React.createElement("p", null, "Månadsbetalning"), 
+                    React.createElement("div", {className: "floatL marginTop marginbottom"}, 
+                        React.createElement("div", {className: "floatL normalMargins"}, 
+                            React.createElement("p", {className: "paymentPart"}, "Månadsbetalning"), 
 
-                        React.createElement("p", null, React.createElement("b", null, React.createElement(FirstLast, {first: this.payState.monthlyPay.start.toFixed(0), 
-                                         last: this.payState.monthlyPay.end.toFixed(0)}), " kr")), 
+                            React.createElement("p", {className: "reallyBigText"}, React.createElement(FirstLast, {first: this.payState.monthlyPay.start.toFixed(0), 
+                                                                    last: this.payState.monthlyPay.end.toFixed(0)}), " kr"
+                            ), 
 
-                        React.createElement("p", null, React.createElement(FirstLast, {first: "Första", last: "Sista månaden"}))
-                    ), 
-
-                    React.createElement("div", {className: "floatL"}, 
-                        React.createElement("img", {className: "floatL", src: "images/bracket.png"}), 
-
-                        React.createElement("div", {className: "floatL"}, 
-                            React.createElement("p", null, "Amortering (rak): ", React.createElement("span", {
-                                className: "orangeText boldText"}, NumerShow.setSeparator(this.amortering.toFixed(0)), 
-                                "kr")), 
-
-                            React.createElement("p", null, "Sparande: ", React.createElement("span", {className: "orangeText boldText"}, React.createElement(FirstLast, {
-                                first: this.payState.postSavings.start.toFixed(0), 
-                                last: this.payState.postSavings.end.toFixed(0)}), " kr ")), 
-
-                            React.createElement("p", null, "Lånekostnad: ", React.createElement("span", {className: "orangeText boldText"}, React.createElement(FirstLast, {
-                                first: this.payState.loanCost.start.toFixed(0), 
-                                last: this.payState.loanCost.end.toFixed(0)}), " kr"))
+                            React.createElement("p", {className: "paymentPart"}, React.createElement(FirstLast, {first: "Första", last: "Sista månaden"}))
                         ), 
-                        skatteavdrag
+
+                        React.createElement("div", {className: "floatL normalMargins"}, 
+                            React.createElement("img", {className: "floatL", src: "images/bracket.png"}), 
+
+                            React.createElement("div", {className: "floatL"}, 
+                                React.createElement("p", {className: "paymentPart"}, "Amortering (rak): ", React.createElement("span", {
+                                    className: "orangeText boldText"}, NumerShow.setSeparator(this.amortering.toFixed(0)), 
+                                    "kr")), 
+
+                                React.createElement("p", {className: "paymentPart"}, "Sparande: ", React.createElement("span", {className: "orangeText boldText"}, React.createElement(FirstLast, {
+                                    first: this.payState.postSavings.start.toFixed(0), 
+                                    last: this.payState.postSavings.end.toFixed(0)}), " kr ")), 
+
+                                React.createElement("p", {className: "paymentPart"}, "Lånekostnad: ", React.createElement("span", {className: "orangeText boldText"}, React.createElement(FirstLast, {
+                                    first: this.payState.loanCost.start.toFixed(0), 
+                                    last: this.payState.loanCost.end.toFixed(0)}), " kr")), 
+                                skatteavdrag
+                            )
+                        )
                     ), 
                     React.createElement("hr", {className: "clear"}), 
                     React.createElement("div", {className: "clear"}, 
-                        React.createElement("p", null, 
-                            "Sparbelopp efter amortering: ", NumerShow.setSeparator(this.efterAmortering.toFixed(0)), " kr"
+                        React.createElement("p", {className: "marginLeft"}, 
+                            "Sparbelopp efter amortering: ", React.createElement("span", {
+                            className: "boldText"}, NumerShow.setSeparator(this.efterAmortering.toFixed(0)), " kr")
                         ), 
 
-                        React.createElement("p", null, 
+                        React.createElement("p", {className: "marginLeft"}, 
                             "Sparpoäng kvar: ", NumerShow.setSeparator(this.sparpoängKvar.toFixed(0)), " poäng"
                         ), 
 
-                        React.createElement("p", null, 
+                        React.createElement("p", {className: "marginLeft"}, 
                             "Erläggs som" + ' ' +
-                            "låneinsats: ", NumerShow.setSeparator(Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats())), 
-                            "kr"
+                            "låneinsats: ", NumerShow.setSeparator(Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats())) + " kr"
                         ), 
 
-                        React.createElement("p", null, 
-                            "Total lånekostnad: ", NumerShow.setSeparator(this.payState.loanCost.total.toFixed(0)), " kr"
-                        ), 
+                        React.createElement("div", {className: "box"}, 
+                            React.createElement("p", {style: {marginTop:"5px",marginBottom: "5px"}}, 
+                                "Total lånekostnad: ", NumerShow.setSeparator(this.payState.loanCost.total.toFixed(0)), " kr"
+                            ), 
 
-                        React.createElement("p", null, 
-                            "Totalt" + ' ' +
-                            "skatteavdrag: ", NumerShow.setSeparator((this.payState.loanCost.total * -0.3).toFixed(0)), "kr"
-                        ), 
-                        skatteåterbetalning
+                            React.createElement("p", {style: {marginTop: "5px", marginBottom: "5px"}}, 
+                                "Totalt" + ' ' +
+                                "skatteavdrag: ", NumerShow.setSeparator((this.payState.loanCost.total * -0.3).toFixed(0)), 
+                                "kr"
+                            ), 
+                            skatteåterbetalning
+                        )
                     )
                 ), 
                 React.createElement("hr", null)
@@ -20130,7 +20135,7 @@ var NewJAK = React.createClass({displayName: "NewJAK",
         this.headerText = React.createElement("div", null, 
             React.createElement("h2", {className: "floatL"}, "Nya JAK-banken"), 
 
-            React.createElement("div", {className: "floatL"}, 
+            React.createElement("div", {className: "floatR"}, 
                 React.createElement("p", null, 
                     React.createElement("b", null, "Rak månadsbetalning:")
                 ), 
@@ -20193,8 +20198,11 @@ var OldJAK = React.createClass({displayName: "OldJAK",
     mixins: [JAKMixin],
 
     componentWillMount: function () {
-        this.headerText = React.createElement("h2", null, "Gamla JAK-banken");
-    },
+        this.headerText = React.createElement("h2", {style: {
+                        marginTop: "20px",
+                        marginBottom: "39px"
+                        }}, "Gamla JAK-banken");
+                    },
 
     calculate: function (loanSettings, bankSettings) {
 
@@ -20242,7 +20250,7 @@ var BankSettings = React.createClass({displayName: "BankSettings",
     },
 
     renderInput: function (value, functionToRun) {
-        return React.createElement("input", {type: "number", max: "10000000000", min: "0", value: value, onChange: function(event){
+        return React.createElement("input", {type: "number", max: "10000000000", min: "0", className: "marginLeft", value: value, onChange: function(event){
             functionToRun(event);
             this.props.stateChange(this.bankSettings);
         }.bind(this)})
@@ -20255,98 +20263,114 @@ var BankSettings = React.createClass({displayName: "BankSettings",
 
                 React.createElement("div", null, 
                     React.createElement("label", null, "Med säkerhet"), 
-                    React.createElement("label", null, "Min"), 
-                    this.renderInput(this.bankSettings.getMedSäkerhet().amount.min, function (event) {
-                        this.bankSettings.getMedSäkerhet().amount.min = +event.target.value
-                    }.bind(this)), 
-                    React.createElement("label", null, "Max"), 
-                    this.renderInput(this.bankSettings.getMedSäkerhet().amount.max, function (event) {
-                        this.bankSettings.getMedSäkerhet().amount.max = +event.target.value
-                    }.bind(this))
+                    React.createElement("label", {className: "normalMargins"}, "Min", 
+                        this.renderInput(this.bankSettings.getMedSäkerhet().amount.min, function (event) {
+                            this.bankSettings.getMedSäkerhet().amount.min = +event.target.value
+                        }.bind(this))
+                    ), 
+                    React.createElement("label", {className: "normalMargins"}, "Max", 
+                        this.renderInput(this.bankSettings.getMedSäkerhet().amount.max, function (event) {
+                            this.bankSettings.getMedSäkerhet().amount.max = +event.target.value
+                        }.bind(this))
+                    )
                 ), 
                 React.createElement("div", null, 
                     React.createElement("label", null, "Utan säkerhet"), 
-                    React.createElement("label", null, "Min"), 
-                    this.renderInput(this.bankSettings.getUtanSäkerhet().amount.min, function (event) {
-                        this.bankSettings.getUtanSäkerhet().amount.min = +event.target.value
-                    }.bind(this)), 
-                    React.createElement("label", null, "Max"), 
-                    this.renderInput(this.bankSettings.getUtanSäkerhet().amount.max, function (event) {
-                        this.bankSettings.getUtanSäkerhet().amount.max = +event.target.value
-                    }.bind(this))
+                    React.createElement("label", {className: "normalMargins"}, "Min", 
+                        this.renderInput(this.bankSettings.getUtanSäkerhet().amount.min, function (event) {
+                            this.bankSettings.getUtanSäkerhet().amount.min = +event.target.value
+                        }.bind(this))
+                    ), 
+                    React.createElement("label", {className: "normalMargins"}, "Max", 
+                        this.renderInput(this.bankSettings.getUtanSäkerhet().amount.max, function (event) {
+                            this.bankSettings.getUtanSäkerhet().amount.max = +event.target.value
+                        }.bind(this))
+                    )
                 ), 
 
                 React.createElement("p", null, "Tid (år)"), 
 
                 React.createElement("div", null, 
                     React.createElement("label", null, "Med säkerhet"), 
-                    React.createElement("label", null, "Min"), 
-                    this.renderInput(this.bankSettings.getMedSäkerhet().time.min, function (event) {
-                        this.bankSettings.getMedSäkerhet().time.min = +event.target.value
-                    }.bind(this)), 
-                    React.createElement("label", null, "Max"), 
-                    this.renderInput(this.bankSettings.getMedSäkerhet().time.max, function (event) {
-                        this.bankSettings.getMedSäkerhet().time.max = +event.target.value
-                    }.bind(this))
+                    React.createElement("label", {className: "normalMargins"}, "Min", 
+                        this.renderInput(this.bankSettings.getMedSäkerhet().time.min, function (event) {
+                            this.bankSettings.getMedSäkerhet().time.min = +event.target.value
+                        }.bind(this))
+                    ), 
+                    React.createElement("label", {className: "normalMargins"}, "Max", 
+                        this.renderInput(this.bankSettings.getMedSäkerhet().time.max, function (event) {
+                            this.bankSettings.getMedSäkerhet().time.max = +event.target.value
+                        }.bind(this))
+                    )
                 ), 
                 React.createElement("div", null, 
                     React.createElement("label", null, "Utan säkerhet"), 
-                    React.createElement("label", null, "Min"), 
-                    this.renderInput(this.bankSettings.getUtanSäkerhet().time.min, function (event) {
-                        this.bankSettings.getUtanSäkerhet().time.min = +event.target.value
-                    }.bind(this)), 
-                    React.createElement("label", null, "Max"), 
-                    this.renderInput(this.bankSettings.getUtanSäkerhet().time.max, function (event) {
-                        this.bankSettings.getUtanSäkerhet().time.max = +event.target.value
-                    }.bind(this))
+                    React.createElement("label", {className: "normalMargins"}, "Min", 
+                        this.renderInput(this.bankSettings.getUtanSäkerhet().time.min, function (event) {
+                            this.bankSettings.getUtanSäkerhet().time.min = +event.target.value
+                        }.bind(this))
+                    ), 
+                    React.createElement("label", {className: "normalMargins"}, "Max", 
+                        this.renderInput(this.bankSettings.getUtanSäkerhet().time.max, function (event) {
+                            this.bankSettings.getUtanSäkerhet().time.max = +event.target.value
+                        }.bind(this))
+                    )
                 ), 
 
                 React.createElement("p", null, "Lånekostnad (% per år)"), 
 
                 React.createElement("div", null, 
-                    React.createElement("label", null, "Med säkerhet"), 
-                    React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", 
-                           value: this.bankSettings.getMedSäkerhet().lånekostnad, 
-                           onChange: function(event){
+                    React.createElement("label", null, "Med säkerhet", 
+                        React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", className: "normalMargins", 
+                               value: this.bankSettings.getMedSäkerhet().lånekostnad, 
+                               onChange: function(event){
                             this.bankSettings.getMedSäkerhet().lånekostnad = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)})
+                    )
                 ), 
                 React.createElement("div", null, 
-                    React.createElement("label", null, "Utan säkerhet"), 
-                    React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", 
-                           value: this.bankSettings.getUtanSäkerhet().lånekostnad, 
-                           onChange: function(event){
+                    React.createElement("label", null, "Utan säkerhet", 
+                        React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", className: "normalMargins", 
+                               value: this.bankSettings.getUtanSäkerhet().lånekostnad, 
+                               onChange: function(event){
                             this.bankSettings.getUtanSäkerhet().lånekostnad = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)})
+                    )
                 ), 
 
                 React.createElement("p", null, "Låneinsats (%)"), 
 
                 React.createElement("div", null, 
-                    React.createElement("label", null, "Med säkerhet"), 
-                    React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", value: this.bankSettings.getMedSäkerhet().låneinsats, 
-                           onChange: function(event){
+                    React.createElement("label", null, "Med säkerhet", 
+                        React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", className: "normalMargins", 
+                               value: this.bankSettings.getMedSäkerhet().låneinsats, 
+                               onChange: function(event){
                             this.bankSettings.getMedSäkerhet().låneinsats = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)})
+                    )
                 ), 
                 React.createElement("div", null, 
-                    React.createElement("label", null, "Utan säkerhet"), 
-                    React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", value: this.bankSettings.getUtanSäkerhet().låneinsats, 
-                           onChange: function(event){
+                    React.createElement("label", null, "Utan säkerhet", 
+                        React.createElement("input", {type: "number", max: "200", min: "0", step: "0.1", className: "normalMargins", 
+                               value: this.bankSettings.getUtanSäkerhet().låneinsats, 
+                               onChange: function(event){
                             this.bankSettings.getUtanSäkerhet().låneinsats = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)})
+                    )
                 ), 
 
-                React.createElement("span", null, "Optimal U-kvot (0-1)"), 
+                React.createElement("span", null, "Optimal U-kvot (0-1)", 
                 React.createElement("input", {type: "number", max: "1", min: "0", step: "0.1", value: this.bankSettings.getOptimalUKvot(), 
+                       className: "normalMargins", 
                        onChange: function(event){
                             this.bankSettings.setOptimalUKvot(+event.target.value);
                             this.props.stateChange(this.bankSettings);
-                        }.bind(this)}), 
+                        }.bind(this)})
+                    ), 
 
                 React.createElement("p", null, "Sparfaktor 1,0")
             ) : "";
@@ -20356,17 +20380,20 @@ var BankSettings = React.createClass({displayName: "BankSettings",
         var temp = this.renderAdvancedSettings();
         return React.createElement("div", {className: "marginbottom"}, 
             React.createElement("h3", null, "Inställningar:"), 
-            React.createElement("label", {className: "u-kvot"}, "Aktuell U-Kvot: "), 
-            React.createElement("input", {type: "number", min: "0", max: "1", step: 0.01, 
-                   value: this.props.values.getUKvot(), 
-                   onChange: this.changeUKvot}), 
+            React.createElement("label", {className: "u-kvot"}, "Aktuell U-Kvot:", 
+                React.createElement("input", {type: "number", min: "0", max: "1", step: 0.01, className: "marginLeft", 
+                       value: this.props.values.getUKvot(), 
+                       onChange: this.changeUKvot})
+            ), 
             React.createElement("span", {className: "u-kvot2"}, 
               React.createElement("i", null, "Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk U-kvot")
             ), 
 
             React.createElement("div", null, 
-                React.createElement("label", {className: "u-kvot"}, "Avancerade inställningar: "), 
-                React.createElement("input", {type: "checkbox", checked: this.state.advancedSettings, onChange: this.changeSeeAdvanced}), 
+                React.createElement("label", {className: "u-kvot"}, 
+                    React.createElement("input", {type: "checkbox", checked: this.state.advancedSettings, onChange: this.changeSeeAdvanced}), 
+                    "Avancerade inställningar:"
+                ), 
                 temp
             )
         );
@@ -20627,6 +20654,8 @@ var BankSettingsFactory = function () {
     };
 
     //Set standard settings for utan säkerhet
+    bankSettings.utan_säkerhet.amount.max = 200000;
+    bankSettings.utan_säkerhet.time.max = 10;
     bankSettings.utan_säkerhet.lånekostnad = 4.5;
 
     var getCurrent = function () {
@@ -20789,9 +20818,10 @@ var Wrapper = React.createClass({displayName: "Wrapper",
 
             React.createElement("div", null, 
                 React.createElement("hr", null), 
-                React.createElement("label", {className: "startFiftypc"}, "Jämförelse med gamla JAK-banken", 
-                    React.createElement("input", {type: "checkbox", checked: this.state.showGamlaJAK, 
-                           onChange: this.showGamlaJAKbanken})), 
+                React.createElement("label", {className: "startFiftypc"}, 
+                    React.createElement("input", {type: "checkbox", checked: this.state.showGamlaJAK, onChange: this.showGamlaJAKbanken}), 
+                    "Jämförelse med gamla JAK-banken"
+                ), 
 
                 React.createElement("div", {className: "clear"}), 
                 React.createElement(NewJAK, {loanSettings: this.state.loanSettings, bankSettings: this.state.bankSettings}), 

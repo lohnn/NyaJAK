@@ -26,15 +26,14 @@ var JAKMixin = {
         var skatteavdrag = {};
         if (this.props.loanSettings.skattejämkning) {
             skatteavdrag = Skatteavdrag.calculate(this.payState.loanCost);
-            skatteavdrag = <div class="clear" style={{marginLeft: 14+"px"}}>
-                Skatteavdrag: <span className="orangeText boldText">
-                <FirstLast first={skatteavdrag.first.toFixed(0)} last={skatteavdrag.last.toFixed(0)}/> kr</span>
-            </div>;
+            skatteavdrag = <p className="paymentPart">Skatteavdrag: <span className="orangeText boldText"><FirstLast
+                first={skatteavdrag.first.toFixed(0)}
+                last={skatteavdrag.last.toFixed(0)}/> kr</span></p>;
         }
         var skatteåterbetalning = {};
         if (!this.props.loanSettings.skattejämkning) {
             skatteåterbetalning = Skatteåterbetalning.calculate(this.props.loanSettings, this.props.bankSettings.getLånekostnad(), this.amortering);
-            skatteåterbetalning = <p>
+            skatteåterbetalning = <p style={{marginTop: "5px", marginBottom: "5px"}}>
                 (Skatteåterbetalning/år: <FirstLast first={skatteåterbetalning.first.toFixed(0)}
                                                     last={skatteåterbetalning.last.toFixed(0)}/> kr)
             </p>;
@@ -45,58 +44,64 @@ var JAKMixin = {
                 <div className="box">
                     {this.headerText}
 
-                    <div className="floatL">
-                        <p>Månadsbetalning</p>
+                    <div className="floatL marginTop marginbottom">
+                        <div className="floatL normalMargins">
+                            <p className="paymentPart">Månadsbetalning</p>
 
-                        <p><b><FirstLast first={this.payState.monthlyPay.start.toFixed(0)}
-                                         last={this.payState.monthlyPay.end.toFixed(0)}/> kr</b></p>
+                            <p className="reallyBigText"><FirstLast first={this.payState.monthlyPay.start.toFixed(0)}
+                                                                    last={this.payState.monthlyPay.end.toFixed(0)}/> kr
+                            </p>
 
-                        <p><FirstLast first="Första" last="Sista månaden"/></p>
-                    </div>
-
-                    <div className="floatL">
-                        <img className="floatL" src="images/bracket.png"/>
-
-                        <div className="floatL">
-                            <p>Amortering (rak): <span
-                                className="orangeText boldText">{NumerShow.setSeparator(this.amortering.toFixed(0))}
-                                kr</span></p>
-
-                            <p>Sparande: <span className="orangeText boldText"><FirstLast
-                                first={this.payState.postSavings.start.toFixed(0)}
-                                last={this.payState.postSavings.end.toFixed(0)}/> kr </span></p>
-
-                            <p>Lånekostnad: <span className="orangeText boldText"><FirstLast
-                                first={this.payState.loanCost.start.toFixed(0)}
-                                last={this.payState.loanCost.end.toFixed(0)}/> kr</span></p>
+                            <p className="paymentPart"><FirstLast first="Första" last="Sista månaden"/></p>
                         </div>
-                        {skatteavdrag}
+
+                        <div className="floatL normalMargins">
+                            <img className="floatL" src="images/bracket.png"/>
+
+                            <div className="floatL">
+                                <p className="paymentPart">Amortering (rak): <span
+                                    className="orangeText boldText">{NumerShow.setSeparator(this.amortering.toFixed(0))}
+                                    kr</span></p>
+
+                                <p className="paymentPart">Sparande: <span className="orangeText boldText"><FirstLast
+                                    first={this.payState.postSavings.start.toFixed(0)}
+                                    last={this.payState.postSavings.end.toFixed(0)}/> kr </span></p>
+
+                                <p className="paymentPart">Lånekostnad: <span className="orangeText boldText"><FirstLast
+                                    first={this.payState.loanCost.start.toFixed(0)}
+                                    last={this.payState.loanCost.end.toFixed(0)}/> kr</span></p>
+                                {skatteavdrag}
+                            </div>
+                        </div>
                     </div>
                     <hr className="clear"/>
                     <div className="clear">
-                        <p>
-                            Sparbelopp efter amortering: {NumerShow.setSeparator(this.efterAmortering.toFixed(0))} kr
+                        <p className="marginLeft">
+                            Sparbelopp efter amortering: <span
+                            className="boldText">{NumerShow.setSeparator(this.efterAmortering.toFixed(0))} kr</span>
                         </p>
 
-                        <p>
+                        <p className="marginLeft">
                             Sparpoäng kvar: {NumerShow.setSeparator(this.sparpoängKvar.toFixed(0))} poäng
                         </p>
 
-                        <p>
+                        <p className="marginLeft">
                             Erläggs som
-                            låneinsats: {NumerShow.setSeparator(Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats()))}
-                            kr
+                            låneinsats: {NumerShow.setSeparator(Låneinsats.calculate(this.props.loanSettings.amount, this.props.bankSettings.getLåneinsats())) + " kr"}
                         </p>
 
-                        <p>
-                            Total lånekostnad: {NumerShow.setSeparator(this.payState.loanCost.total.toFixed(0))} kr
-                        </p>
+                        <div className="box">
+                            <p style={{marginTop:"5px",marginBottom: "5px"}}>
+                                Total lånekostnad: {NumerShow.setSeparator(this.payState.loanCost.total.toFixed(0))} kr
+                            </p>
 
-                        <p>
-                            Totalt
-                            skatteavdrag: {NumerShow.setSeparator((this.payState.loanCost.total * -0.3).toFixed(0))}kr
-                        </p>
-                        {skatteåterbetalning}
+                            <p style={{marginTop: "5px", marginBottom: "5px"}}>
+                                Totalt
+                                skatteavdrag: {NumerShow.setSeparator((this.payState.loanCost.total * -0.3).toFixed(0))}
+                                kr
+                            </p>
+                            {skatteåterbetalning}
+                        </div>
                     </div>
                 </div>
                 <hr />

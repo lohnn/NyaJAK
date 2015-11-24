@@ -31,6 +31,8 @@ var BankSettingsFactory = function () {
     };
 
     //Set standard settings for utan säkerhet
+    bankSettings.utan_säkerhet.amount.max = 200000;
+    bankSettings.utan_säkerhet.time.max = 10;
     bankSettings.utan_säkerhet.lånekostnad = 4.5;
 
     var getCurrent = function () {

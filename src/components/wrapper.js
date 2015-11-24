@@ -43,9 +43,10 @@ var Wrapper = React.createClass({
 
             <div>
                 <hr />
-                <label className="startFiftypc">Jämförelse med gamla JAK-banken
-                    <input type="checkbox" checked={this.state.showGamlaJAK}
-                           onChange={this.showGamlaJAKbanken}/></label>
+                <label className="startFiftypc">
+                    <input type="checkbox" checked={this.state.showGamlaJAK} onChange={this.showGamlaJAKbanken}/>
+                    Jämförelse med gamla JAK-banken
+                </label>
 
                 <div className="clear"/>
                 <NewJAK loanSettings={this.state.loanSettings} bankSettings={this.state.bankSettings}/>

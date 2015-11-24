@@ -10,8 +10,11 @@ var OldJAK = React.createClass({
     mixins: [JAKMixin],
 
     componentWillMount: function () {
-        this.headerText = <h2>Gamla JAK-banken</h2>;
-    },
+        this.headerText = <h2 style={{
+                        marginTop: "20px",
+                        marginBottom: "39px"
+                        }}>Gamla JAK-banken</h2>;
+                    },
 
     calculate: function (loanSettings, bankSettings) {
 

@@ -22,7 +22,7 @@ var BankSettings = React.createClass({
     },
 
     renderInput: function (value, functionToRun) {
-        return <input type="number" max="10000000000" min="0" value={value} onChange={function(event){
+        return <input type="number" max="10000000000" min="0" className="marginLeft" value={value} onChange={function(event){
             functionToRun(event);
             this.props.stateChange(this.bankSettings);
         }.bind(this)}/>
@@ -35,98 +35,114 @@ var BankSettings = React.createClass({
 
                 <div>
                     <label>Med säkerhet</label>
-                    <label>Min</label>
-                    {this.renderInput(this.bankSettings.getMedSäkerhet().amount.min, function (event) {
-                        this.bankSettings.getMedSäkerhet().amount.min = +event.target.value
-                    }.bind(this))}
-                    <label>Max</label>
-                    {this.renderInput(this.bankSettings.getMedSäkerhet().amount.max, function (event) {
-                        this.bankSettings.getMedSäkerhet().amount.max = +event.target.value
-                    }.bind(this))}
+                    <label className="normalMargins">Min
+                        {this.renderInput(this.bankSettings.getMedSäkerhet().amount.min, function (event) {
+                            this.bankSettings.getMedSäkerhet().amount.min = +event.target.value
+                        }.bind(this))}
+                    </label>
+                    <label className="normalMargins">Max
+                        {this.renderInput(this.bankSettings.getMedSäkerhet().amount.max, function (event) {
+                            this.bankSettings.getMedSäkerhet().amount.max = +event.target.value
+                        }.bind(this))}
+                    </label>
                 </div>
                 <div>
                     <label>Utan säkerhet</label>
-                    <label>Min</label>
-                    {this.renderInput(this.bankSettings.getUtanSäkerhet().amount.min, function (event) {
-                        this.bankSettings.getUtanSäkerhet().amount.min = +event.target.value
-                    }.bind(this))}
-                    <label>Max</label>
-                    {this.renderInput(this.bankSettings.getUtanSäkerhet().amount.max, function (event) {
-                        this.bankSettings.getUtanSäkerhet().amount.max = +event.target.value
-                    }.bind(this))}
+                    <label className="normalMargins">Min
+                        {this.renderInput(this.bankSettings.getUtanSäkerhet().amount.min, function (event) {
+                            this.bankSettings.getUtanSäkerhet().amount.min = +event.target.value
+                        }.bind(this))}
+                    </label>
+                    <label className="normalMargins">Max
+                        {this.renderInput(this.bankSettings.getUtanSäkerhet().amount.max, function (event) {
+                            this.bankSettings.getUtanSäkerhet().amount.max = +event.target.value
+                        }.bind(this))}
+                    </label>
                 </div>
 
                 <p>Tid (år)</p>
 
                 <div>
                     <label>Med säkerhet</label>
-                    <label>Min</label>
-                    {this.renderInput(this.bankSettings.getMedSäkerhet().time.min, function (event) {
-                        this.bankSettings.getMedSäkerhet().time.min = +event.target.value
-                    }.bind(this))}
-                    <label>Max</label>
-                    {this.renderInput(this.bankSettings.getMedSäkerhet().time.max, function (event) {
-                        this.bankSettings.getMedSäkerhet().time.max = +event.target.value
-                    }.bind(this))}
+                    <label className="normalMargins">Min
+                        {this.renderInput(this.bankSettings.getMedSäkerhet().time.min, function (event) {
+                            this.bankSettings.getMedSäkerhet().time.min = +event.target.value
+                        }.bind(this))}
+                    </label>
+                    <label className="normalMargins">Max
+                        {this.renderInput(this.bankSettings.getMedSäkerhet().time.max, function (event) {
+                            this.bankSettings.getMedSäkerhet().time.max = +event.target.value
+                        }.bind(this))}
+                    </label>
                 </div>
                 <div>
                     <label>Utan säkerhet</label>
-                    <label>Min</label>
-                    {this.renderInput(this.bankSettings.getUtanSäkerhet().time.min, function (event) {
-                        this.bankSettings.getUtanSäkerhet().time.min = +event.target.value
-                    }.bind(this))}
-                    <label>Max</label>
-                    {this.renderInput(this.bankSettings.getUtanSäkerhet().time.max, function (event) {
-                        this.bankSettings.getUtanSäkerhet().time.max = +event.target.value
-                    }.bind(this))}
+                    <label className="normalMargins">Min
+                        {this.renderInput(this.bankSettings.getUtanSäkerhet().time.min, function (event) {
+                            this.bankSettings.getUtanSäkerhet().time.min = +event.target.value
+                        }.bind(this))}
+                    </label>
+                    <label className="normalMargins">Max
+                        {this.renderInput(this.bankSettings.getUtanSäkerhet().time.max, function (event) {
+                            this.bankSettings.getUtanSäkerhet().time.max = +event.target.value
+                        }.bind(this))}
+                    </label>
                 </div>
 
                 <p>Lånekostnad (% per år)</p>
 
                 <div>
-                    <label>Med säkerhet</label>
-                    <input type="number" max="200" min="0" step="0.1"
-                           value={this.bankSettings.getMedSäkerhet().lånekostnad}
-                           onChange={function(event){
+                    <label>Med säkerhet
+                        <input type="number" max="200" min="0" step="0.1" className="normalMargins"
+                               value={this.bankSettings.getMedSäkerhet().lånekostnad}
+                               onChange={function(event){
                             this.bankSettings.getMedSäkerhet().lånekostnad = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
+                    </label>
                 </div>
                 <div>
-                    <label>Utan säkerhet</label>
-                    <input type="number" max="200" min="0" step="0.1"
-                           value={this.bankSettings.getUtanSäkerhet().lånekostnad}
-                           onChange={function(event){
+                    <label>Utan säkerhet
+                        <input type="number" max="200" min="0" step="0.1" className="normalMargins"
+                               value={this.bankSettings.getUtanSäkerhet().lånekostnad}
+                               onChange={function(event){
                             this.bankSettings.getUtanSäkerhet().lånekostnad = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
+                    </label>
                 </div>
 
                 <p>Låneinsats (%)</p>
 
                 <div>
-                    <label>Med säkerhet</label>
-                    <input type="number" max="200" min="0" step="0.1" value={this.bankSettings.getMedSäkerhet().låneinsats}
-                           onChange={function(event){
+                    <label>Med säkerhet
+                        <input type="number" max="200" min="0" step="0.1" className="normalMargins"
+                               value={this.bankSettings.getMedSäkerhet().låneinsats}
+                               onChange={function(event){
                             this.bankSettings.getMedSäkerhet().låneinsats = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
+                    </label>
                 </div>
                 <div>
-                    <label>Utan säkerhet</label>
-                    <input type="number" max="200" min="0" step="0.1" value={this.bankSettings.getUtanSäkerhet().låneinsats}
-                           onChange={function(event){
+                    <label>Utan säkerhet
+                        <input type="number" max="200" min="0" step="0.1" className="normalMargins"
+                               value={this.bankSettings.getUtanSäkerhet().låneinsats}
+                               onChange={function(event){
                             this.bankSettings.getUtanSäkerhet().låneinsats = +event.target.value;
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
+                    </label>
                 </div>
 
-                <span>Optimal U-kvot (0-1)</span>
+                <span>Optimal U-kvot (0-1)
                 <input type="number" max="1" min="0" step="0.1" value={this.bankSettings.getOptimalUKvot()}
+                       className="normalMargins"
                        onChange={function(event){
                             this.bankSettings.setOptimalUKvot(+event.target.value);
                             this.props.stateChange(this.bankSettings);
                         }.bind(this)}/>
+                    </span>
 
                 <p>Sparfaktor 1,0</p>
             </div> : "";
@@ -136,17 +152,20 @@ var BankSettings = React.createClass({
         var temp = this.renderAdvancedSettings();
         return <div className="marginbottom">
             <h3>Inställningar:</h3>
-            <label className="u-kvot">Aktuell U-Kvot: </label>
-            <input type="number" min="0" max="1" step={0.01}
-                   value={this.props.values.getUKvot()}
-                   onChange={this.changeUKvot}/>
+            <label className="u-kvot">Aktuell U-Kvot:
+                <input type="number" min="0" max="1" step={0.01} className="marginLeft"
+                       value={this.props.values.getUKvot()}
+                       onChange={this.changeUKvot}/>
+            </label>
             <span className="u-kvot2">
               <i>Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk U-kvot</i>
             </span>
 
             <div>
-                <label className="u-kvot">Avancerade inställningar: </label>
-                <input type="checkbox" checked={this.state.advancedSettings} onChange={this.changeSeeAdvanced}/>
+                <label className="u-kvot">
+                    <input type="checkbox" checked={this.state.advancedSettings} onChange={this.changeSeeAdvanced}/>
+                    Avancerade inställningar:
+                </label>
                 {temp}
             </div>
         </div>;

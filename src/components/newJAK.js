@@ -25,7 +25,7 @@ var NewJAK = React.createClass({
         this.headerText = <div>
             <h2 className="floatL">Nya JAK-banken</h2>
 
-            <div className="floatL">
+            <div className="floatR">
                 <p>
                     <b>Rak månadsbetalning:</b>
                 </p>
