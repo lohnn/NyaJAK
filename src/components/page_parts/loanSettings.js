@@ -32,8 +32,9 @@ var LoanSettings = React.createClass({
     },
 
     render: function () {
+        console.log(this.bankSettings.getTurboCalculation());
         this.loanSettings.bestAmortering = ((this.bankSettings.getTimeMax() - this.bankSettings.getTimeMin()) /
-            this.bankSettings.getOptimalUKvot()) * this.bankSettings.getUKvot() + this.bankSettings.getTimeMin();
+            this.bankSettings.getOptimalUKvot()) * this.bankSettings.getTurboCalculation() * this.bankSettings.getUKvot() + this.bankSettings.getTimeMin();
         this.loanSettings.bestAmortering = (this.bankSettings.getTimeMax() < this.loanSettings.bestAmortering) ? this.bankSettings.getTimeMax() : this.loanSettings.bestAmortering;
 
         return <div>

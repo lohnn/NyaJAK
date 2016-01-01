@@ -27,6 +27,7 @@ var BankSettingsFactory = function () {
         med_säkerhet: new BankSettings(),
         utan_säkerhet: new BankSettings(),
         u_kvot: 0.58,
+        turbo: 0,
         optimal_u_kvot: 0.9
     };
 
@@ -52,6 +53,17 @@ var BankSettingsFactory = function () {
     };
     this.setUKvot = function (value) {
         bankSettings.u_kvot = value;
+    };
+
+    this.getTurbo = function () {
+        return bankSettings.turbo;
+    };
+    this.setTurbo = function (value) {
+        bankSettings.turbo = value;
+    };
+    this.getTurboCalculation = function () {
+        console.log(Math.pow(this.getUKvot() / this.getOptimalUKvot(), this.getTurbo()));
+        return Math.pow(this.getUKvot() / this.getOptimalUKvot(), this.getTurbo());
     };
 
     this.getOptimalUKvot = function () {

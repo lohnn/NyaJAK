@@ -46,7 +46,7 @@ var NewJAK = React.createClass({
         var sparpoängOmräknad = loanSettings.förspar * (1 / (bankSettings.getUKvot() / bankSettings.getOptimalUKvot()));
 
         //M44
-        var eftersparprocent = Math.max(minstaSparprocent,
+        var eftersparprocent = bankSettings.getTurboCalculation() * Math.max(minstaSparprocent,
             ((loanSettings.bestAmortering * minstaSparprocent) + ((loanSettings.time - loanSettings.bestAmortering) * 100)) / loanSettings.time);
 
         var poängförbrukning = ((this.amortering / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));

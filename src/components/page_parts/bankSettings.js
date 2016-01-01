@@ -17,6 +17,11 @@ var BankSettings = React.createClass({
         this.props.stateChange(this.bankSettings);
     },
 
+    changeTurbo: function (event) {
+        this.bankSettings.setTurbo(+event.target.value);
+        this.props.stateChange(this.bankSettings);
+    },
+
     changeSeeAdvanced: function (event) {
         this.setState({advancedSettings: event.target.checked});
     },
@@ -151,15 +156,36 @@ var BankSettings = React.createClass({
     render: function () {
         var temp = this.renderAdvancedSettings();
         return <div className="marginbottom">
-            <h3>Inställningar:</h3>
-            <label className="u-kvot">Aktuell U-Kvot:
+            <h3 className="floatL bigMarginRight">Inställningar:</h3>
+            <div className="floatL normalMargins">
+                <p>
+                    <b>Turbo:</b>
+                </p>
+                <input id="försparpoäng" type="number"
+                       min={-10}
+                       max={20}
+                       value={this.props.values.getTurbo()}
+                       step={0.1}
+                       onChange={this.changeTurbo}/>
+                <div>
+                    <input id="tid"
+                           type="range"
+                           min={-10}
+                           max={20}
+                           value={this.props.values.getTurbo()}
+                           step={0.1}
+                           onChange={this.changeTurbo}/>
+                </div>
+            </div>
+            <div className="clear"/>
+            <label className="u-kvot">Aktuell Utlåningskvot:
                 <input type="number" min="0" max="1" step={0.01} className="marginLeft"
                        value={this.props.values.getUKvot()}
                        onChange={this.changeUKvot}/>
             </label>
-            <span className="u-kvot2">
-              <i>Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk U-kvot</i>
-            </span>
+            <div className="u-kvot2">
+              <i>Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk Utlåningskvot</i>
+            </div>
 
             <div>
                 <label className="u-kvot">

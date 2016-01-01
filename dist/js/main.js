@@ -20156,7 +20156,7 @@ var NewJAK = React.createClass({displayName: "NewJAK",
         var sparpoängOmräknad = loanSettings.förspar * (1 / (bankSettings.getUKvot() / bankSettings.getOptimalUKvot()));
 
         //M44
-        var eftersparprocent = Math.max(minstaSparprocent,
+        var eftersparprocent = bankSettings.getTurboCalculation() * Math.max(minstaSparprocent,
             ((loanSettings.bestAmortering * minstaSparprocent) + ((loanSettings.time - loanSettings.bestAmortering) * 100)) / loanSettings.time);
 
         var poängförbrukning = ((this.amortering / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));
@@ -20242,6 +20242,11 @@ var BankSettings = React.createClass({displayName: "BankSettings",
 
     changeUKvot: function (event) {
         this.bankSettings.setUKvot(+event.target.value);
+        this.props.stateChange(this.bankSettings);
+    },
+
+    changeTurbo: function (event) {
+        this.bankSettings.setTurbo(+event.target.value);
         this.props.stateChange(this.bankSettings);
     },
 
@@ -20379,14 +20384,35 @@ var BankSettings = React.createClass({displayName: "BankSettings",
     render: function () {
         var temp = this.renderAdvancedSettings();
         return React.createElement("div", {className: "marginbottom"}, 
-            React.createElement("h3", null, "Inställningar:"), 
-            React.createElement("label", {className: "u-kvot"}, "Aktuell U-Kvot:", 
+            React.createElement("h3", {className: "floatL bigMarginRight"}, "Inställningar:"), 
+            React.createElement("div", {className: "floatL normalMargins"}, 
+                React.createElement("p", null, 
+                    React.createElement("b", null, "Turbo:")
+                ), 
+                React.createElement("input", {id: "försparpoäng", type: "number", 
+                       min: -10, 
+                       max: 20, 
+                       value: this.props.values.getTurbo(), 
+                       step: 0.1, 
+                       onChange: this.changeTurbo}), 
+                React.createElement("div", null, 
+                    React.createElement("input", {id: "tid", 
+                           type: "range", 
+                           min: -10, 
+                           max: 20, 
+                           value: this.props.values.getTurbo(), 
+                           step: 0.1, 
+                           onChange: this.changeTurbo})
+                )
+            ), 
+            React.createElement("div", {className: "clear"}), 
+            React.createElement("label", {className: "u-kvot"}, "Aktuell Utlåningskvot:", 
                 React.createElement("input", {type: "number", min: "0", max: "1", step: 0.01, className: "marginLeft", 
                        value: this.props.values.getUKvot(), 
                        onChange: this.changeUKvot})
             ), 
-            React.createElement("span", {className: "u-kvot2"}, 
-              React.createElement("i", null, "Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk U-kvot")
+            React.createElement("div", {className: "u-kvot2"}, 
+              React.createElement("i", null, "Sätts förslagsvis av styrelsen kvartalsvis utifrån faktisk Utlåningskvot")
             ), 
 
             React.createElement("div", null, 
@@ -20437,8 +20463,9 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
     },
 
     render: function () {
+        console.log(this.bankSettings.getTurboCalculation());
         this.loanSettings.bestAmortering = ((this.bankSettings.getTimeMax() - this.bankSettings.getTimeMin()) /
-            this.bankSettings.getOptimalUKvot()) * this.bankSettings.getUKvot() + this.bankSettings.getTimeMin();
+            this.bankSettings.getOptimalUKvot()) * this.bankSettings.getTurboCalculation() * this.bankSettings.getUKvot() + this.bankSettings.getTimeMin();
         this.loanSettings.bestAmortering = (this.bankSettings.getTimeMax() < this.loanSettings.bestAmortering) ? this.bankSettings.getTimeMax() : this.loanSettings.bestAmortering;
 
         return React.createElement("div", null, 
@@ -20650,6 +20677,7 @@ var BankSettingsFactory = function () {
         med_säkerhet: new BankSettings(),
         utan_säkerhet: new BankSettings(),
         u_kvot: 0.58,
+        turbo: 0,
         optimal_u_kvot: 0.9
     };
 
@@ -20675,6 +20703,17 @@ var BankSettingsFactory = function () {
     };
     this.setUKvot = function (value) {
         bankSettings.u_kvot = value;
+    };
+
+    this.getTurbo = function () {
+        return bankSettings.turbo;
+    };
+    this.setTurbo = function (value) {
+        bankSettings.turbo = value;
+    };
+    this.getTurboCalculation = function () {
+        console.log(Math.pow(this.getUKvot() / this.getOptimalUKvot(), this.getTurbo()));
+        return Math.pow(this.getUKvot() / this.getOptimalUKvot(), this.getTurbo());
     };
 
     this.getOptimalUKvot = function () {
