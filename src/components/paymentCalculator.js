@@ -31,6 +31,7 @@ var PaymentMixin = {
                 tempAmount = loanSettings.amount - amortering * i;
                 var tempLånekostnad = (skatteavdrag * bankSettings.getLånekostnad() * tempAmount);
                 var tempPostSavings = (eftersparPerMånad / 2) + (jämkadLånekostnad.start - tempLånekostnad);
+                console.log(tempPostSavings);
                 sumPostSavings += tempPostSavings;
                 ackumuleradePoang += sumPostSavings;
             }
@@ -62,7 +63,7 @@ var PaymentMixin = {
                     ackumuleradePoang += sumPostSavings;
                 }
             }
-            console.log(ackumuleradePoang);
+            //console.log(ackumuleradePoang);
         } else {
             postSavings = {start: eftersparPerMånad, end: eftersparPerMånad};
         }

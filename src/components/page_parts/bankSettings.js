@@ -156,7 +156,7 @@ var BankSettings = React.createClass({
     render: function () {
         var temp = this.renderAdvancedSettings();
         return <div className="marginbottom">
-            <h3 className="floatL bigMarginRight">Inställningar:</h3>
+            <h3 className="floatL bigMarginRight">Bankens inställningar:</h3>
             <div className="floatL normalMargins">
                 <p>
                     <b>Turbo:</b>

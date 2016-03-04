@@ -47,7 +47,7 @@ var NewJAK = React.createClass({
 
         //M44
         var eftersparprocent = bankSettings.getTurboCalculation() * Math.max(minstaSparprocent,
-            ((loanSettings.bestAmortering * minstaSparprocent) + ((loanSettings.time - loanSettings.bestAmortering) * 100)) / loanSettings.time);
+                ((loanSettings.bestAmortering * minstaSparprocent) + ((loanSettings.time - loanSettings.bestAmortering) * 100)) / loanSettings.time);
 
         var poängförbrukning = ((this.amortering / 2 * ((loanSettings.time * 12) + 1)) * (loanSettings.time * 12));
 
@@ -67,6 +67,8 @@ var NewJAK = React.createClass({
             this.payState.ackumuleradePoäng = this.payState.eftersparPerMånad * 0.5 * (loanSettings.time * 12) * ((loanSettings.time * 12) + 1);
         }
 
+        //console.log("OUT:");
+        //console.log(this.payState.ackumuleradePoäng);
         this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad));
 
         if (isNaN(this.sparpoängKvar)) this.sparpoängKvar = 0;

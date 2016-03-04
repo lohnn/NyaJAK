@@ -62,7 +62,7 @@ var BankSettingsFactory = function () {
         bankSettings.turbo = value;
     };
     this.getTurboCalculation = function () {
-        console.log(Math.pow(this.getUKvot() / this.getOptimalUKvot(), this.getTurbo()));
+        //console.log(Math.pow(this.getUKvot() / this.getOptimalUKvot(), this.getTurbo()));
         return Math.pow(this.getUKvot() / this.getOptimalUKvot(), this.getTurbo());
     };
 
