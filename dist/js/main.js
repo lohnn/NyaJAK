@@ -19976,18 +19976,6 @@ var NewJAK = React.createClass({displayName: "NewJAK",
 
     //TODO: See if I can modulize this even more, making sure I provide all "this"-settings
     calculate: function (loanSettings, bankSettings) {
-        this.headerText = React.createElement("div", null, 
-            React.createElement("h2", {className: "floatL"}, "Nya JAK-banken"), 
-
-            React.createElement("div", {className: "floatR"}, 
-                React.createElement("p", null, 
-                    React.createElement("b", null, "Rak månadsbetalning:")
-                ), 
-                React.createElement(Checkbox, {value: this.state.rak_månadsbetalning, onChange: this.changeStraightPayment})
-            ), 
-            React.createElement("div", {className: "clear"})
-        );
-
         this.amortering = (loanSettings.amount / (loanSettings.time * 12));
 
         //M26
@@ -20017,6 +20005,7 @@ var NewJAK = React.createClass({displayName: "NewJAK",
 
         this.efterAmortering = ((this.payState.postSavings.start + this.payState.postSavings.end) / 2) * (loanSettings.time * 12);
 
+        var ackumuleradePoängRak = this.payState.ackumuleradePoäng;
         if (!this.state.rak_månadsbetalning) {
             this.payState.ackumuleradePoäng = this.payState.eftersparPerMånad * 0.5 * (loanSettings.time * 12) * ((loanSettings.time * 12) + 1);
         }
@@ -20024,6 +20013,22 @@ var NewJAK = React.createClass({displayName: "NewJAK",
         this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad));
 
         if (isNaN(this.sparpoängKvar)) this.sparpoängKvar = 0;
+
+        var temp = React.createElement("div", null);
+        if((sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + ackumuleradePoängRak) * (loanSettings.förspar / sparpoängOmräknad) > 0)
+            temp = React.createElement("div", null, React.createElement("i", null, "Tips: överväg att välja Nej!"));
+        this.headerText = React.createElement("div", null, 
+            React.createElement("h2", {className: "floatL"}, "Nya JAK-banken"), 
+
+            React.createElement("div", {className: "floatR"}, 
+                React.createElement("p", null, 
+                    React.createElement("b", null, "Rak månadsbetalning:"), 
+                    temp
+                ), 
+                React.createElement(Checkbox, {value: this.state.rak_månadsbetalning, onChange: this.changeStraightPayment})
+            ), 
+            React.createElement("div", {className: "clear"})
+        );
     }
 });
 

@@ -22,18 +22,6 @@ var NewJAK = React.createClass({
 
     //TODO: See if I can modulize this even more, making sure I provide all "this"-settings
     calculate: function (loanSettings, bankSettings) {
-        this.headerText = <div>
-            <h2 className="floatL">Nya JAK-banken</h2>
-
-            <div className="floatR">
-                <p>
-                    <b>Rak månadsbetalning:</b>
-                </p>
-                <Checkbox value={this.state.rak_månadsbetalning} onChange={this.changeStraightPayment}/>
-            </div>
-            <div className="clear"/>
-        </div>;
-
         this.amortering = (loanSettings.amount / (loanSettings.time * 12));
 
         //M26
@@ -63,6 +51,7 @@ var NewJAK = React.createClass({
 
         this.efterAmortering = ((this.payState.postSavings.start + this.payState.postSavings.end) / 2) * (loanSettings.time * 12);
 
+        var ackumuleradePoängRak = this.payState.ackumuleradePoäng;
         if (!this.state.rak_månadsbetalning) {
             this.payState.ackumuleradePoäng = this.payState.eftersparPerMånad * 0.5 * (loanSettings.time * 12) * ((loanSettings.time * 12) + 1);
         }
@@ -70,6 +59,22 @@ var NewJAK = React.createClass({
         this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad));
 
         if (isNaN(this.sparpoängKvar)) this.sparpoängKvar = 0;
+
+        var temp = <div></div>;
+        if((sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + ackumuleradePoängRak) * (loanSettings.förspar / sparpoängOmräknad) > 0)
+            temp = <div><i>Tips: överväg att välja Nej!</i></div>;
+        this.headerText = <div>
+            <h2 className="floatL">Nya JAK-banken</h2>
+
+            <div className="floatR">
+                <p>
+                    <b>Rak månadsbetalning:</b>
+                    {temp}
+                </p>
+                <Checkbox value={this.state.rak_månadsbetalning} onChange={this.changeStraightPayment}/>
+            </div>
+            <div className="clear"/>
+        </div>;
     }
 });
 
