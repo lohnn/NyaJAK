@@ -20005,18 +20005,25 @@ var NewJAK = React.createClass({displayName: "NewJAK",
 
         this.efterAmortering = ((this.payState.postSavings.start + this.payState.postSavings.end) / 2) * (loanSettings.time * 12);
 
-        var ackumuleradePoängRak = this.payState.ackumuleradePoäng;
+        var sparpoängKvarRak = (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad)
         if (!this.state.rak_månadsbetalning) {
             this.payState.ackumuleradePoäng = this.payState.eftersparPerMånad * 0.5 * (loanSettings.time * 12) * ((loanSettings.time * 12) + 1);
+            this.sparpoängKvar = (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad)
+        } else {
+            this.sparpoängKvar = sparpoängKvarRak;
         }
 
-        this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad));
+        this.sparpoängKvar = Math.max(0, this.sparpoängKvar);
 
         if (isNaN(this.sparpoängKvar)) this.sparpoängKvar = 0;
 
         var temp = React.createElement("div", null);
-        if((sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + ackumuleradePoängRak) * (loanSettings.förspar / sparpoängOmräknad) > 0)
+        if (sparpoängKvarRak >= 1) {
             temp = React.createElement("div", null, React.createElement("i", null, "Tips: överväg att välja Nej!"));
+            console.log("YES " + sparpoängKvarRak + " : " + this.sparpoängKvar);
+        } else
+            console.log("NO " + sparpoängKvarRak + " : " + this.sparpoängKvar);
+
         this.headerText = React.createElement("div", null, 
             React.createElement("h2", {className: "floatL"}, "Nya JAK-banken"), 
 
@@ -20312,7 +20319,6 @@ var LoanSettings = React.createClass({displayName: "LoanSettings",
     },
 
     render: function () {
-        console.log(this.bankSettings.getTurboCalculation());
         this.loanSettings.bestAmortering = ((this.bankSettings.getTimeMax() - this.bankSettings.getTimeMin()) /
             this.bankSettings.getOptimalUKvot()) * this.bankSettings.getTurboCalculation() * this.bankSettings.getUKvot() + this.bankSettings.getTimeMin();
         this.loanSettings.bestAmortering = (this.bankSettings.getTimeMax() < this.loanSettings.bestAmortering) ? this.bankSettings.getTimeMax() : this.loanSettings.bestAmortering;
@@ -20689,7 +20695,7 @@ var Wrapper = React.createClass({displayName: "Wrapper",
             loanSettings: {
                 amount: 1000000,
                 time: 20,
-                förspar: 5000000,
+                förspar: 50000000,
                 säkerhet: true,
                 rak_månadsbetalning: true,
                 skattejämkning: true,

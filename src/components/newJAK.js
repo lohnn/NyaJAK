@@ -51,18 +51,25 @@ var NewJAK = React.createClass({
 
         this.efterAmortering = ((this.payState.postSavings.start + this.payState.postSavings.end) / 2) * (loanSettings.time * 12);
 
-        var ackumuleradePoängRak = this.payState.ackumuleradePoäng;
+        var sparpoängKvarRak = (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad)
         if (!this.state.rak_månadsbetalning) {
             this.payState.ackumuleradePoäng = this.payState.eftersparPerMånad * 0.5 * (loanSettings.time * 12) * ((loanSettings.time * 12) + 1);
+            this.sparpoängKvar = (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad)
+        } else {
+            this.sparpoängKvar = sparpoängKvarRak;
         }
 
-        this.sparpoängKvar = Math.max(0, (sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + this.payState.ackumuleradePoäng) * (loanSettings.förspar / sparpoängOmräknad));
+        this.sparpoängKvar = Math.max(0, this.sparpoängKvar);
 
         if (isNaN(this.sparpoängKvar)) this.sparpoängKvar = 0;
 
         var temp = <div></div>;
-        if((sparpoängOmräknad - (poängförbrukning * (eftersparprocent / 100)) + ackumuleradePoängRak) * (loanSettings.förspar / sparpoängOmräknad) > 0)
+        if (sparpoängKvarRak >= 1) {
             temp = <div><i>Tips: överväg att välja Nej!</i></div>;
+            console.log("YES " + sparpoängKvarRak + " : " + this.sparpoängKvar);
+        } else
+            console.log("NO " + sparpoängKvarRak + " : " + this.sparpoängKvar);
+
         this.headerText = <div>
             <h2 className="floatL">Nya JAK-banken</h2>
 
