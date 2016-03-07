@@ -20695,7 +20695,7 @@ var Wrapper = React.createClass({displayName: "Wrapper",
             loanSettings: {
                 amount: 1000000,
                 time: 20,
-                förspar: 50000000,
+                förspar: 0,
                 säkerhet: true,
                 rak_månadsbetalning: true,
                 skattejämkning: true,
